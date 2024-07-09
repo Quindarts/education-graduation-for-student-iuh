@@ -1,8 +1,19 @@
-import { Box } from '@mui/joy';
+import { Box } from '@mui/material';
 import React from 'react';
+import NewFeedSection from './NewFeed';
+import BannerSection from './Banner';
+import InfoPropjectSection from './Info';
 
 function HomeTemplate() {
-  return <Box>HomeTemplate</Box>;
+  return (
+    <Box>
+      <Box>
+        <BannerSection />
+        <NewFeedSection />
+        <InfoPropjectSection />
+      </Box>
+    </Box>
+  );
 }
 
 export default HomeTemplate;
