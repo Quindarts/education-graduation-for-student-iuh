@@ -7,16 +7,27 @@ import { queryClient } from './providers/ReactQuery';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import MUIThemeProvider from './providers/MUIThemeProvider';
+import { SnackbarProvider } from 'notistack';
+import { Zoom } from '@mui/material';
+import { themeSnackbar } from './theme/ThemeSnackbar';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-     <MUIThemeProvider>
+    <MUIThemeProvider>
       <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <App />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <SnackbarProvider
+          maxSnack={5}
+          TransitionComponent={Zoom}
+          Components={themeSnackbar}
+          autoHideDuration={2000}
+          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        >
+          <QueryClientProvider client={queryClient}>
+            <App />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </SnackbarProvider>
       </BrowserRouter>
-   </MUIThemeProvider>
+    </MUIThemeProvider>
   </React.StrictMode>,
 );

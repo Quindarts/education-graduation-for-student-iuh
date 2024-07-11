@@ -1,5 +1,7 @@
 import usePopup from '@/hook/ui/usePopup';
+import useUserStore from '@/store/userStore';
 import { APP_PROFILE_MENU } from '@/utils/app-config';
+import { removeValueInLocalStorage } from '@/utils/localStorage';
 import { Icon } from '@iconify/react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -78,7 +80,7 @@ const keyframes = `
 function ProfileMenu() {
   const navigate = useNavigate();
   const { handleActive, active, menuRef } = usePopup();
-
+  const me = useUserStore((state) => state.me);
   return (
     <Box
       display='flex'
@@ -123,7 +125,7 @@ function ProfileMenu() {
         }}
       >
         <Typography color='grey.700' variant='h6' fontWeight={600}>
-          Lê Minh Quang
+          {me.fullName}
         </Typography>
         <Typography color='grey.600' variant='body2' fontWeight={600}>
           Sinh viên
@@ -165,6 +167,8 @@ function ProfileMenu() {
                 sx={{ '.MuiListItemIcon-root ': { minWidth: 24 }, my: 2 }}
                 onClick={() => {
                   if (menuItem.link === '/auth/login') {
+                    removeValueInLocalStorage('accessTokenStudent');
+                    removeValueInLocalStorage('refreshTokenStudent');
                     navigate('/home');
                   } else navigate(menuItem.link);
                 }}

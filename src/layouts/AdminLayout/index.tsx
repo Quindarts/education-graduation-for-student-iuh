@@ -1,5 +1,7 @@
 import Navbar from '@/components/shared/Navbar';
 import Sidebar from '@/components/shared/Sidebar';
+import useAuth from '@/hook/api/useAuth';
+import useTerm from '@/hook/api/useTerm';
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -9,11 +11,12 @@ function AdminLayout() {
   const handleOpenSideBar = () => {
     setIsOpenSideBar(!isOpenSideBar);
   };
+  const { HandleGetme } = useAuth();
+  const { HandleGetCurrentTerm } = useTerm();
+  HandleGetme();
+  HandleGetCurrentTerm();
   return (
     <>
-      {/* {isLoading ? (
-        <Loading />
-      ) : ( */}
       <Box
         display='flex'
         sx={{
@@ -48,9 +51,8 @@ function AdminLayout() {
           </Box>
         </Box>
       </Box>
-      {/* )} */}
     </>
   );
 }
 
-export default React.memo(AdminLayout);
+export default AdminLayout;

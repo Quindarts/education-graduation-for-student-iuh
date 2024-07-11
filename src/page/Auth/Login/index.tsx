@@ -12,17 +12,21 @@ import { Icon } from '@iconify/react';
 import { CircularProgress, Paper } from '@mui/material';
 import bgStudent from '../../../../public/images/student-nobg.png';
 import logoIUH from '../../../../public/images/logo-light.png';
-import { useNavigate } from 'react-router-dom';
+import useAuth from '@/hook/api/useAuth';
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show: boolean) => !show);
-  const navigate = useNavigate();
+  const { HandleLogin } = useAuth();
+  const { mutate: login } = HandleLogin();
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
-    onSubmit: () => {},
+    onSubmit: () => {
+      login({ username: '19516911', password: '12345678' });
+    },
   });
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = formik;
 
@@ -118,13 +122,7 @@ function LoginPage() {
                 ),
               }}
             />
-            <Button
-              variant='contained'
-              onClick={() => navigate('/dashboard')}
-              type='submit'
-              fullWidth
-              color='primary'
-            >
+            <Button variant='contained' type='submit' fullWidth color='primary'>
               Đăng nhập
               <CircularProgress
                 size={'small'}

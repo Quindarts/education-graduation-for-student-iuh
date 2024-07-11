@@ -1,9 +1,12 @@
 import TitleManager from '@/components/ui/Title';
 import { Icon } from '@iconify/react';
-import { Avatar, Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
 import nodataImg from '../../../public/images/nodata.png';
+import useUserStore from '@/store/userStore';
+import { checkGender } from '@/utils/validations/person.validation';
 function DashboardTemplate() {
+  const me = useUserStore((state) => state.me);
   return (
     <>
       <Box display={'flex'} gap={10}>
@@ -31,10 +34,10 @@ function DashboardTemplate() {
               </Typography>
               <Box display={'flex'} gap={3}>
                 <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Họ và tên:{' '}
+                  Họ và tên:
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
-                  Lê Minh Quang
+                  {me.fullName}
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
@@ -42,7 +45,7 @@ function DashboardTemplate() {
                   Lớp học phần:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
-                  DHKTPM17C
+                  {me.clazzName}
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
@@ -50,7 +53,7 @@ function DashboardTemplate() {
                   Giới tính:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
-                  Nam
+                  {checkGender(me?.gender)}
                 </Typography>
               </Box>
             </Box>

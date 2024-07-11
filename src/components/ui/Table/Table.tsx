@@ -5,7 +5,6 @@ import React from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import IconButton from '@mui/material/IconButton';
-import DropDown from '../Dropdown';
 interface Props extends DataGridProps {
   minHeight?: number;
   page: number;
@@ -71,7 +70,7 @@ export default function Table(props: Props) {
           loadingOverlay: () => <LinearProgress />,
         }}
         sx={{
-          fontSize: 12,
+          fontSize: 14,
           cursor: 'pointer',
           '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
             outline: 'none !important',
@@ -86,7 +85,7 @@ export default function Table(props: Props) {
             color: 'white',
           },
 
-          '& .MuiDataGrid-virtualScroller': {
+          '& .MuiDataGrid-columnHeaderst > .MuiDataGrid-virtualScroller': {
             minHeight,
             overflowX: 'auto',
             '::-webkit-scrollbar': {
@@ -113,7 +112,7 @@ export default function Table(props: Props) {
       <Box display='flex' alignItems='center' justifyContent='space-between' mr={2} mt={4}>
         <Box display='flex' alignItems='center'>
           {/* <Box width={190}> */}
-            {/* <DropDown
+          {/* <DropDown
               value={5}
               options={[
                 { _id: 5, name: 'Hiển thị 5 dòng' },

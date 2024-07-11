@@ -16,11 +16,11 @@ export const APP_ROUTES = {
   },
   GROUP_STUDENT: {
     MANAGEMENT: "/dashboard/group-students",
-    DETAIL: '/dashboard/group-students/detail/:group_id',
+    DETAIL: '/dashboard/group-students/detail',
   },
   TOPIC: {
     MANAGEMENT: "/dashboard/topics",
-    LECTURER: '/dashboard/topic-lecturers'
+    STUDENT: '/dashboard/topics/my-topic/:topic_id'
   },
   REVIEW: {
     MANAGEMENT: '/dashboard/reviews',
@@ -56,19 +56,19 @@ export const APP_SIDEBAR = [
     key: '/',
   },
   {
-    icon: 'mdi:account-student',
+    icon: 'mingcute:group-fill',
     text: 'Nhóm sinh viên',
-    link: [APP_ROUTES.STUDENT.MANAGEMENT],
+    link: [APP_ROUTES.GROUP_STUDENT.MANAGEMENT],
     children: [
       {
         text: 'Danh sách nhóm sinh viên',
-        link: APP_ROUTES.STUDENT.MANAGEMENT,
-        key: APP_ROUTES.STUDENT.MANAGEMENT,
+        link: APP_ROUTES.GROUP_STUDENT.MANAGEMENT,
+        key: APP_ROUTES.GROUP_STUDENT.MANAGEMENT,
       },
       {
         text: 'Nhóm sinh viên của tôi',
-        link: APP_ROUTES.STUDENT.MANAGEMENT,
-        key: APP_ROUTES.STUDENT.MANAGEMENT,
+        link: APP_ROUTES.GROUP_STUDENT.DETAIL,
+        key: APP_ROUTES.GROUP_STUDENT.DETAIL,
       },
 
     ],
@@ -86,7 +86,9 @@ export const APP_SIDEBAR = [
       {
         icon: 'material-symbols:topic',
         text: 'Đề tài của tôi',
-        link: [APP_ROUTES.TOPIC.LECTURER],
+        link: APP_ROUTES.TOPIC.STUDENT,
+        key: APP_ROUTES.TOPIC.STUDENT,
+
       },
     ],
   },
@@ -111,11 +113,6 @@ export const APP_PROFILE_MENU = [
     text: 'Thông tin cá nhân',
     icon: 'mdi:account-circle',
     link: '/profile',
-  },
-  {
-    text: 'Thay đổi vai trò',
-    icon: 'hugeicons:user-switch',
-    link: '/auth/role',
   },
   {
     text: 'Đăng xuất',
