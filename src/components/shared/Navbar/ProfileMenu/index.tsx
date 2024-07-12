@@ -1,3 +1,4 @@
+import useAuth from '@/hook/api/useAuth';
 import usePopup from '@/hook/ui/usePopup';
 import useUserStore from '@/store/userStore';
 import { APP_PROFILE_MENU } from '@/utils/app-config';
@@ -81,6 +82,8 @@ function ProfileMenu() {
   const navigate = useNavigate();
   const { handleActive, active, menuRef } = usePopup();
   const me = useUserStore((state) => state.me);
+  const { HandleLogout } = useAuth();
+  const { mutate: logout } = HandleLogout();
   return (
     <Box
       display='flex'
@@ -167,9 +170,7 @@ function ProfileMenu() {
                 sx={{ '.MuiListItemIcon-root ': { minWidth: 24 }, my: 2 }}
                 onClick={() => {
                   if (menuItem.link === '/auth/login') {
-                    removeValueInLocalStorage('accessTokenStudent');
-                    removeValueInLocalStorage('refreshTokenStudent');
-                    navigate('/home');
+                    logout();
                   } else navigate(menuItem.link);
                 }}
               >

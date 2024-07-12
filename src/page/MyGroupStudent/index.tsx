@@ -64,7 +64,14 @@ function MyGroupStudentPage() {
               <>
                 <Box height={500} flex={1} px={4} py={2}>
                   <Box display={'flex'}>
-                    <TitleManager mx={10} mt={10} variant='h6' component={'u'} textTransform={'uppercase'} color={'success'}>
+                    <TitleManager
+                      mx={10}
+                      mt={10}
+                      variant='h6'
+                      component={'u'}
+                      textTransform={'uppercase'}
+                      color={'success'}
+                    >
                       {data?.group?.info.name}
                     </TitleManager>
                   </Box>
@@ -72,6 +79,7 @@ function MyGroupStudentPage() {
                     <Box width={'full'}>
                       {data?.group?.members.map((mem: any, index: number) => (
                         <StudentCard
+                          key={index}
                           name={mem.student.fullName}
                           mssv={mem.student.username}
                           email={mem.student.email}

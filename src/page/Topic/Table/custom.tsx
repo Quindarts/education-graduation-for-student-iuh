@@ -7,7 +7,7 @@ import {
 export function CustomToolbar() {
   return (
     <GridToolbarContainer>
-      <GridToolbarColumnsButton title={'hi'} sx={{ px: 2, py: 1 }} />
+      <GridToolbarColumnsButton sx={{ px: 2, py: 1 }} />
       <GridToolbarDensitySelector sx={{ px: 2, py: 1 }} />
     </GridToolbarContainer>
   );

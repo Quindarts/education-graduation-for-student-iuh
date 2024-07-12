@@ -4,46 +4,47 @@ import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import React, { useState } from 'react';
 import { CustomToolbar } from './custom';
+import ChooseModal from '@/components/page/Topic/Modal/ChooseModal';
 
 function TableManagamentTopic(props: any) {
   const { rows, totalItems, totalPages, page, handelChangePage, isApprovePermission, ...rest } =
     props;
 
   //handle
-  const [openInfoModal, setOpenEditInfoModal] = useState({ topic_id: '', isOpen: false });
+  const [openInfoModal, setOpenEditInfoModal] = useState({ topicId: '', isOpen: false });
   const handleCloseInfoModal = () => {
     setOpenEditInfoModal({ ...openInfoModal, isOpen: false });
   };
-  const handleOpenInfoModal = (topic_id: string) => {
-    setOpenEditInfoModal({ topic_id, isOpen: true });
+  const handleOpenInfoModal = (topicId: string) => {
+    setOpenEditInfoModal({ topicId, isOpen: true });
   };
 
   //handle
-  const [openAcceptModal, setOpenEditAcceptModal] = useState({ topic_id: '', isOpen: false });
-  const handleCloseAcceptModal = () => {
-    setOpenEditAcceptModal({ ...openAcceptModal, isOpen: false });
+  const [openChooseModal, setOpenChooseModal] = useState({ topicId: '', isOpen: false });
+  const handleCloseChooseModal = () => {
+    setOpenChooseModal({ ...openChooseModal, isOpen: false });
   };
-  const handleOpenAcceptModal = (topic_id: string) => {
-    setOpenEditAcceptModal({ topic_id, isOpen: true });
+  const handleOpenChooseModal = (topicId: string) => {
+    setOpenChooseModal({ topicId, isOpen: true });
   };
 
   //handle
-  const [openRefuseModal, setOpenEditRefuseModal] = useState({ topic_id: '', isOpen: false });
+  const [openRefuseModal, setOpenEditRefuseModal] = useState({ topicId: '', isOpen: false });
   const handleCloseRefuseModal = () => {
     setOpenEditRefuseModal({ ...openRefuseModal, isOpen: false });
   };
-  const handleOpenRefuseModal = (topic_id: string) => {
-    setOpenEditRefuseModal({ topic_id, isOpen: true });
+  const handleOpenRefuseModal = (topicId: string) => {
+    setOpenEditRefuseModal({ topicId, isOpen: true });
   };
 
   //handle
-  const [openEditModal, setOpenEditModal] = useState({ topic_id: '', isOpen: false });
+  const [openEditModal, setOpenEditModal] = useState({ topicId: '', isOpen: false });
 
   const handleCloseEditModal = () => {
     setOpenEditModal({ ...openEditModal, isOpen: false });
   };
-  const handleOpenEditModal = (topic_id: string) => {
-    setOpenEditModal({ topic_id, isOpen: true });
+  const handleOpenEditModal = (topicId: string) => {
+    setOpenEditModal({ topicId, isOpen: true });
   };
   const basicColumns: GridColDef[] = [
     {
@@ -70,6 +71,11 @@ function TableManagamentTopic(props: any) {
       flex: 0.5,
       headerAlign: 'center',
       align: 'center',
+      renderCell: (params: any) => (
+        <Typography variant='body1' color='initial'>
+          {params.row.quantityGroup} / {params.row.quantityGroupMax}
+        </Typography>
+      ),
     },
     {
       headerName: 'Mục tiêu',
@@ -86,9 +92,10 @@ function TableManagamentTopic(props: any) {
         <Box display={'flex'} gap={2}>
           <Tooltip title='Đăng ký đề tài'>
             <IconButton
+
               size='small'
               color='primary'
-              onClick={() => handleOpenEditModal(params.row.id)}
+              onClick={() => handleOpenChooseModal(params.row.id)}
             >
               <Icon icon='bxs:book-add' />
             </IconButton>
@@ -123,6 +130,11 @@ function TableManagamentTopic(props: any) {
           }}
         />
       </>
+      <ChooseModal
+        open={openChooseModal.isOpen}
+        onClose={handleCloseChooseModal}
+        topicId={openChooseModal.topicId}
+      />
     </Box>
   );
 }

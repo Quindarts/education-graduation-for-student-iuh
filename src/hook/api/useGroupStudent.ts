@@ -1,12 +1,14 @@
 import { queryClient } from "@/providers/ReactQuery";
 import GroupStudentService from "@/services/GroupStudentService"
+import useGroupStudentStore from "@/store/groupStudentStore";
 import useTermStore from "@/store/termStore"
+import useTopicStore from "@/store/topicStore";
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 
 
-enum QueryKeysGroupStudent {
+export enum QueryKeysGroupStudent {
     getCurrentGroupStudentTerm = 'getCurrentGroupStudentTerm',
     getMyGroupStudent = 'getMyGroupStudent',
 }
@@ -15,6 +17,8 @@ function useGroupStudent() {
     const groupStudentService = new GroupStudentService();
     const { enqueueSnackbar } = useSnackbar()
     const navigate = useNavigate();
+    const setMyGroupId = useGroupStudentStore(s => s.setMyGroupId);
+    const setMyTopic = useTopicStore(s => s.setMyTopic);
 
     const HandleGroupStudentByTerm = () => {
         return useQuery({
@@ -28,6 +32,7 @@ function useGroupStudent() {
             mutationFn: (groupId) => groupStudentService.joinGroup(`${groupId}`),
             onSuccess: () => {
                 enqueueSnackbar('Tham gia nhóm sinh viên thành công', { variant: "success" })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
                 navigate('/dashboard/group-students/detail');
             },
@@ -56,7 +61,12 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId],
             queryFn: () => groupStudentService.getMyGroup(`${currentTermId}`),
-            staleTime: Infinity
+            staleTime: Infinity,
+            select(data) {
+                setMyGroupId(data.group.info.id)
+                setMyTopic(data.group.info.topic_id)
+                return data;
+            },
         })
     }
     const HandleGetGroupStudentById = () => {

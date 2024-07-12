@@ -1,12 +1,25 @@
 import Modal from '@/components/ui/Modal';
+import useGroupStudent from '@/hook/api/useGroupStudent';
+import useTopic from '@/hook/api/useTopic';
 import { Icon } from '@iconify/react';
-import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 function ChooseModal(props) {
   const { onClose, open, topicId } = props;
-
-  const handleSubmit = () => {};
+  const { OnChooseTopic } = useTopic();
+  const { HandleGetMyGroupStudent } = useGroupStudent();
+  const { data, isFetching, isLoading } = HandleGetMyGroupStudent();
+  const { mutate: choose } = OnChooseTopic();
+  const [currentGr, setCurrentGr] = useState('');
+  useEffect(() => {
+    if (data !== null) {
+      setCurrentGr(data?.group?.info?.id);
+    }
+  }, [data, isFetching, isLoading]);
+  const handleSubmit = () => {
+    choose({ groupStudentId: `${currentGr}`, topicId: `${topicId}` });
+  };
   return (
     <Modal onClose={onClose} open={open}>
       <Box
@@ -29,7 +42,12 @@ function ChooseModal(props) {
             <Icon width={20} style={{ marginRight: 4 }} icon='mdi:cancel-outline' />
             Hủy
           </Button>
-          <Button onClick={handleSubmit} sx={{ width: '50%' }} color='success' variant='contained'>
+          <Button
+            onClick={() => handleSubmit()}
+            sx={{ width: '50%' }}
+            color='success'
+            variant='contained'
+          >
             <Icon width={20} style={{ marginRight: 4 }} icon='fluent:book-add-20-filled' />
             Đăng ký ngay
           </Button>

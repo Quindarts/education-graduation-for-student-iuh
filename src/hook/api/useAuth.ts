@@ -1,11 +1,13 @@
+import { queryClient } from '@/providers/ReactQuery';
 import AuthService from '@/services/AuthService';
 import useMajorStore from '@/store/majorStore';
 import useUserStore from '@/store/userStore';
 import { IAuth } from '@/types/auth.type';
-import { setValueInLocalStorage } from '@/utils/localStorage';
+import { removeValueInLocalStorage, setValueInLocalStorage } from '@/utils/localStorage';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import { QueryKeysGroupStudent } from './useGroupStudent';
 
 export enum QueryKeysAuth {
     getMe = 'getMe'
@@ -17,7 +19,6 @@ function useAuth() {
     const navigate = useNavigate()
     const setMe = useUserStore((s: any) => s.setMe);
     const setMajor = useMajorStore((s) => s.setMajor);
-    
     const HandleLogin = () => {
         return useMutation({
             mutationFn: (send: IAuth) => auth.login(send),
@@ -26,6 +27,8 @@ function useAuth() {
                 setValueInLocalStorage('accessTokenStudent', data.accessToken);
                 setValueInLocalStorage('refreshTokenStudent', data.refreshToken);
                 setMe(data.user);
+                queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent] })
                 navigate('/dashboard');
             },
             onError: (error) => {
@@ -45,7 +48,22 @@ function useAuth() {
             setMajor({ id: data.user?.majorId, name: data.user?.majorName });
         }
     }
-    return { HandleLogin, HandleGetme }
+    const HandleLogout = () => {
+        return useMutation({
+            mutationFn: () => auth.logout(),
+            onSuccess: (data: any) => {
+                enqueueSnackbar('Đăng xuất thành công', { variant: "success" });
+                removeValueInLocalStorage('accessTokenStudent');
+                removeValueInLocalStorage('refreshTokenStudent');
+                navigate('/home');
+            },
+            onError: (error) => {
+                enqueueSnackbar(error?.message, { variant: "error" });
+
+            }
+        });
+    }
+    return { HandleLogin, HandleGetme, HandleLogout }
 }
 
 export default useAuth

@@ -20,7 +20,7 @@ export const APP_ROUTES = {
   },
   TOPIC: {
     MANAGEMENT: "/dashboard/topics",
-    STUDENT: '/dashboard/topics/my-topic/:topic_id'
+    STUDENT: '/dashboard/topics/my-topic'
   },
   REVIEW: {
     MANAGEMENT: '/dashboard/reviews',

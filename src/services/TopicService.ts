@@ -20,8 +20,6 @@ class TopicService {
     async chooseTopic(groupStudentId: string, topicId: string) {
         return await axiosConfig.put(`${this.endpoint}/${groupStudentId}/cancel-topic`, topicId)
     }
-    async cancelTopic(groupStudentId: string) {
-        return await axiosConfig.put(`${this.endpoint}/${groupStudentId}/cancel-topic`)
-    }
+   
 }
 export default TopicService;

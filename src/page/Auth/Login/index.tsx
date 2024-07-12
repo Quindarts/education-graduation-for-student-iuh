@@ -17,15 +17,15 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show: boolean) => !show);
   const { HandleLogin } = useAuth();
-  const { mutate: login } = HandleLogin();
+  const { mutate: login, isPending } = HandleLogin();
 
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
-    onSubmit: () => {
-      login({ username: '19516911', password: '12345678' });
+    onSubmit: (values, actions) => {
+      login({ username: values.username, password: values.password });
     },
   });
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = formik;
@@ -124,10 +124,12 @@ function LoginPage() {
             />
             <Button variant='contained' type='submit' fullWidth color='primary'>
               Đăng nhập
-              <CircularProgress
-                size={'small'}
-                sx={{ mx: 4, color: 'white', width: 20, height: 20 }}
-              />
+              {isPending && (
+                <CircularProgress
+                  size={'small'}
+                  sx={{ mx: 4, color: 'white', width: 20, height: 20 }}
+                />
+              )}
             </Button>
           </Box>
         </CardContent>

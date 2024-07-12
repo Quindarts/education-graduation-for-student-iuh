@@ -7,6 +7,7 @@ import useUserStore from '@/store/userStore';
 import { checkGender } from '@/utils/validations/person.validation';
 function DashboardTemplate() {
   const me = useUserStore((state) => state.me);
+
   return (
     <>
       <Box display={'flex'} gap={10}>

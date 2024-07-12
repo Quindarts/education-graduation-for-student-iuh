@@ -1,12 +1,15 @@
 import Modal from '@/components/ui/Modal';
+import useTopic from '@/hook/api/useTopic';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 
-function CancelModal(props) {
-  const { onClose, open, topicId } = props;
-
+function CancelModal(props: any) {
+  const { onClose, open, groupId } = props;
+  const { OnCancelTopic } = useTopic();
+  const { mutate: cancel } = OnCancelTopic();
   const handleSubmit = () => {
+    cancel(groupId);
     onClose();
   };
   return (
