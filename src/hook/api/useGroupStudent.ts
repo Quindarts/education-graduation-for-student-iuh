@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 export enum QueryKeysGroupStudent {
     getCurrentGroupStudentTerm = 'getCurrentGroupStudentTerm',
     getMyGroupStudent = 'getMyGroupStudent',
+    getGroupMembers = 'getGroupMembers'
 }
 function useGroupStudent() {
     const currentTermId = useTermStore(s => s.term.id)
@@ -23,7 +24,8 @@ function useGroupStudent() {
     const HandleGroupStudentByTerm = () => {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId],
-            queryFn: () => groupStudentService.getListGroup(`${currentTermId}`)
+            queryFn: () => groupStudentService.getListGroup(`${currentTermId}`),
+            staleTime: 1000,
         })
     }
 
@@ -35,6 +37,18 @@ function useGroupStudent() {
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
                 navigate('/dashboard/group-students/detail');
+            },
+            onError: (error: any) => {
+                enqueueSnackbar(error.message, { variant: "error" })
+            },
+        })
+    }
+    const OnAssignAdminGroupStudent = () => {
+        return useMutation({
+            mutationFn: (data: { groupId: string, studentId: string }) => groupStudentService.assignAdmin(data.groupId, data.studentId),
+            onSuccess: () => {
+                enqueueSnackbar('Phân Nhóm trưởng thành công', { variant: "success" })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError: (error: any) => {
                 enqueueSnackbar(error.message, { variant: "error" })
@@ -61,7 +75,7 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId],
             queryFn: () => groupStudentService.getMyGroup(`${currentTermId}`),
-            staleTime: Infinity,
+            staleTime: 1000,
             select(data) {
                 setMyGroupId(data.group.info.id)
                 setMyTopic(data.group.info.topic_id)
@@ -72,7 +86,14 @@ function useGroupStudent() {
     const HandleGetGroupStudentById = () => {
 
     }
-    return { HandleGroupStudentByTerm, HandleGetMyGroupStudent, HandleGetGroupStudentById, OnInviteGroupStudent, OnLeaveGroupStudent }
+
+    const HandleGetGroupMembers = (groupId: string) => {
+        return useQuery({
+            queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId],
+            queryFn: () => groupStudentService.getGroupMembers(groupId),
+        })
+    }
+    return { HandleGroupStudentByTerm, HandleGetGroupMembers, HandleGetMyGroupStudent, HandleGetGroupStudentById, OnInviteGroupStudent, OnLeaveGroupStudent, OnAssignAdminGroupStudent }
 }
 
 export default useGroupStudent

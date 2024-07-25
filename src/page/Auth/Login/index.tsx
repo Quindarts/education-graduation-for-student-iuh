@@ -54,21 +54,21 @@ function LoginPage() {
             <img width={150} height={60} src={`${logoIUH}`} />
             <Typography
               mt={10}
-              variant='h6'
+              variant='body1'
               align='center'
               lineHeight={1.2}
               fontWeight={'bold'}
-              color='primary.dark'
+              color='error.dark'
               textTransform={'uppercase'}
             >
-              Quản lý khóa luận dành cho sinh viên
+             Trang Quản lý khóa luận dành cho sinh viên Khoa Công Nghệ Thông Tin
             </Typography>
             <Typography
-              variant='h1'
+              variant='h3'
               mt={10}
               fontWeight={600}
               align='center'
-              color={'primary.main'}
+              color={'primary.dark'}
               textTransform={'uppercase'}
             >
               Đăng nhập

@@ -11,7 +11,8 @@ import { QueryKeysGroupStudent } from './useGroupStudent';
 
 enum QueryKeysTopic {
     getListTopicByTermByMajor = "getListTopicByTermByMajor",
-    getMyTopic = 'getMyTopic'
+    getMyTopic = 'getMyTopic',
+    getTopicById = "getTopicById"
 }
 
 function useTopic() {
@@ -19,7 +20,6 @@ function useTopic() {
     const groupStudentService = new GroupStudentService();
     const currentTermId = useTermStore(s => s.term.id);
     const majorId = useMajorStore(s => s.major.id);
-    const myTopicStoreId = useTopicStore(s => s.myTopicId)
 
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
@@ -27,7 +27,7 @@ function useTopic() {
 
     const HandleGetTopicById = (topicId: string) => {
         return useQuery({
-            queryKey: [QueryKeysTopic.getListTopicByTermByMajor, topicId],
+            queryKey: [QueryKeysTopic.getTopicById, topicId],
             queryFn: () => topicService.getTopicId(`${topicId}`),
         })
     }
@@ -37,6 +37,7 @@ function useTopic() {
             queryKey: [QueryKeysTopic.getMyTopic, myTopicId],
             queryFn: () => topicService.getTopicId(`${myTopicId}`),
             enabled: !!myTopicId,
+            staleTime: 1000,
         })
     }
 
@@ -44,6 +45,7 @@ function useTopic() {
         return useQuery({
             queryKey: [QueryKeysTopic.getListTopicByTermByMajor, currentTermId, majorId],
             queryFn: () => topicService.getTopicList(`${currentTermId}`, `${majorId}`),
+            staleTime: 1000,
         })
     }
     const OnCancelTopic = () => {

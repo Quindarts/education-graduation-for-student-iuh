@@ -3,12 +3,11 @@ import Box from '@mui/material/Box';
 import logo from '../../../../public/images/Logo_IUH.png';
 import Typography from '@mui/material/Typography';
 import ProfileMenu from './ProfileMenu';
-interface NavbarProps {
-  handleOpenSideBar: () => void;
-  isOpenSideBar: boolean;
-}
-function Navbar(props: NavbarProps) {
-  const { handleOpenSideBar, isOpenSideBar } = props;
+import useSidebarStore from '@/store/ui/sidebarStore';
+
+function Navbar() {
+  const { isOpen, toggleSidebar } = useSidebarStore();
+
   return (
     <Box
       sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', zIndex: 1001 }}
@@ -20,9 +19,9 @@ function Navbar(props: NavbarProps) {
       bottom={0}
       width='100%'
       height={70}
-      maxWidth={isOpenSideBar ? `calc(100vw - 250px)` : `calc(100vw - 76px)`}
+      maxWidth={isOpen ? `calc(100vw - 250px)` : `calc(100vw - 76px)`}
       alignItems='center'
-      left={isOpenSideBar ? '250px' : '76px'}
+      left={isOpen ? '250px' : '76px'}
       justifyContent='space-between'
     >
       <Box display={'flex'} alignItems={'center'}>
@@ -32,10 +31,10 @@ function Navbar(props: NavbarProps) {
           height={70}
           display='flex'
           alignItems='center'
-          onClick={handleOpenSideBar}
+          onClick={toggleSidebar}
           color={'grey.600'}
         >
-          <Icon width={20} icon={isOpenSideBar ? 'ooui:next-ltr' : 'fluent:list-16-regular'} />
+          <Icon width={20} icon={isOpen ? 'ooui:next-ltr' : 'fluent:list-16-regular'} />
         </Box>
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} gap={4} ml={2}>
           <img width={140} src={`${logo}`} />

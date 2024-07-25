@@ -7,6 +7,9 @@ import SekeletonUI from '@/components/ui/Sekeleton';
 import { Icon } from '@iconify/react';
 import ExitGroupModal from '@/components/page/GroupStudent/Modal/ExitGroupModal';
 import { useNavigate } from 'react-router-dom';
+import useUserStore from '@/store/userStore';
+import useTermStore from '@/store/termStore';
+import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 
 function MyGroupStudentPage() {
   const { HandleGetMyGroupStudent } = useGroupStudent();
@@ -18,11 +21,13 @@ function MyGroupStudentPage() {
   const handleOpenLeaveModal = (groupId: string) => {
     setOpenEditLeaveModal({ groupId, isOpen: true });
   };
+  const { me } = useUserStore();
   const navigate = useNavigate();
+  const { partOfTerm } = useTermStore();
   return (
     <Paper sx={{ px: 10, py: 20 }} elevation={1}>
       <TitleManager icon='ic:baseline-home' textTransform={'uppercase'}>
-        Chi Tiết nhóm
+        Nhóm Đề tài của tôi
       </TitleManager>
       <Box width={'100%'} height={500}>
         {' '}
@@ -80,6 +85,7 @@ function MyGroupStudentPage() {
                       {data?.group?.members.map((mem: any, index: number) => (
                         <StudentCard
                           key={index}
+                          groupId={data.group.info.id}
                           name={mem.student.fullName}
                           mssv={mem.student.username}
                           email={mem.student.email}
@@ -87,6 +93,7 @@ function MyGroupStudentPage() {
                           gender={mem.student.gender}
                           studentId={mem.student_id}
                           isAdmin={mem.isAdmin}
+                          isMe={mem.student_id === me?.id}
                           index={index + 1}
                         />
                       ))}
@@ -96,6 +103,9 @@ function MyGroupStudentPage() {
                         onClick={() => handleOpenLeaveModal(data?.group?.info.id)}
                         variant='contained'
                         color='error'
+                        disabled={
+                          partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE
+                        }
                       >
                         <Icon icon='fluent-mdl2:leave-user' />
                         Rời nhóm

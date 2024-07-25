@@ -7,7 +7,7 @@ const CustomModal = styled(Dialog)`
       align-items: center;
       width: 96%;
       max-height:94vh;
-
+      border-top: 6px solid #132e65;
       margin: auto;
 
       &::-webkit-scrollbar {

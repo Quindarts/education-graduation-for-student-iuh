@@ -8,8 +8,8 @@ class TermService {
     constructor(endpoint?: string) {
         this.endpoint = endpoint ? endpoint : '/terms';
     }
-    async getTermNow(): Promise<Pick<ResponseType, 'success' | 'term' | 'message'>> {
-        return await axiosConfig.get(`${this.endpoint}/now`);
+    async getTermNow(majorId: string): Promise<Pick<ResponseType, 'success' | 'term' | 'message'>> {
+        return await axiosConfig.get(`${this.endpoint}/now?majorId=${majorId}`);
     }
 }
 

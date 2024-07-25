@@ -1,20 +1,23 @@
 import Navbar from '@/components/shared/Navbar';
 import Sidebar from '@/components/shared/Sidebar';
+import GlobalLoading from '@/components/ui/Loading/GlobalLoading';
 import useAuth from '@/hook/api/useAuth';
 import useTerm from '@/hook/api/useTerm';
+import useSidebarStore from '@/store/ui/sidebarStore';
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+
 function AdminLayout() {
-  const [isOpenSideBar, setIsOpenSideBar] = useState(true);
-  const handleOpenSideBar = () => {
-    setIsOpenSideBar(!isOpenSideBar);
-  };
+  const { isOpen } = useSidebarStore();
+
   const { HandleGetme } = useAuth();
   const { HandleGetCurrentTerm } = useTerm();
-  HandleGetme();
-  HandleGetCurrentTerm();
+
+  const { me } = HandleGetme();
+  HandleGetCurrentTerm(`${me?.user?.majorId}`);
+
   return (
     <>
       <Box
@@ -24,20 +27,20 @@ function AdminLayout() {
           overflowX: 'hidden',
         }}
       >
-        <Sidebar isOpenSideBar={isOpenSideBar} handleOpenSideBar={handleOpenSideBar} />
+        <Sidebar />
         <Box
           height='100%'
           component='section'
           sx={{
-            maxWidth: isOpenSideBar ? `calc(100vw - 250px)` : `calc(100vw - 76px)`,
+            maxWidth: isOpen ? `calc(100vw - 250px)` : `calc(100vw - 76px)`,
             width: '100%',
             minHeight: '100vh',
-            marginLeft: isOpenSideBar ? '250px' : '76px',
+            marginLeft: isOpen ? '250px' : '76px',
             transition: 'all 0.1s ease',
             backgroundColor: 'grey.100',
           }}
         >
-          <Navbar isOpenSideBar={isOpenSideBar} handleOpenSideBar={handleOpenSideBar} />
+          <Navbar />
           <Box
             pt={12}
             pb={6}
@@ -47,7 +50,9 @@ function AdminLayout() {
               height: '100%',
             }}
           >
-            <Outlet />
+            <React.Suspense fallback={<GlobalLoading />}>
+              <Outlet />
+            </React.Suspense>
           </Box>
         </Box>
       </Box>

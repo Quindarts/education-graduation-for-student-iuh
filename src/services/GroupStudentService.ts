@@ -17,6 +17,11 @@ class GroupStudentService {
             `${this.endpoint}/term?termId=${termId}`,
         );
     }
+    async getGroupMembers(groupId: string) {
+        return await axiosConfig.get<AxiosResponse>(
+            `${this.endpoint}/${groupId}/members`,
+        )
+    }
 
     async assignAdmin(groupId: string, studentId: string) {
         return await axiosConfig.put<AxiosResponse>(

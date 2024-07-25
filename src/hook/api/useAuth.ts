@@ -38,15 +38,16 @@ function useAuth() {
         });
     }
     const HandleGetme = () => {
-        const { data, isSuccess
+        const { data: me, isSuccess: successMe
         } = useQuery({
             queryKey: [QueryKeysAuth.getMe],
             queryFn: () => auth.getMe(),
         });
-        if (isSuccess === true) {
-            setMe(data.user);
-            setMajor({ id: data.user?.majorId, name: data.user?.majorName });
+        if (successMe === true) {
+            setMe(me.user);
+            setMajor({ id: me.user?.majorId, name: me.user?.majorName });
         }
+        return { me, successMe, majorId: me?.user?.majorId };
     }
     const HandleLogout = () => {
         return useMutation({

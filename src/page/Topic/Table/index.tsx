@@ -5,11 +5,12 @@ import { GridColDef } from '@mui/x-data-grid';
 import React, { useState } from 'react';
 import { CustomToolbar } from './custom';
 import ChooseModal from '@/components/page/Topic/Modal/ChooseModal';
+import { useNavigate } from 'react-router-dom';
 
 function TableManagamentTopic(props: any) {
   const { rows, totalItems, totalPages, page, handelChangePage, isApprovePermission, ...rest } =
     props;
-
+  const navigate = useNavigate();
   //handle
   const [openInfoModal, setOpenEditInfoModal] = useState({ topicId: '', isOpen: false });
   const handleCloseInfoModal = () => {
@@ -91,18 +92,13 @@ function TableManagamentTopic(props: any) {
       renderCell: (params: any) => (
         <Box display={'flex'} gap={2}>
           <Tooltip title='Đăng ký đề tài'>
-            <IconButton
-
-              size='small'
-              color='primary'
-              onClick={() => handleOpenChooseModal(params.row.id)}
-            >
+            <IconButton color='primary' onClick={() => handleOpenChooseModal(params.row.id)}>
               <Icon icon='bxs:book-add' />
             </IconButton>
           </Tooltip>
           <Tooltip title='Xem thông tin đề tài'>
-            <IconButton size='small' onClick={() => handleOpenInfoModal(params.row.id)}>
-              <Icon icon='noto-v1:eye-in-speech-bubble' />
+            <IconButton onClick={() => navigate(`/dashboard/topics/${params.row.id}`)}>
+              <Icon icon='bx:detail' />
             </IconButton>
           </Tooltip>
         </Box>

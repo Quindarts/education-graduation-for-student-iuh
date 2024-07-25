@@ -103,6 +103,7 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
         onClose={handleCloseInviteModal}
       />
       <DetailGroupModal
+        groupName={name}
         groupId={openDetailModal.groupId}
         open={openDetailModal.isOpenDetailModal}
         onClose={handleCloseDetailModal}

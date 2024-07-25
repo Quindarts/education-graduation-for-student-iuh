@@ -20,6 +20,7 @@ export const APP_ROUTES = {
   },
   TOPIC: {
     MANAGEMENT: "/dashboard/topics",
+    DETAIL: "/dashboard/topics/:topic_id",
     STUDENT: '/dashboard/topics/my-topic'
   },
   REVIEW: {
@@ -112,7 +113,7 @@ export const APP_PROFILE_MENU = [
   {
     text: 'Thông tin cá nhân',
     icon: 'mdi:account-circle',
-    link: '/profile',
+    link: '/dashboard/profile',
   },
   {
     text: 'Đăng xuất',
