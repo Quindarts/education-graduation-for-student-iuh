@@ -19,7 +19,7 @@ class AuthService {
     }
 
 
-    async updateMe(data: FormData) {
+    async updateMe(data: IUser) {
         return await axiosConfig<AxiosResponse>({
             url: `${this.endpoint}/me`,
             method: 'put',

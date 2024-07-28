@@ -7,12 +7,17 @@ class NotificationService {
     constructor(endpoint?: string) {
         this.endpoint = endpoint ? endpoint : '/notification-students';
     }
-    getMajorById(id: string) {
-        return axiosConfig<AxiosResponse>(`${this.endpoint}/${id}`);
-    }
-    async getAllNotify() {
+
+    async getNotificationById(id: string) {
         return await axiosConfig<AxiosResponse>({
-            url: `${this.endpoint}`,
+            url: `${this.endpoint}/${id}`,
+            method: 'get',
+        });
+    }
+
+    async getMyNotification() {
+        return await axiosConfig<AxiosResponse>({
+            url: `${this.endpoint}/me`,
             method: 'get',
         });
     }

@@ -5,7 +5,7 @@ export const APP_ROUTES = {
   HOME: '/home',
   NOTIFICATION: {
     MANAGEMENT: "/dashboard/notifications",
-    DETAILS: "/notifications/:lecturer_id",
+    DETAILS: "/dashboard/notifications/detail/:id",
     CREATE: "/notifications/create",
   },
   SCORE_STUDENT: {
@@ -31,6 +31,7 @@ export const APP_ROUTES = {
   USER: {
     PROFILE: '/dashboard/profile',
     LOGIN: '/auth/login',
+    UPDATE_PASS: 'dashboard/update-password'
   },
   FORGOT_PASSWORD: '/auth/forgot-password',
   SUCCESS_MESSAGE: '/auth/success',
@@ -111,9 +112,9 @@ export const APP_SIDEBAR = [
 
 export const APP_PROFILE_MENU = [
   {
-    text: 'Thông tin cá nhân',
+    text: 'Cập nhật mật khẩu',
     icon: 'mdi:account-circle',
-    link: '/dashboard/profile',
+    link: '/dashboard/update-password',
   },
   {
     text: 'Đăng xuất',

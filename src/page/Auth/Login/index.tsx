@@ -61,7 +61,7 @@ function LoginPage() {
               color='error.dark'
               textTransform={'uppercase'}
             >
-             Trang Quản lý khóa luận dành cho sinh viên Khoa Công Nghệ Thông Tin
+              Trang Quản lý khóa luận dành cho sinh viên Khoa Công Nghệ Thông Tin
             </Typography>
             <Typography
               variant='h3'

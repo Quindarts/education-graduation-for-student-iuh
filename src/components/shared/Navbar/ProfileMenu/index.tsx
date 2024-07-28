@@ -2,7 +2,6 @@ import useAuth from '@/hook/api/useAuth';
 import usePopup from '@/hook/ui/usePopup';
 import useUserStore from '@/store/userStore';
 import { APP_PROFILE_MENU } from '@/utils/app-config';
-import { removeValueInLocalStorage } from '@/utils/localStorage';
 import { Icon } from '@iconify/react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';

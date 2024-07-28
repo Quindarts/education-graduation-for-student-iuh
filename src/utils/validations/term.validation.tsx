@@ -62,7 +62,7 @@ export const checkListPartOfTerm = (term: ITerm): IPartOfTerm => {
   const partOfTerm = {
     InTerm: checkStatusPart(term.startDate, term.endDate),
     ChooseGroup: checkStatusPart(term.startChooseGroupDate, term.endChooseGroupDate),
-    // ViewTopic: checkStatusPart(term.startChooseGroupDate, term.endChooseGroupDate),
+    PublicTopic: checkStatusPart(term.startPublicTopicDate, term.endPublicTopicDate),
     ChooseTopic: checkStatusPart(term.startChooseTopicDate, term.endChooseTopicDate),
     Discussion: checkStatusPart(term.startDiscussionDate, term.endDiscussionDate),
     Report: checkStatusPart(term.startReportDate, term.endReportDate),

@@ -1,9 +1,11 @@
 import CustomTextField from '@/components/ui/CustomTextField';
 import DropDown from '@/components/ui/Dropdown';
 import TitleManager from '@/components/ui/Title';
+import useAuth from '@/hook/api/useAuth';
 import useUserStore from '@/store/userStore';
+import { checkTypeTraining } from '@/utils/validations/person.validation';
 import { Icon } from '@iconify/react';
-import { Box, Button, Paper } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -41,40 +43,40 @@ const GenderStudent = [
 
 function ProfilePage() {
   const me = useUserStore((s) => s.me);
-  const handleSubmitEditStudent = (values: any) => {};
-
+  const { HandleUpdateMe } = useAuth();
+  const { mutate: updateMe } = HandleUpdateMe();
+  const handleSubmitEditStudent = (values: any) => {
+    updateMe(values);
+  };
   return (
     <>
       <Box
         sx={{
-          borderRadius: 4,
+          borderRadius: 1,
           width: '100%',
-          bgcolor: 'grey.50',
           mx: 'auto',
           mt: 8,
           position: 'relative',
-          boxShadow:
-            'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;',
         }}
       >
         <Box
           sx={{
             width: '100%',
-            height: '20px',
-            borderRadius: '10px 10px 0 0 ',
-            backgroundImage:
-              'url(https://c4.wallpaperflare.com/wallpaper/798/616/951/macos-sierra-wallpaper-preview.jpg)',
+            height: '10px',
+            borderRadius: '4px 4px 0 0 ',
+            background: '#092b69',
+            // backgroundImage:
+            //   'url(https://c4.wallpaperflare.com/wallpaper/798/616/951/macos-sierra-wallpaper-preview.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'absolute',
             zIndex: 1,
-            opacity: 0.6,
           }}
         ></Box>
 
-        <Box sx={{ px: 20, pt: '30px', zIndex: 10, position: 'relative' }}>
-          <TitleManager textTransform={'uppercase'} icon='hugeicons:profile'>
-            Thông tin cá nhân
+        <Box sx={{ px: 10, pt: '20px', zIndex: 10, position: 'relative' }}>
+          <TitleManager textTransform={'uppercase'} icon='bxs:user-detail'>
+            Cập nhật thông tin
           </TitleManager>
           <Box py={10} px={5}>
             <Formik
@@ -95,48 +97,8 @@ function ProfilePage() {
             >
               {({ values, handleChange, handleBlur, handleSubmit, errors, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
-                  <Box display={'flex'} gap={20}>
+                  <Box gap={10} display={'flex'}>
                     <Box flex={1}>
-                      <Box
-                        mx={'auto'}
-                        position={'relative'}
-                        height={200}
-                        width={200}
-                        mb={3}
-                        sx={{ borderRadius: '20%', bgcolor: '#f3f3f9' }}
-                      >
-                        {' '}
-                        <img
-                          style={{ borderRadius: '10%', width: '200px', height: '200px' }}
-                          alt=''
-                        />
-                        <Box
-                          sx={{
-                            border: '6px solid white',
-                            backgroundColor: 'primary.main',
-                            cursor: 'pointer',
-                          }}
-                          borderRadius={'50%'}
-                          height={50}
-                          width={50}
-                          position={'absolute'}
-                          top={0}
-                          right={'4px'}
-                          color={'white'}
-                          display={'flex'}
-                          alignItems={'center'}
-                          justifyContent={'center'}
-                        >
-                          <label style={{ cursor: 'pointer' }}>
-                            <Icon icon='heroicons:camera-solid' width={16} />
-                            <input
-                              type='file'
-                              style={{ display: 'none' }}
-                              onChange={(event) => {}}
-                            />
-                          </label>
-                        </Box>
-                      </Box>
                       <CustomTextField
                         required
                         value={values.username}
@@ -149,32 +111,30 @@ function ProfilePage() {
                         error={errors.username ? true : false}
                         helperText={errors.username}
                       />
-                      <Box display={'flex'} gap={10} mt={8}>
-                        <Box width={'100%'}>
-                          <CustomTextField
-                            required
-                            value={values.fullName}
-                            name='fullName'
-                            label='Họ và tên'
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            placeholder='Họ và tên'
-                            error={errors.fullName ? true : false}
-                            helperText={errors.fullName}
-                          />
-                        </Box>
-                        <Box width={200}>
-                          <DropDown
-                            sx={{ mb: 8 }}
-                            value={`${values.gender}`}
-                            onChange={(e) => {
-                              setFieldValue('gender', e.target.value);
-                            }}
-                            label='Giới tính'
-                            options={GenderStudent}
-                          />
-                        </Box>
+                      <CustomTextField
+                        required
+                        value={values.fullName}
+                        name='fullName'
+                        label='Họ và tên'
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder='Họ và tên'
+                        error={errors.fullName ? true : false}
+                        helperText={errors.fullName}
+                      />
+                      <Box my={8}>
+                        <DropDown
+                          value={`${values.gender}`}
+                          onChange={(e) => {
+                            setFieldValue('gender', e.target.value);
+                          }}
+                          label='Giới tính'
+                          options={GenderStudent}
+                        />
                       </Box>
+                      <Box mt={8} width={'full'}>
+                        <CustomTextField label='Chuyên ngành' value={values.majorName} disabled />
+                      </Box>{' '}
                     </Box>
                     <Box flex={1}>
                       <CustomTextField
@@ -200,12 +160,8 @@ function ProfilePage() {
                         helperText={errors.email}
                       />
                       <Box mt={8} width={'full'}>
-                        <CustomTextField label='Chuyên ngành' value={values.majorName} disabled />
-                      </Box>{' '}
-                      <Box mt={8} width={'full'}>
                         <CustomTextField
                           value={`${values.clazzName}`}
-                          disabled
                           onChange={(e) => {
                             setFieldValue('role', e.target.value);
                           }}
@@ -213,15 +169,19 @@ function ProfilePage() {
                         />
                       </Box>
                       <Box mt={8} width={'full'}>
-                        <CustomTextField label='Chương trình đào tạo' value={values.typeTraining} />
+                        <CustomTextField
+                          label='Chương trình đào tạo'
+                          value={checkTypeTraining(values.typeTraining)}
+                          disabled
+                        />
                       </Box>{' '}
                     </Box>
                   </Box>
 
-                  <Box mt={10} justifyContent={'end'} gap={4} display={'flex'}>
-                    <Button variant='contained' color='primary' type='submit'>
-                      <Icon icon='material-symbols:save-outline' />
-                      Cập nhật thông tin cá nhân
+                  <Box mt={4} justifyContent={'end'} gap={4} display={'flex'}>
+                    <Button variant='contained' color='success' type='submit'>
+                      <Icon icon='subway:tick' />
+                      Cập nhật
                     </Button>
                   </Box>
                 </form>

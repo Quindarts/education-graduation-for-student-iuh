@@ -20,7 +20,7 @@ function TopicTemplate() {
         {' '}
         {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE
           ? 'Chọn Đề tài đăng ký khóa luận tốt nghiệp'
-          : 'Danh sách đề tài '}  
+          : 'Danh sách đề tài '}
         {' - '}
         {term.name}
         <Typography
@@ -29,19 +29,31 @@ function TopicTemplate() {
           variant='body1'
           color={checkColorStatusPartTerm(partOfTerm.ChooseTopic?.status)}
         >
-          {partOfTerm.ChooseTopic?.mess}
+          Đăng kí đề tài {partOfTerm.ChooseTopic?.mess}
         </Typography>
       </TitleManager>
       {isLoading || isFetching ? (
         <SekeletonUI />
       ) : (
         <Box width={'full'} my={4}>
-          <TableManagamentTopic
-            isApprovePermission={true}
-            rows={
-              data?.topics ? data.topics.filter((topic: any) => topic.status === 'APPROVED') : []
-            }
-          />
+          {partOfTerm.PublicTopic?.status === ENUM_STATUS_OF_DATE_TERM.EXPIRED ||
+          partOfTerm.PublicTopic?.status === ENUM_STATUS_OF_DATE_TERM.INACTIVE ? (
+            <Typography
+              mt={3}
+              ml={20}
+              variant='body1'
+              color={checkColorStatusPartTerm(partOfTerm.PublicTopic?.status)}
+            >
+              Thời gian xem và công bố Đề tài {partOfTerm.PublicTopic?.mess}
+            </Typography>
+          ) : (
+            <TableManagamentTopic
+              isApprovePermission={true}
+              rows={
+                data?.topics ? data.topics.filter((topic: any) => topic.status === 'APPROVED') : []
+              }
+            />
+          )}
         </Box>
       )}
     </Paper>

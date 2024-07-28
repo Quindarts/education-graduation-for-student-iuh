@@ -6,21 +6,14 @@ import React, { useState } from 'react';
 import { CustomToolbar } from './custom';
 import ChooseModal from '@/components/page/Topic/Modal/ChooseModal';
 import { useNavigate } from 'react-router-dom';
+import useTermStore from '@/store/termStore';
+import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 
 function TableManagamentTopic(props: any) {
   const { rows, totalItems, totalPages, page, handelChangePage, isApprovePermission, ...rest } =
     props;
+  const partOfTerm = useTermStore((s) => s.partOfTerm);
   const navigate = useNavigate();
-  //handle
-  const [openInfoModal, setOpenEditInfoModal] = useState({ topicId: '', isOpen: false });
-  const handleCloseInfoModal = () => {
-    setOpenEditInfoModal({ ...openInfoModal, isOpen: false });
-  };
-  const handleOpenInfoModal = (topicId: string) => {
-    setOpenEditInfoModal({ topicId, isOpen: true });
-  };
-
-  //handle
   const [openChooseModal, setOpenChooseModal] = useState({ topicId: '', isOpen: false });
   const handleCloseChooseModal = () => {
     setOpenChooseModal({ ...openChooseModal, isOpen: false });
@@ -29,24 +22,6 @@ function TableManagamentTopic(props: any) {
     setOpenChooseModal({ topicId, isOpen: true });
   };
 
-  //handle
-  const [openRefuseModal, setOpenEditRefuseModal] = useState({ topicId: '', isOpen: false });
-  const handleCloseRefuseModal = () => {
-    setOpenEditRefuseModal({ ...openRefuseModal, isOpen: false });
-  };
-  const handleOpenRefuseModal = (topicId: string) => {
-    setOpenEditRefuseModal({ topicId, isOpen: true });
-  };
-
-  //handle
-  const [openEditModal, setOpenEditModal] = useState({ topicId: '', isOpen: false });
-
-  const handleCloseEditModal = () => {
-    setOpenEditModal({ ...openEditModal, isOpen: false });
-  };
-  const handleOpenEditModal = (topicId: string) => {
-    setOpenEditModal({ topicId, isOpen: true });
-  };
   const basicColumns: GridColDef[] = [
     {
       headerName: 'Tên Đề tài',
@@ -91,11 +66,13 @@ function TableManagamentTopic(props: any) {
       align: 'center',
       renderCell: (params: any) => (
         <Box display={'flex'} gap={2}>
-          <Tooltip title='Đăng ký đề tài'>
-            <IconButton color='primary' onClick={() => handleOpenChooseModal(params.row.id)}>
-              <Icon icon='bxs:book-add' />
-            </IconButton>
-          </Tooltip>
+          {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE && (
+            <Tooltip title={'Đăng ký đề tài'}>
+              <IconButton color='primary' onClick={() => handleOpenChooseModal(params.row.id)}>
+                <Icon icon='bxs:book-add' />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip title='Xem thông tin đề tài'>
             <IconButton onClick={() => navigate(`/dashboard/topics/${params.row.id}`)}>
               <Icon icon='bx:detail' />

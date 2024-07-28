@@ -4,6 +4,7 @@ import logo from '../../../../public/images/Logo_IUH.png';
 import Typography from '@mui/material/Typography';
 import ProfileMenu from './ProfileMenu';
 import useSidebarStore from '@/store/ui/sidebarStore';
+import Notification from './Notification';
 
 function Navbar() {
   const { isOpen, toggleSidebar } = useSidebarStore();
@@ -63,6 +64,8 @@ function Navbar() {
       </Box>
 
       <Box display='flex' alignItems='center' gap={6}>
+        <Notification />
+
         <ProfileMenu />
       </Box>
     </Box>

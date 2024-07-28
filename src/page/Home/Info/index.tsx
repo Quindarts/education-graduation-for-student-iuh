@@ -1,4 +1,6 @@
+import AnimatedSection from '@/components/ui/Animated/AnimatedSection';
 import TitleManager from '@/components/ui/Title';
+import styled from '@emotion/styled';
 import { Icon } from '@iconify/react';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
@@ -26,61 +28,56 @@ const VALUE = [
     desc: 'Giao diện thân thiện',
   },
 ];
+
 function InfoPropjectSection() {
   return (
-    <Box my={10} bgcolor='#F8FDFF' py={30}>
-      <Box
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'center'}
-        alignItems={'center'}
-      >
-        <TitleManager fontWeight={'bold'} color={'#ffa927'} fontSize={40} variant='h1'>
-          Giới thiệu
-        </TitleManager>
-        <Typography mt={3} mb={25} component={'i'} variant='h5' color='grey.600'>
-        Website quản lý khóa luận hỗ trợ sinh viên khoa Công nghệ thông tin đăng ký khóa luận dễ dàng
-        </Typography>
-        <Box display={'flex'} px={30} width={'100%'} gap={10}>
-          {VALUE.map((value) => (
-            <Box
-              width={'calc(25% - 10px)'}
-              sx={{
-                bgcolor: 'white',
-                py: 10,
-                px: 20,
-                borderRadius: 3,
-                cursor: 'pointer',
-                '& > .MuiTypography-root': {
-                  color: 'warning.main',
-                },
-                '& > svg': {
-                  color: 'warning.main',
-                },
-                '&:hover': {
-                  boxShadow: ' rgba(0, 0, 0, 0.35) 0px 5px 15px;',
-                  transition: '0.3s ease-in',
-                  bgcolor: 'primary.dark',
-                  '& > .MuiTypography-root': {
-                    color: 'white',
-                  },
-                  '& > svg': {
-                    color: 'white',
-                  },
-                },
-              }}
-              textAlign={'center'}
-            >
-              <Icon width={40} icon={value.icon} />
-              <Typography variant='h4' color='warning'>
-                {value.title}
-              </Typography>
-              <Typography variant='body1' color='grey.700'>
-                {value.desc}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
+    <Box position={'relative'} bgcolor='white' px={30} py={60}>
+      <Box zIndex={10} display={'flex'} gap={20} justifyContent={'center'} alignItems={'center'}>
+        <AnimatedSection direction='left'>
+          <Box position={'relative'} zIndex={10}>
+            <img width={600} src='/public/images/undraw_educator_re_ju47.svg' />
+          </Box>
+        </AnimatedSection>
+        <AnimatedSection direction='right'>
+          <TitleManager fontWeight={'bold'} color={'#FF7D27'} mb={30} fontSize={40} variant='h1'>
+            Giới thiệu
+          </TitleManager>
+          <Typography position={'relative'} zIndex={10} variant='h6' color='grey.600'>
+            Phần mềm quản lý khóa luận tốt nghiệp khoa Công nghệ Thông tin IUH là giải pháp toàn
+            diện giúp các sinh viên và giảng viên quản lý và theo dõi quá trình thực hiện khóa luận
+            một cách hiệu quả. Với giao diện thân thiện và dễ sử dụng, phần mềm này giúp người dùng
+            dễ dàng tạo, cập nhật và quản lý thông tin khóa luận chỉ với vài thao tác đơn giản.
+          </Typography>
+          <Box position={'relative'} zIndex={10} pl={20} mt={10}>
+            <AnimatedSection direction='right'>
+              <Box display={'flex'} gap={6} alignItems={'center'} color='#FF7D27'>
+                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
+                  <Icon width={16} height={16} color='white' icon='subway:tick' />
+                </Box>
+                <Typography variant='h5'>Tăng cường hiệu quả quản lý và theo dõi</Typography>
+              </Box>
+            </AnimatedSection>
+            <AnimatedSection direction='right'>
+              <Box display={'flex'} my={8} gap={6} alignItems={'center'} color='#FF7D27'>
+                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
+                  <Icon width={16} height={16} color='white' icon='subway:tick' />
+                </Box>
+                <Typography variant='h5'> Hỗ trợ nâng cao chất lượng khóa luận</Typography>
+              </Box>
+            </AnimatedSection>
+            <AnimatedSection direction='right'>
+              <Box display={'flex'} my={8} gap={6} alignItems={'center'} color='#FF7D27'>
+                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
+                  <Icon width={16} height={16} color='white' icon='subway:tick' />
+                </Box>
+                <Typography variant='h5'>Bảo mật thông tin và dễ dàng truy cập tài liệu</Typography>
+              </Box>
+            </AnimatedSection>
+          </Box>
+        </AnimatedSection>
+      </Box>
+      <Box position={'absolute'} left={0} bottom={-10} zIndex={0} maxWidth={'100%'}>
+        <img width={'100%'} src='/public/images/wall.png' alt='' />
       </Box>
     </Box>
   );

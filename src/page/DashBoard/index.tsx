@@ -1,18 +1,17 @@
-import TitleManager from '@/components/ui/Title';
 import { Icon } from '@iconify/react';
 import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
-import nodataImg from '../../../public/images/nodata.png';
 import useUserStore from '@/store/userStore';
 import { checkGender } from '@/utils/validations/person.validation';
+import ProfilePage from '../Auth/Profile';
 function DashboardTemplate() {
-  const {me} = useUserStore();
+  const { me } = useUserStore();
 
   return (
-    <>
+    <Box mx={40} my={10}>
       <Box display={'flex'} gap={10}>
-        <Paper elevation={1} sx={{ width: 600, display: 'flex', gap: 10 }}>
-          <Box px={10} py={10} width={'600px'} display={'flex'} borderRadius={1} gap={10}>
+        <Paper elevation={1} sx={{ width: "100%", display: 'flex', gap: 10 }}>
+          <Box px={10} py={10} width={'100% '} display={'flex'} borderRadius={1} gap={10}>
             <Box
               border={'10px solid #E7F5FF'}
               borderRadius={'50%'}
@@ -62,7 +61,7 @@ function DashboardTemplate() {
         </Paper>
 
         <Paper elevation={1} sx={{ width: '100%', display: 'flex', gap: 10 }}>
-          <Box px={10} py={10} width={'600px'} display={'flex'} borderRadius={1} gap={10}>
+          <Box px={10} py={10} width={'100% '} display={'flex'} borderRadius={1} gap={10}>
             <Box
               border={'10px solid #E7F5FF'}
               borderRadius={'50%'}
@@ -111,8 +110,9 @@ function DashboardTemplate() {
           </Box>
         </Paper>
       </Box>
-      <Paper sx={{ mt: 10, px: 10, py: 20 }} elevation={1}>
-        <TitleManager icon='material-symbols:edit-note'>Thông báo mới</TitleManager>
+      <Paper sx={{ mt: 10 }} elevation={1}>
+        <ProfilePage />
+        {/* <TitleManager icon='material-symbols:edit-note'>Thông báo mới</TitleManager>
         <Box
           flexDirection={'column'}
           alignItems={'center'}
@@ -126,9 +126,9 @@ function DashboardTemplate() {
           <Typography variant='h3' sx={{ mt: 2 }}>
             chưa có thông báo mới
           </Typography>
-        </Box>
+        </Box> */}
       </Paper>
-    </>
+    </Box>
   );
 }
 
