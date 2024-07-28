@@ -23,8 +23,8 @@ export const APP_ROUTES = {
     DETAIL: "/dashboard/topics/:topic_id",
     STUDENT: '/dashboard/topics/my-topic'
   },
-  REVIEW: {
-    MANAGEMENT: '/dashboard/reviews',
+  EVALUATION: {
+    MANAGEMENT: '/dashboard/evaluations',
   },
   FILE_UPLOADED: '/dashboard/files',
 
@@ -97,15 +97,16 @@ export const APP_SIDEBAR = [
   {
     icon: 'fluent-mdl2:review-solid',
     text: 'Tiêu chí Đánh giá của học kì',
-    link: APP_ROUTES.REVIEW.MANAGEMENT,
-    key: '/review',
+    link: APP_ROUTES.EVALUATION.MANAGEMENT,
+    key: '/evaluations',
 
   },
 
   {
     icon: 'healthicons:i-exam-multiple-choice',
     text: 'Bảng điểm của tôi',
-    link: [APP_ROUTES.SCORE_STUDENT.MANAGEMENT],
+    link: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
+    key: APP_ROUTES.SCORE_STUDENT.MANAGEMENT
   },
 
 ];

@@ -71,6 +71,7 @@ export default function Table(props: Props) {
         }}
         sx={{
           fontSize: 14,
+          color: 'grey.900',
           cursor: 'pointer',
           '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {
             outline: 'none !important',

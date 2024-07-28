@@ -23,13 +23,18 @@ function useAuth() {
         return useMutation({
             mutationFn: (send: IAuth) => auth.login(send),
             onSuccess: (data: any) => {
-                enqueueSnackbar('Đăng nhập thành công', { variant: "success" });
-                setValueInLocalStorage('accessTokenStudent', data.accessToken);
-                setValueInLocalStorage('refreshTokenStudent', data.refreshToken);
-                setMe(data.user);
-                queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
-                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent] })
-                navigate('/dashboard');
+                if (!data.user.isActive) {
+                    enqueueSnackbar('Tài khoản của bạn đã bị khóa', { variant: "error" });
+
+                } else {
+                    enqueueSnackbar('Đăng nhập thành công', { variant: "success" });
+                    setValueInLocalStorage('accessTokenStudent', data.accessToken);
+                    setValueInLocalStorage('refreshTokenStudent', data.refreshToken);
+                    setMe(data.user);
+                    queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
+                    queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent] })
+                    navigate('/dashboard');
+                }
             },
             onError: (error) => {
                 enqueueSnackbar(error?.message, { variant: "error" });

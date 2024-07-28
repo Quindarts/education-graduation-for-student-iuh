@@ -108,7 +108,6 @@ function ProfileMenu() {
         <style>{keyframes}</style>
         <Avatar
           alt='avatar'
-          src='https://img.artpal.com/867752/16-22-10-3-9-27-51m.jpg'
           sx={imgStyles}
         />
         <Box sx={statusStyles}>

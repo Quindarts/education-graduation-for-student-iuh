@@ -27,15 +27,28 @@ function Navbar() {
     >
       <Box display={'flex'} alignItems={'center'}>
         <Box
-          sx={{ cursor: 'pointer' }}
-          width={54}
-          height={70}
+          sx={{
+            cursor: 'pointer',
+            '&:hover': {
+              bgcolor: '#efefef',
+              borderRadius: '10%',
+              transition: 'transform 1s',
+              boxShadow: 'rgba(177, 202, 233, 0.15) 0px 48px 100px 0px;',
+              color: 'primary.dark',
+              svg: {
+                transform: 'scale(1.3)',
+              },
+            },
+          }}
+          mx={2}
           display='flex'
+          p={6}
           alignItems='center'
           onClick={toggleSidebar}
-          color={'grey.600'}
+          fontWeight={'bold'}
+          color={'grey.700'}
         >
-          <Icon width={20} icon={isOpen ? 'ooui:next-ltr' : 'fluent:list-16-regular'} />
+          <Icon width={30} icon={isOpen ? 'grommet-icons:previous' : 'ep:menu'} />
         </Box>
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'} gap={4} ml={2}>
           <img width={140} src={`${logo}`} />

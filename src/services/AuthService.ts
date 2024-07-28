@@ -3,7 +3,6 @@ import axiosConfig from "./axiosConfig";
 import { AxiosResponse } from "axios";
 import ResponseType from "@/types/axios.type";
 
-
 class AuthService {
     static ID: number;
     endpoint: string;
@@ -17,7 +16,6 @@ class AuthService {
     async getMe(): Promise<Pick<ResponseType, 'success' | 'user' | 'message'>> {
         return await axiosConfig.get(`${this.endpoint}/me`);
     }
-
 
     async updateMe(data: IUser) {
         return await axiosConfig<AxiosResponse>({

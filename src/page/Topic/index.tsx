@@ -16,7 +16,7 @@ function TopicTemplate() {
   const { partOfTerm, term } = useTermStore();
   return (
     <Paper sx={{ py: 10, px: 10 }} elevation={1}>
-      <TitleManager variant='h5' textTransform={'uppercase'} icon='quill:list' mb={8} mt={2}>
+      <TitleManager variant='h5' textTransform={'uppercase'} icon='ic:twotone-topic' mb={8} mt={2}>
         {' '}
         {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE
           ? 'Chọn Đề tài đăng ký khóa luận tốt nghiệp'

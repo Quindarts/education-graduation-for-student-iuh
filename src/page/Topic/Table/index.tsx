@@ -33,7 +33,7 @@ function TableManagamentTopic(props: any) {
       headerName: 'Giảng viên HD',
       field: 'lecturername',
       headerAlign: 'center',
-      align: 'center',
+      align: 'left',
       flex: 0.8,
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
@@ -46,18 +46,12 @@ function TableManagamentTopic(props: any) {
       field: 'quantityGroupMax',
       flex: 0.5,
       headerAlign: 'center',
-      align: 'center',
+      align: 'right',
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
           {params.row.quantityGroup} / {params.row.quantityGroupMax}
         </Typography>
       ),
-    },
-    {
-      headerName: 'Mục tiêu',
-      field: 'target',
-      flex: 1,
-      headerAlign: 'center',
     },
     {
       headerName: 'Chức năng',
@@ -93,7 +87,7 @@ function TableManagamentTopic(props: any) {
           }}
           minHeight={350}
           columns={basicColumns}
-          totalItems={1}
+          totalItems={rows.length}
           totalPages={1}
           page={1}
           handleChangePage={() => {}}
