@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const axiosConfig = axios.create({
   baseURL: `${env.BASE_URL}`,
+  // baseURL: 'http://localhost:3000/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
