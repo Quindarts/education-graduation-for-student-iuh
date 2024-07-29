@@ -2,7 +2,7 @@ import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: `${process.env.REACT_APP_API_SERVER}`,
   headers: {
     'Content-Type': 'application/json',
   },
