@@ -1,8 +1,9 @@
+import { env } from '@/utils/env';
 import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  baseURL: `${process.env.REACT_APP_API_SERVER}`,
+  baseURL: `${env.BASE_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },
