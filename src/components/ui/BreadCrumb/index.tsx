@@ -1,6 +1,6 @@
-import { Box, Breadcrumbs, Typography } from '@mui/material';
+import { Breadcrumbs, Typography } from '@mui/material';
 import React from 'react';
-import { Link, matchPath, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, matchPath, useLocation } from 'react-router-dom';
 const ROUTE_LABELS: { [key: string]: string } = {
   '/': 'Trang chủ',
   '/terms': 'Quản lý Học kì',
@@ -56,7 +56,7 @@ function BreadCrumbRouting() {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   const validPaths = pathnames
-    .map((value, index) => `/${pathnames.slice(0, index + 1).join('/')}`)
+    .map((value: any, index) => `/${pathnames.slice(0, index + 1).join('/')}`)
     .filter((path) => ROUTE_LABELS[path]);
 
   return (

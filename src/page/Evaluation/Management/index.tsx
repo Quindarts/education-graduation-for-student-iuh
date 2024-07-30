@@ -13,7 +13,7 @@ export enum TypeEvaluation {
 export const convertEvalutationTable = (evalutation: any[]) => {
   if (evalutation === undefined) return [];
   else {
-    let newEvalutations: any[] = [];
+    const newEvalutations: any[] = [];
     evalutation.map((Evalutation: any, index: number) => {
       newEvalutations.push({
         stt: index + 1,

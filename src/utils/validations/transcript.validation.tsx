@@ -28,6 +28,7 @@ export const checkTypeEvaluation = (typeScore: string) => {
 export const getNameStatus = (value: string) => {
   if (value === 'REJECTED') return 'Đang chờ';
   if (value === 'APPROVED') return 'Đã chấm';
+  return;
 };
 
 export const getColorStatusTranscript = (text: string) => {
@@ -37,6 +38,7 @@ export const getColorStatusTranscript = (text: string) => {
     case 'APPROVED':
       return '#22552e';
   }
+  return;
 };
 export const getbgColorStatusTranscript = (text: string) => {
   switch (text) {
@@ -45,6 +47,7 @@ export const getbgColorStatusTranscript = (text: string) => {
     case 'APPROVED':
       return '#e2fbe8';
   }
+  return;
 };
 
 export const getIconTranscript = (text: string) => {
@@ -61,6 +64,7 @@ export const getIconTranscript = (text: string) => {
     case 'APPROVED':
       return <Icon style={{ marginLeft: 2, marginTop: 2 }} width={14} icon='typcn:tick' />;
   }
+  return;
 };
 
 export const getCardTranscriptStatus = (text: string) => {

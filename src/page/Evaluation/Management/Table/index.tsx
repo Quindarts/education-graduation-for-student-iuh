@@ -4,7 +4,7 @@ import { GridColDef } from '@mui/x-data-grid';
 import React from 'react';
 
 function TableEvaluation(props: any) {
-  const { rows, type } = props;
+  const { rows } = props;
 
   const basicColumns: GridColDef[] = [
     {
@@ -12,7 +12,7 @@ function TableEvaluation(props: any) {
       field: 'stt',
       flex: 0.5,
       align: 'center',
-      headerAlign: 'center',
+      headerAlign: 'center', 
     },
     {
       headerName: 'Tên tiêu chí',

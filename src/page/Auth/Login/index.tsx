@@ -24,7 +24,7 @@ function LoginPage() {
       username: '',
       password: '',
     },
-    onSubmit: (values, actions) => {
+    onSubmit: (values) => {
       login({ username: values.username, password: values.password });
     },
   });

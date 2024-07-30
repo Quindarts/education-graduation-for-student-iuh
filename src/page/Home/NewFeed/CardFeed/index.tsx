@@ -1,4 +1,3 @@
-import { AnimatedCard } from '@/components/ui/Animated/AnimatedCard';
 import {
   Button,
   Card,

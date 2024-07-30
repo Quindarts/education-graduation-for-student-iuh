@@ -7,7 +7,6 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 
-
 export enum QueryKeysGroupStudent {
     getCurrentGroupStudentTerm = 'getCurrentGroupStudentTerm',
     getMyGroupStudent = 'getMyGroupStudent',

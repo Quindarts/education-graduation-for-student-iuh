@@ -1,4 +1,4 @@
-import EvaluationService, { ENUM_EVALUATION } from '@/services/EvaluationService'
+import EvaluationService from '@/services/EvaluationService'
 import useTermStore from '@/store/termStore'
 import { useQuery } from '@tanstack/react-query'
 enum QueryKeysEvaluation {
@@ -7,7 +7,7 @@ enum QueryKeysEvaluation {
 function useEvaluation() {
     const term = useTermStore(state => state.term)
     const evaluationService = new EvaluationService()
-    const HandleGetAllEvaluationByType = (type: ENUM_EVALUATION) => {
+    const HandleGetAllEvaluationByType = (type: string) => {
         const { data, isLoading, isSuccess, isFetching, ...rest } = useQuery({
             queryKey: [QueryKeysEvaluation.getAllEvaluationByType, type],
             queryFn: () => evaluationService.getAllReviewByType(term.id, type),

@@ -1,16 +1,7 @@
 import SekeletonUI from '@/components/ui/Sekeleton';
 import useTopic from '@/hook/api/useTopic';
 import { Icon } from '@iconify/react';
-import {
-  Container,
-  Typography,
-  Paper,
-  Box,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
+import { Typography, Paper, Box, List, ListItem, ListItemText } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -20,7 +11,7 @@ function TopicDetailPage() {
   const topicId = `${current[current.length - 1]}`;
   const { HandleGetTopicById } = useTopic();
   const { data, isLoading, isFetching } = HandleGetTopicById(topicId);
-    
+
   return (
     <Paper>
       {isLoading || isFetching ? (
@@ -39,7 +30,7 @@ function TopicDetailPage() {
                   mb={10}
                 >
                   <Icon icon='ion:book-sharp' style={{ marginRight: '5px' }} />
-                  Tên Đề tài: {data.topic.name}
+                  Tên Đề tài: {data?.topic?.name}
                 </Typography>
 
                 <Typography
@@ -125,7 +116,7 @@ function TopicDetailPage() {
                   >
                     Thông tin giảng viên hướng dẫn
                   </Typography>
-                  <List mt={0}>
+                  <List>
                     <ListItem>
                       <ListItemText
                         primary={data.topic.lecturerTerm.lecturer.fullName}

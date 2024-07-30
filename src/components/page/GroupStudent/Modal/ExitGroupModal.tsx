@@ -3,9 +3,8 @@ import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-function ExitGroupModal(props) {
+function ExitGroupModal(props: any) {
   const { onClose, open, groupId } = props;
   const { OnLeaveGroupStudent } = useGroupStudent();
   const { mutate: leave } = OnLeaveGroupStudent();

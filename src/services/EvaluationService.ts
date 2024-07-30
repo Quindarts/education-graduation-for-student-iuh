@@ -11,7 +11,7 @@ class EvaluationService {
     constructor(endpoint?: string) {
         this.endpoint = endpoint ? endpoint : '/evaluations';
     }
-    async getAllReviewByType(termId?: string, review?: ENUM_EVALUATION) {
+    async getAllReviewByType(termId?: string, review?: string) {
         return axiosConfig.get<ResponseType, any>(`${this.endpoint}?termId=${termId}&type=${review}`)
     }
 }

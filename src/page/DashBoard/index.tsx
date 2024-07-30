@@ -37,7 +37,7 @@ function DashboardTemplate() {
                   Họ và tên:
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
-                  {me.fullName}
+                  {me?.fullName}
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
@@ -45,7 +45,7 @@ function DashboardTemplate() {
                   Lớp học phần:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
-                  {me.clazzName}
+                  {me?.clazzName}
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>

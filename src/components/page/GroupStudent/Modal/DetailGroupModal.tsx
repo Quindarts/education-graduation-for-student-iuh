@@ -3,10 +3,10 @@ import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Icon } from '@iconify/react';
-import { Box, Button, Paper, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 
-function DetailGroupModal(props) {
+function DetailGroupModal(props: any) {
   const { onClose, open, groupId, groupName } = props;
 
   const { HandleGetGroupMembers } = useGroupStudent();
@@ -23,7 +23,7 @@ function DetailGroupModal(props) {
             </TitleManager>
 
             {data?.members.length === 0 ? (
-              <Typography  ml={4} variant='h6' color='initial'>
+              <Typography ml={4} variant='h6' color='initial'>
                 Nhóm chưa có thành viên
               </Typography>
             ) : (

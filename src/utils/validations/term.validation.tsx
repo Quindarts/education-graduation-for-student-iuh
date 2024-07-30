@@ -15,7 +15,7 @@ export const statusOfDate = (startDate: string, endDate: string) => {
   else currentStatus = ENUM_STATUS_OF_DATE_TERM.ACTIVE;
   return currentStatus;
 };
-export const checkColorStatusPartTerm = (status: string) => {
+export const checkColorStatusPartTerm = (status?: string) => {
   let color = '';
   switch (status) {
     case ENUM_STATUS_OF_DATE_TERM.ACTIVE:

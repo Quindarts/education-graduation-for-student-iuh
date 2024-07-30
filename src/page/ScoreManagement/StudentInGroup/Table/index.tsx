@@ -1,14 +1,13 @@
-import SekeletonUI from '@/components/ui/Sekeleton';
 import Table from '@/components/ui/Table/Table';
 import { getStatusGroup } from '@/utils/validations/groupStudent.validation';
 import { Avatar, Box, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
-import { useLocation } from 'react-router-dom';
 
 export const convertGroupMembersTable = (groupMember: any[]) => {
+  const newArr: any[] = [];
+
   if (groupMember === undefined) return [];
   else {
-    let newArr: any[] = [];
     groupMember.map((mem: any) => {
       newArr.push({
         id: mem.student.id,
@@ -19,11 +18,12 @@ export const convertGroupMembersTable = (groupMember: any[]) => {
         ...mem.student,
       });
     });
-    return newArr;
   }
+  return newArr;
+
 };
 
-function MyScoreTable(props: any) {
+function MyScoreTable() {
   const basicColumns: GridColDef[] = [
     {
       headerName: 'Thông tin chung',

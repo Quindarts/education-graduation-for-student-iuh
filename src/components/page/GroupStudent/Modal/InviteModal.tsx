@@ -3,7 +3,7 @@ import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
-function InviteModal(props) {
+function InviteModal(props: any) {
   const { onClose, open, groupId, name } = props;
   const { OnInviteGroupStudent } = useGroupStudent();
   const { mutate: invite, isSuccess } = OnInviteGroupStudent();

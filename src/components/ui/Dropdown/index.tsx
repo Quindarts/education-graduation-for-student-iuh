@@ -30,6 +30,7 @@ const DropDown: React.FC<SelectPropsType> = (props: SelectPropsType) => {
       )}
       <Select
         id={id}
+        variant='outlined'
         displayEmpty
         fullWidth
         {...restProps}

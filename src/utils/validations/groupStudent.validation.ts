@@ -16,6 +16,7 @@ export const getStatusGroup = (status: string) => {
         case 'PASS_SESSION_HOST':
             return 'Đậu hội dồng';
     }
+    return
 };
 
 
@@ -36,6 +37,5 @@ export const getStatusGroupColor = (status: string) => {
         case 'PASS_SESSION_HOST':
             return 'green';
     }
+    return
 };
-
-;

@@ -57,7 +57,7 @@ function useAuth() {
     const HandleLogout = () => {
         return useMutation({
             mutationFn: () => auth.logout(),
-            onSuccess: (data: any) => {
+            onSuccess: () => {
                 enqueueSnackbar('Đăng xuất thành công', { variant: "success" });
                 removeValueInLocalStorage('accessTokenStudent');
                 removeValueInLocalStorage('refreshTokenStudent');

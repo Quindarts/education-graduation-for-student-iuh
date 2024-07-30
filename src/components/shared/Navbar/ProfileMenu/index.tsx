@@ -80,7 +80,7 @@ const keyframes = `
 function ProfileMenu() {
   const navigate = useNavigate();
   const { handleActive, active, menuRef } = usePopup();
-  const me = useUserStore((state) => state.me);
+  const me = useUserStore((state: any) => state.me);
   const { HandleLogout } = useAuth();
   const { mutate: logout } = HandleLogout();
   return (
@@ -106,10 +106,7 @@ function ProfileMenu() {
     >
       <Box sx={avatarStyles}>
         <style>{keyframes}</style>
-        <Avatar
-          alt='avatar'
-          sx={imgStyles}
-        />
+        <Avatar alt='avatar' sx={imgStyles} />
         <Box sx={statusStyles}>
           <Box sx={statusCircleStyles} />
         </Box>
@@ -126,7 +123,7 @@ function ProfileMenu() {
         }}
       >
         <Typography color='grey.700' variant='h6' fontWeight={600}>
-          {me.fullName}
+          {me?.fullName}
         </Typography>
         <Typography color='grey.600' variant='body2' fontWeight={600}>
           Sinh viên
@@ -163,7 +160,7 @@ function ProfileMenu() {
             Chào mừng trở lại!
           </Typography>
           <MenuList sx={{ p: 0 }}>
-            {APP_PROFILE_MENU.map((menuItem) => (
+            {APP_PROFILE_MENU.map((menuItem: any) => (
               <MenuItem
                 sx={{ '.MuiListItemIcon-root ': { minWidth: 24 }, my: 2 }}
                 onClick={() => {

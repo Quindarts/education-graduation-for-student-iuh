@@ -6,7 +6,6 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { queryClient } from '@/providers/ReactQuery';
 import GroupStudentService from '@/services/GroupStudentService';
-import useTopicStore from '@/store/topicStore';
 import { QueryKeysGroupStudent } from './useGroupStudent';
 
 enum QueryKeysTopic {

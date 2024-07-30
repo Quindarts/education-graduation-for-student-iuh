@@ -2,10 +2,10 @@ import Modal from '@/components/ui/Modal';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import useTopic from '@/hook/api/useTopic';
 import { Icon } from '@iconify/react';
-import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-function ChooseModal(props) {
+function ChooseModal(props: any) {
   const { onClose, open, topicId } = props;
   const { OnChooseTopic } = useTopic();
   const { HandleGetMyGroupStudent } = useGroupStudent();

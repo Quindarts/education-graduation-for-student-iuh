@@ -1,7 +1,7 @@
 import AnimatedSection from '@/components/ui/Animated/AnimatedSection';
 import TitleManager from '@/components/ui/Title';
 import { Box, Typography } from '@mui/material';
-import React, { useRef } from 'react';
+import React from 'react';
 
 function TeamInfoSection() {
   return (

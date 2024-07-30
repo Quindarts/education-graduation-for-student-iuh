@@ -1,31 +1,8 @@
 import { Icon } from '@iconify/react';
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
-import {
-  Avatar,
-  Box,
-  Divider,
-  IconButton,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import React from 'react';
 
-const MenuButtonDummy = {
-  iconMain: 'icon-park-outline:more-app',
-  toolTipMain: 'Xem chi tiết',
-  listDetail: [
-    {
-      icon: '',
-      label: 'Tải file lên',
-    },
-  ],
-};
-
-function MenuButton(props: any) {
-  const { icon } = props;
+function MenuButton() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 

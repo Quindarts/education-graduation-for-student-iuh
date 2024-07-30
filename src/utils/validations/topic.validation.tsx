@@ -1,18 +1,20 @@
 import { Icon } from '@iconify/react';
 import { Box } from '@mui/material';
 
-export const checkIsTopic = (value: boolean) => {
+export const checkIsTopic = (value?: boolean) => {
   if (value === true) return 'Có';
   if (value === false) return 'Chưa có';
+  return;
 };
 
-export const getNameStatus = (value: string) => {
+export const getNameStatus = (value?: string) => {
   if (value === 'REJECTED') return 'Không duyệt';
   if (value === 'PENDING') return 'Chờ duyệt';
   if (value === 'APPROVED') return 'Đã duyệt';
+  return;
 };
 
-export const getColorStatusTopic = (text: string) => {
+export const getColorStatusTopic = (text?: string) => {
   switch (text) {
     case 'REJECTED':
       return '#831e1b';
@@ -21,8 +23,9 @@ export const getColorStatusTopic = (text: string) => {
     case 'APPROVED':
       return '#22552e';
   }
+  return;
 };
-export const getbgColorStatusTopic = (text: string) => {
+export const getbgColorStatusTopic = (text?: string) => {
   switch (text) {
     case 'REJECTED':
       return '#f8e3e2';
@@ -31,9 +34,10 @@ export const getbgColorStatusTopic = (text: string) => {
     case 'APPROVED':
       return '#e2fbe8';
   }
+  return;
 };
 
-export const getIconTopic = (text: string) => {
+export const getIconTopic = (text?: string) => {
   switch (text) {
     case 'REJECTED':
       return (
@@ -45,14 +49,19 @@ export const getIconTopic = (text: string) => {
       );
     case 'PENDING':
       return (
-        <Icon style={{ marginLeft: 2, marginTop: 2 }} width={14} icon='material-symbols:progress-activity' />
+        <Icon
+          style={{ marginLeft: 2, marginTop: 2 }}
+          width={14}
+          icon='material-symbols:progress-activity'
+        />
       );
     case 'APPROVED':
       return <Icon style={{ marginLeft: 2, marginTop: 2 }} width={14} icon='typcn:tick' />;
   }
+  return;
 };
 
-export const getCardTopicStatus = (text: string) => {
+export const getCardTopicStatus = (text?: string) => {
   const color = getColorStatusTopic(text);
   const bgColor = getbgColorStatusTopic(text);
   const icon = getIconTopic(text);

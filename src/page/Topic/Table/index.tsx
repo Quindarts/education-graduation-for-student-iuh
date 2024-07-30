@@ -10,8 +10,7 @@ import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 
 function TableManagamentTopic(props: any) {
-  const { rows, totalItems, totalPages, page, handelChangePage, isApprovePermission, ...rest } =
-    props;
+  const { rows, ...rest } = props;
   const partOfTerm = useTermStore((s) => s.partOfTerm);
   const navigate = useNavigate();
   const [openChooseModal, setOpenChooseModal] = useState({ topicId: '', isOpen: false });
