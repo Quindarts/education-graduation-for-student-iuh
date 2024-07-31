@@ -7,7 +7,7 @@ import React from 'react';
 function ExitGroupModal(props: any) {
   const { onClose, open, groupId } = props;
   const { OnLeaveGroupStudent } = useGroupStudent();
-  const { mutate: leave } = OnLeaveGroupStudent();
+  const { mutate: leave } = OnLeaveGroupStudent(groupId);
   const handleSubmit = () => {
     leave(groupId);
   };

@@ -1,6 +1,6 @@
 import SekeletonUI from '@/components/ui/Sekeleton';
 import { Box, Button, Paper, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { Icon } from '@iconify/react';
@@ -11,11 +11,16 @@ function NotficationDetailPage() {
   const current = pathname.split('/');
   const notificationId = `${current[current.length - 1]}`;
   const { HandleDetailNotification, OnReadNotification } = useNotification();
-  const { data, isLoading, isFetching } = HandleDetailNotification(notificationId);
-  const { mutate: toggleRead } = OnReadNotification();
+  const { data, isLoading, isFetching, refetch } = HandleDetailNotification(notificationId);
+  const { mutate: toggleRead, isSuccess } = OnReadNotification();
   const hanldeToggleRead = () => {
     toggleRead(notificationId);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
   return (
     <Paper elevation={1} sx={{ px: 10, py: 6 }}>
       {isLoading || isFetching ? (

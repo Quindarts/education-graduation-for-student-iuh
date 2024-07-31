@@ -23,9 +23,16 @@ function TableManagamentTopic(props: any) {
 
   const basicColumns: GridColDef[] = [
     {
+      headerName: 'STT',
+      field: 'stt',
+      flex: 0.2,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
       headerName: 'Tên Đề tài',
       field: 'name',
-      flex: 1.5,
+      flex: 2,
       headerAlign: 'center',
     },
     {
@@ -45,7 +52,7 @@ function TableManagamentTopic(props: any) {
       field: 'quantityGroupMax',
       flex: 0.5,
       headerAlign: 'center',
-      align: 'right',
+      align: 'center',
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
           {params.row.quantityGroup} / {params.row.quantityGroupMax}
@@ -84,7 +91,7 @@ function TableManagamentTopic(props: any) {
           sx={{
             bgcolor: 'white',
           }}
-          minHeight={350}
+          minHeight={500}
           columns={basicColumns}
           totalItems={rows.length}
           totalPages={1}

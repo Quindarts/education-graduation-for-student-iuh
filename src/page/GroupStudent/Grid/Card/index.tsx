@@ -61,19 +61,23 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
           )}
           {numOfMembers === 2 && <Icon width={40} color='#22aa46' icon='mingcute:group-fill' />}
         </Box>
-        <CardContent sx={{ my: 0 }}>
-          <Typography
-            gutterBottom
-            variant='h4'
-            color='warning.dark'
-            fontWeight={'bold'}
-            component='div'
-          >
-            {name}
-          </Typography>
-          <Typography variant='body1' color='text.warning'>
-            Số lượng thành viên :{numOfMembers} /2
-          </Typography>
+        <CardContent onClick={() => handleOpenInviteModal(groupId, name)} sx={{ my: 0 }}>
+          <Tooltip title={numOfMembers !== 2 ? 'Tham gia nhóm' : 'Nhóm đã đủ thành viên'}>
+            <>
+              <Typography
+                gutterBottom
+                variant='h4'
+                color='warning.dark'
+                fontWeight={'bold'}
+                component='div'
+              >
+                {name}
+              </Typography>
+              <Typography variant='body1' color='text.warning'>
+                Số lượng thành viên :{numOfMembers} /2
+              </Typography>
+            </>
+          </Tooltip>
         </CardContent>
         <CardActions sx={{ justifyContent: 'space-between' }}>
           {numOfMembers === 2 && (
@@ -83,14 +87,6 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
             <Tooltip onClick={() => handleOpenDetailModal(groupId)} title='Thông tin chi tiết'>
               <IconButton color='warning'>
                 <Icon icon='bx:detail' />
-              </IconButton>
-            </Tooltip>
-            <Tooltip
-              onClick={() => handleOpenInviteModal(groupId, name)}
-              title={numOfMembers === 2 ? 'Tham gia nhóm' : 'Nhóm đã đủ thành viên'}
-            >
-              <IconButton color='warning' disabled={numOfMembers === 2}>
-                <Icon icon='solar:user-plus-bold-duotone' />
               </IconButton>
             </Tooltip>
           </Box>

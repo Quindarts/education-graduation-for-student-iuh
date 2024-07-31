@@ -51,7 +51,11 @@ function TopicTemplate() {
             <TableManagamentTopic
               isApprovePermission={true}
               rows={
-                data?.topics ? data.topics.filter((topic: any) => topic.status === 'APPROVED') : []
+                data?.topics
+                  ? data.topics
+                      .filter((topic: any) => topic.status === 'APPROVED')
+                      .map((t: any, index: number) => ({ ...t, stt: index + 1 }))
+                  : []
               }
             />
           )}

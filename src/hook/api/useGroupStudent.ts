@@ -28,11 +28,12 @@ function useGroupStudent() {
         })
     }
 
-    const OnInviteGroupStudent = () => {
+    const OnInviteGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.joinGroup(`${groupId}`),
             onSuccess: () => {
                 enqueueSnackbar('Tham gia nhóm sinh viên thành công', { variant: "success" })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
                 navigate('/dashboard/group-students/detail');
@@ -54,12 +55,13 @@ function useGroupStudent() {
             },
         })
     }
-    const OnLeaveGroupStudent = () => {
+    const OnLeaveGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.leaveGroup(`${groupId}`),
             onSuccess: (data: any) => {
                 if (data.success === true) {
                     enqueueSnackbar('Rời nhóm thành công', { variant: "success" })
+                    queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
                     navigate('/dashboard/group-students');

@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 function InviteModal(props: any) {
   const { onClose, open, groupId, name } = props;
   const { OnInviteGroupStudent } = useGroupStudent();
-  const { mutate: invite, isSuccess } = OnInviteGroupStudent();
+  const { mutate: invite, isSuccess } = OnInviteGroupStudent(groupId);
   const handleSubmit = () => {
     invite(groupId);
   };

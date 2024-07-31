@@ -40,6 +40,16 @@ export default function Table(props: Props) {
       <DataGrid
         disableRowSelectionOnClick
         hideFooter
+        componentsProps={{
+          cell: {
+            style: {
+              whiteSpace: 'normal', // Cho phép nội dung xuống dòng
+              wordWrap: 'break-word', // Ngắt từ nếu quá dài
+              lineHeight: '1.5em', // Khoảng cách dòng
+              overflow: 'visible', // Hiển thị toàn bộ nội dung
+            },
+          },
+        }}
         slots={{
           noRowsOverlay: () => (
             <Box
