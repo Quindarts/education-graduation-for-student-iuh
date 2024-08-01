@@ -38,7 +38,7 @@ function TeamInfoSection() {
                   </Typography>{' '}
                   <br /> Lê Minh Quang
                   <br />
-                  Phạm Huy Hoàng.
+                  Nguyễn Huy Hoàng.
                 </Typography>
               </AnimatedSection>
             </Box>
