@@ -78,7 +78,6 @@ function Navbar() {
 
       <Box display='flex' alignItems='center' gap={6}>
         <Notification />
-
         <ProfileMenu />
       </Box>
     </Box>

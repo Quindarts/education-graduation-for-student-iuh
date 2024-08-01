@@ -2,7 +2,7 @@ import TitleManager from '@/components/ui/Title';
 import { Box } from '@mui/material';
 import React from 'react';
 import CardFeed from './CardFeed';
-import feedImg from '../../../../public/images/feedImg.png';
+import feedImg from '/images/feedImg.webp';
 const ListCardFeed = [
   {
     title: ' [Ngành KTPM]: về Khóa luận tốt nghiệp và Thực tập doanh nghiệp HK1 2024-2025 ',

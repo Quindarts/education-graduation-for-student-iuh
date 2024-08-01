@@ -10,8 +10,8 @@ import { useFormik } from 'formik';
 import CustomTextField from '@/components/ui/CustomTextField';
 import { Icon } from '@iconify/react';
 import { CircularProgress, Paper } from '@mui/material';
-import bgStudent from '../../../../public/images/student-nobg.png';
-import logoIUH from '../../../../public/images/logo-light.png';
+import bgStudent from '/images/student-nobg.webp';
+import logoIUH from '/images/logo-light.webp';
 import useAuth from '@/hook/api/useAuth';
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);

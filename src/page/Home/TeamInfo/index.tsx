@@ -46,7 +46,7 @@ function TeamInfoSection() {
           <Box  zIndex={10}>
             <AnimatedSection direction='right'>
               <Box borderRadius={'80%'} bgcolor='white'>
-                <img width={600} src='/public/images/undraw_wait_in_line_o2aq.svg' />
+                <img width={600} src='/images/undraw_wait_in_line_o2aq.webp' />
               </Box>
             </AnimatedSection>
           </Box>

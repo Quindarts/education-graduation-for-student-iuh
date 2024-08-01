@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import logo from '../../../../public/images/Logo_IUH.png';
+import logo from '/images/Logo_IUH.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 

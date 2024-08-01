@@ -34,7 +34,7 @@ function InfoPropjectSection() {
       <Box zIndex={10} display={'flex'} gap={20} justifyContent={'center'} alignItems={'center'}>
         <AnimatedSection direction='left'>
           <Box position={'relative'} zIndex={10}>
-            <img width={600} src='/public/images/undraw_educator_re_ju47.svg' />
+            <img width={600} src='/images/undraw_educator_re_ju47.webp' />
           </Box>
         </AnimatedSection>
         <AnimatedSection direction='right'>
@@ -76,7 +76,7 @@ function InfoPropjectSection() {
         </AnimatedSection>
       </Box>
       <Box position={'absolute'} left={0} bottom={-10} zIndex={0} maxWidth={'100%'}>
-        <img width={'100%'} src='/public/images/wall.png' alt='' />
+        <img width={'100%'} src='/images/wall.webp' alt='' />
       </Box>
     </Box>
   );

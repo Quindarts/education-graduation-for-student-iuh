@@ -1,6 +1,6 @@
 import Header from '@/components/shared/Header';
 import { Box } from '@mui/material';
-import cover from '../../../public/images/bg-home.jpg';
+import cover from '/images/bg-home.webp';
 import { Outlet } from 'react-router-dom';
 import Footer from '@/components/shared/Footer';
 

@@ -7,8 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { Autoplay, Pagination } from 'swiper/modules';
-import bn1 from '../../../../public/images/sl01.jpg';
-import bn2 from '../../../../public/images/sl02.png';
+import bn1 from '/images/sl01.webp';
+import bn2 from '/images/sl02.webp';
 import { Box } from '@mui/material';
 
 function BannerSection() {

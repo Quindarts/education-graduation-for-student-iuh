@@ -24,7 +24,7 @@ function HomeTemplate() {
           height={'60vh'}
           flexDirection={'column'}
         >
-          <img src='/public/images/logo-IUH-ngang-trang-300x131-1.png' alt='' />
+          <img src='/images/logo-IUH-ngang-trang-300x131-1.webp' alt='' />
           <Typography
             mt={10}
             variant='h1'
