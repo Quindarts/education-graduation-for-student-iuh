@@ -21,7 +21,7 @@ function Footer() {
           lg: 'calc(50% - 100px)',
         }}
       >
-        <img width={200} src='/public/images/Logo_IUH.png' />
+        <img width={200} src='/images/logo-IUH-ngang-trang-300x131-1.webp' />
 
         <Typography variant='h5' color='grey.500'>
           12 Nguyễn Văn Bảo, Phường 4, Gò Vấp, Hồ Chí Minh

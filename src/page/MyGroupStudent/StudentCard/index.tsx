@@ -36,7 +36,6 @@ function StudentCard({
           color: 'primary.dark',
           margin: 'auto',
           marginTop: 4,
-          cursor: 'pointer',
           transition: 'transform 0.3s, box-shadow 0.3s',
           '&:hover': {
             transform: 'scale(1.01)',
@@ -47,11 +46,18 @@ function StudentCard({
         <CardContent sx={{ px: 10, py: 2 }}>
           <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'primary.dark' }} gutterBottom>
             Sinh viên {index}: {name}
+            {isAdmin && (
+              <>
+                <Typography variant='h6' fontWeight={'bold'} color='error.main'>
+                  Vai trò: Trưởng Nhóm
+                </Typography>
+              </>
+            )}
           </Typography>
           <Box sx={{ display: 'flex', gap: 10 }}>
             <Box width={'300px'}>
               <Typography sx={{ fontSize: 16, marginBottom: 1, color: 'primary.dark' }}>
-                MSSV: {mssv}
+                Mã số sinh viên: {mssv}
               </Typography>
               <Typography variant='h6' component='p'>
                 Email liên hệ: {email ? email : 'Đang cập nhật'}
@@ -59,7 +65,7 @@ function StudentCard({
             </Box>
             <Box width={'200px'}>
               <Typography variant='h6' component='p'>
-                SĐT: {phone}
+                Số điện thoại: {phone}
               </Typography>
               <Typography variant='h6' component='p'>
                 Giới tính: {checkGender(gender)}
@@ -67,14 +73,6 @@ function StudentCard({
             </Box>
           </Box>
           <Box justifyContent={'end'} display={'flex'} gap={4}>
-            {isAdmin && (
-              <>
-                <Typography variant='h6' fontWeight={'bold'} color='error.dark'>
-                  Trưởng Nhóm
-                </Typography>
-              </>
-            )}
-
             {!isMe && !isAdmin && (
               <Button
                 disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}

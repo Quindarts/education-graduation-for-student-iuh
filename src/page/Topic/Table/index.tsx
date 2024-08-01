@@ -55,27 +55,31 @@ function TableManagamentTopic(props: any) {
       align: 'center',
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
-          {params.row.quantityGroup} / {params.row.quantityGroupMax}
+          {params.row.quantityGroup} / {params.row.quantity_group_max}
         </Typography>
       ),
     },
     {
       headerName: 'Chức năng',
       field: 'none',
+      flex: 0.7,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params: any) => (
         <Box display={'flex'} gap={2}>
           {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE && (
-            <Tooltip title={'Đăng ký đề tài'}>
-              <IconButton color='primary' onClick={() => handleOpenChooseModal(params.row.id)}>
-                <Icon icon='bxs:book-add' />
+            <Tooltip onClick={() => handleOpenChooseModal(params.row.id)} title={'Đăng ký đề tài'}>
+              <IconButton color='primary'>
+                <Icon width={30} icon='bxs:book-add' style={{ color: '#2fac82' }} />
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip title='Xem thông tin đề tài'>
-            <IconButton onClick={() => navigate(`/dashboard/topics/${params.row.id}`)}>
-              <Icon icon='bx:detail' />
+          <Tooltip
+            onClick={() => navigate(`/dashboard/topics/${params.row.id}`)}
+            title='Xem thông tin đề tài'
+          >
+            <IconButton>
+              <Icon icon='bx:detail' width={30} style={{ color: '#2f69ac' }} />
             </IconButton>
           </Tooltip>
         </Box>

@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import { Button, CircularProgress, Paper } from '@mui/material';
+import { CircularProgress, Paper } from '@mui/material';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import useNotification from '@/hook/api/useNotification';
@@ -86,12 +86,12 @@ function Notification() {
             borderRadius='8px 8px 0 0 '
             sx={{ backgroundColor: 'primary.dark' }}
           >
-            <Typography fontWeight={500} variant='body1' color={'white'}>
+            <Typography ml={4} mt={4} fontWeight={500} variant='body1' color={'white'}>
               Thông báo mới
             </Typography>
             <Box borderRadius={1} alignSelf={'center'} px={4} py={2}>
               <Typography fontWeight={500} variant='body2' color='white'>
-                {data ? data?.filter((noti: any) => noti.isRead === false).length : 0} Thông báo
+                {data ? data.length : 0} Thông báo
               </Typography>
             </Box>
           </Box>
@@ -115,27 +115,37 @@ function Notification() {
             ) : (
               <>
                 {data?.map((noti: any) => (
-                  <Paper sx={{ my: 2, px: 4, py: 2 }} elevation={1}>
+                  <Paper
+                    sx={{
+                      my: 2,
+                      px: 4,
+                      py: 2,
+                      cursor: 'pointer',
+                      '&:hover': {
+                        bgcolor: '#f5f8ff',
+                      },
+                    }}
+                    onClick={() => handleNavigate(noti.id)}
+                    elevation={1}
+                  >
                     <Typography
                       textAlign={'end'}
                       width={'120px'}
                       variant='body2'
                       component={'i'}
                       color='grey.600'
+                      sx={{}}
                     >
                       {dayjs(noti.created_at).format('DD/MM/YYYY hh:ss')}
                     </Typography>
 
                     <Typography
-                      variant='body1'
-                      color='initial'
-                      dangerouslySetInnerHTML={{ __html: noti.message.split('<br/>')[0] }}
+                      variant='body2'
+                      fontSize={10}
+                      color='grey.700'
+                      dangerouslySetInnerHTML={{ __html: noti.message.split('<br/>')[1] }}
                     />
-                    <Box justifyContent={'space-between'} display={'flex'}>
-                      {' '}
-                      <Button onClick={() => handleNavigate(noti.id)} sx={{ p: 0, fontSize: 12 }}>
-                        Xem chi tiết
-                      </Button>
+                    <Box justifyContent={'end'} display={'flex'}>
                       <>
                         {noti.isRead ? (
                           <Typography component={'i'} variant='body2' color='success.dark'>
@@ -163,9 +173,9 @@ function Notification() {
             borderRadius={'0 0 8px 8px '}
             bgcolor={'#f6fcff'}
           >
-            <Button size='small' color='warning'>
+            {/* <Button size='small' color='warning'>
               Đánh dấu tất cả là đã đọc
-            </Button>
+            </Button> */}
           </Box>
         </Box>
       )}

@@ -65,8 +65,6 @@ function ProfilePage() {
             height: '10px',
             borderRadius: '4px 4px 0 0 ',
             background: '#092b69',
-            // backgroundImage:
-            //   'url(https://c4.wallpaperflare.com/wallpaper/798/616/951/macos-sierra-wallpaper-preview.jpg)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'absolute',
@@ -87,7 +85,7 @@ function ProfilePage() {
               initialValues={{
                 fullName: `${me?.fullName}`,
                 username: `${me?.username}`,
-                email: `${me?.email}`,
+                email: `${me?.email ? me.email : ''}`,
                 phone: `${me?.phone}`,
                 gender: `${me?.gender}`,
                 clazzName: `${me?.clazzName}`,

@@ -32,13 +32,13 @@ function DetailGroupModal(props: any) {
                   {data?.members?.map((std: any) => (
                     <Box width={'calc(50% - 4px)'}>
                       <Typography fontWeight={'bold'} color={'grey.600'} variant='h6'>
-                        Tên Sinh viên: {std.student.fullName}
+                        Tên sinh viên: {std.student.fullName}
                       </Typography>
-                      <Typography color={'text.primary'} variant='body1'>
-                        MSSV: {std.student.username}
+                      <Typography color={'text.primary'} variant='h6'>
+                        Mã số sinh viên: {std.student.username}
                       </Typography>
-                      <Typography color={'text.primary'} variant='body1'>
-                        LHP: {std.student.clazzName}
+                      <Typography color={'text.primary'} variant='h6'>
+                        Lớp học phần: {std.student.clazzName}
                       </Typography>
                     </Box>
                   ))}

@@ -5,6 +5,7 @@ import React from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import IconButton from '@mui/material/IconButton';
+import nodataImg from '/images/nodata.webp';
 interface Props extends DataGridProps {
   minHeight?: number;
   page: number;
@@ -67,7 +68,7 @@ export default function Table(props: Props) {
                   style={{ opacity: 0.7 }}
                   width={200}
                   height={200}
-                  src='/images/nodata.png'
+                  src={nodataImg}
                   alt='nodata'
                 />
               </Box>

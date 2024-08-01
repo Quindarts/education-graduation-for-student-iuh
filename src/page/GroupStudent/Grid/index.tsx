@@ -38,7 +38,7 @@ function GridGroupStudent({ groupStudents }: any) {
                   style={{ opacity: 0.4 }}
                   width={100}
                   height={100}
-                  src='/public/images/calendar.png'
+                  src='/images/calendar.webp'
                 />
                 <Typography
                   variant='h1'
