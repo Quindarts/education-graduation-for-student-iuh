@@ -9,6 +9,7 @@ function TopicOfGroupSection({ topicId }: any) {
   const { HandleGetMyTopic } = useTopic();
 
   const { data, isFetching, isLoading } = HandleGetMyTopic(topicId);
+  
   return (
     <Accordion sx={{ px: 10, borderTop: '5px solid #0052b1' }} defaultExpanded>
       <AccordionSummary

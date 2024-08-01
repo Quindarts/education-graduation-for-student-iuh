@@ -5,46 +5,8 @@ import BannerSection from './Banner';
 import InfoPropjectSection from './Info';
 import MarqueeRunning from '../../components/ui/Marquee';
 import TeamInfoSection from './TeamInfo';
-import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
-const CustomButton = styled(Button)`
-  color: '#FFF';
-  transition: 'all 0.5s';
-  position: 'relative';
-  &::before: {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    zindex: 1;
-    backgroundcolor: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s;
-  }
-  &:hover::before {
-    opacity: 0;
-    transform: 'scale(0.5; 0.5)';
-  }
-  &::after {
-    content: '';
-    position: 'absolute';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    zindex: 1;
-    opacity: 0;
-    transition: all 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    transform: scale(1.2, 1.2);
-  }
-  &:hover::after {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-`;
 function HomeTemplate() {
   const navigate = useNavigate();
   return (
@@ -75,7 +37,17 @@ function HomeTemplate() {
           <Typography variant='h1' textTransform={'uppercase'} mt={4} mb={10} color='grey.400'>
             Khoa công nghệ thông tin
           </Typography>
-          <CustomButton onClick={() => navigate('/auth/login')}>Đăng nhập ngay</CustomButton>
+          <Button
+            sx={{
+              textTransform: 'uppercase ',
+              color: 'white',
+              border: '1px solid white',
+              px: 10,
+            }}
+            onClick={() => navigate('/auth/login')}
+          >
+            Đăng nhập ngay
+          </Button>
         </Box>
         <NewFeedSection />
       </Box>

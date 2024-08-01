@@ -5,15 +5,15 @@ import React from 'react';
 import TableManagamentTopic from './Table';
 import useTopic from '@/hook/api/useTopic';
 import useTermStore from '@/store/termStore';
-
+import HeaderTopic from './Header';
 import {
   checkColorStatusPartTerm,
   ENUM_STATUS_OF_DATE_TERM,
 } from '@/utils/validations/term.validation';
 
 function TopicTemplate() {
-  const { HandleGetAllTopic } = useTopic();
-  const { data, isLoading, isFetching } = HandleGetAllTopic();
+  const { HandleSearchTopic } = useTopic();
+  const { data, isLoading, isFetching } = HandleSearchTopic();
   const { partOfTerm, term } = useTermStore();
   return (
     <Paper sx={{ py: 10, px: 10 }} elevation={1}>
@@ -33,6 +33,13 @@ function TopicTemplate() {
           Đăng kí đề tài {partOfTerm.ChooseTopic?.mess}
         </Typography>
       </TitleManager>
+
+      {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE ||
+      partOfTerm.PublicTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE ? (
+        <HeaderTopic />
+      ) : (
+        <></>
+      )}
       {isLoading || isFetching ? (
         <SekeletonUI />
       ) : (

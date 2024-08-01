@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { queryClient } from '@/providers/ReactQuery';
 import GroupStudentService from '@/services/GroupStudentService';
 import { QueryKeysGroupStudent } from './useGroupStudent';
+import useParams from '../ui/useParams';
 
 enum QueryKeysTopic {
     getListTopicByTermByMajor = "getListTopicByTermByMajor",
     getMyTopic = 'getMyTopic',
-    getTopicById = "getTopicById"
+    getTopicById = "getTopicById",
+    searchTopic = "searchTopic"
 }
 
 function useTopic() {
@@ -19,6 +21,7 @@ function useTopic() {
     const groupStudentService = new GroupStudentService();
     const currentTermId = useTermStore(s => s.term.id);
     const majorId = useMajorStore(s => s.major.id);
+    const { getQueryField } = useParams()
 
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
@@ -28,6 +31,12 @@ function useTopic() {
         return useQuery({
             queryKey: [QueryKeysTopic.getTopicById, topicId],
             queryFn: () => topicService.getTopicId(`${topicId}`),
+        })
+    }
+    const HandleSearchTopic = () => {
+        return useQuery({
+            queryKey: [QueryKeysTopic.searchTopic, currentTermId, getQueryField('keywords')],
+            queryFn: () => topicService.getTopicsOfSearch(currentTermId, getQueryField('keywords'))
         })
     }
 
@@ -80,6 +89,7 @@ function useTopic() {
         HandleGetAllTopic,
         OnCancelTopic,
         OnChooseTopic,
+        HandleSearchTopic,
         HandleGetTopicById
     }
 }

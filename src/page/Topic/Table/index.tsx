@@ -43,13 +43,13 @@ function TableManagamentTopic(props: any) {
       flex: 0.8,
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
-          {params.row.lecturerTerm.lecturer.fullName}
+          {params.row.fullName}
         </Typography>
       ),
     },
     {
       headerName: 'SL nhóm đã đăng ký',
-      field: 'quantityGroupMax',
+      field: 'quantity_group_max',
       flex: 0.5,
       headerAlign: 'center',
       align: 'center',

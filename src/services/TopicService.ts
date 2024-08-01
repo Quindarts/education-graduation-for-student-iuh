@@ -12,6 +12,10 @@ class TopicService {
     async getTopicId(id: string) {
         return await axiosConfig.get<AxiosResponse, any>(`${this.endpoint}/${id}`);
     }
+    async getTopicsOfSearch(termId: string, keywords: string) {
+        const searchField = "name"
+        return await axiosConfig.get<AxiosResponse, any>(`${this.endpoint}/query?termId=${termId}&keywords=${keywords}&searchField=${searchField}`)
+    }
 
     async getTopicList(termId: string, majorId: string): Promise<Pick<ResponseType, 'success' | 'message' | 'topics'>> {
         return await axiosConfig.get(`${this.endpoint}?termId=${termId}&majorId=${majorId}`);
