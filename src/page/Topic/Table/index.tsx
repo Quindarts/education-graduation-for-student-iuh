@@ -50,12 +50,12 @@ function TableManagamentTopic(props: any) {
     {
       headerName: 'SL nhóm đã đăng ký',
       field: 'quantity_group_max',
-      flex: 0.5,
+      flex: 1,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
-          {params.row.quantityGroup} / {params.row.quantity_group_max}
+          {params.row.quantityGroup} / {params.row.quantityGroupMax}
         </Typography>
       ),
     },
