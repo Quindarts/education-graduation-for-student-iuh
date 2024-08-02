@@ -7,6 +7,7 @@ import HomeTemplate from '@/page/Home';
 import AuthLayout from '@/layouts/AuthLayout';
 import LoginPage from '@/page/Auth/Login';
 import NotficationDetailPage from '@/page/NotificationDetail';
+import NotFoundPage from '@/components/page/404';
 
 const DashboardTemplate = lazy(() => import('@/page/DashBoard'));
 const TopicTemplate = lazy(() => import('@/page/Topic'));
@@ -29,7 +30,7 @@ function Routing() {
         <Route path={APP_ROUTES.GROUP_STUDENT.MANAGEMENT} element={<GroupStudentTemplate />} />
         <Route path={APP_ROUTES.GROUP_STUDENT.DETAIL} element={<MyGroupStudentPage />} />
         <Route path={APP_ROUTES.USER.PROFILE} element={<ProfilePage />} />
-        <Route path={APP_ROUTES.USER.UPDATE_PASS} element={<UpdatePassPage />} />   
+        <Route path={APP_ROUTES.USER.UPDATE_PASS} element={<UpdatePassPage />} />
 
         <Route path={APP_ROUTES.EVALUATION.MANAGEMENT} element={<EvaluationPage />} />
         <Route path={APP_ROUTES.SCORE_STUDENT.MANAGEMENT} element={<ScoreManagementTemplate />} />
@@ -42,6 +43,7 @@ function Routing() {
       <Route path={'/auth'} element={<AuthLayout />}>
         <Route index path={APP_ROUTES.USER.LOGIN} element={<LoginPage />} />
       </Route>
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 }
