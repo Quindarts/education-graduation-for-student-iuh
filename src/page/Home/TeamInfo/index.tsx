@@ -6,14 +6,52 @@ import React from 'react';
 function TeamInfoSection() {
   return (
     <>
-      <Box bgcolor='#edf5ff' position={'relative'} px={30} py={60} zIndex={10}>
-        <Box display={'flex'} gap={60} justifyContent={'center'} alignItems={'center'}>
-          <Box data-aos='fade-right'>
+      <Box
+        bgcolor='#edf5ff'
+        position={'relative'}
+        sx={{
+          px: {
+            xs: 6,
+            md: 12,
+            lg: 30,
+          },
+          py: {
+            xs: 6,
+            sm: 60,
+          },
+        }}
+        zIndex={10}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: {
+              xs: 'column',
+              lg: 'row',
+            },
+            gap: {
+              xs: 20,
+              lg: 60,
+            },
+          }}
+          alignItems={'center'}
+          justifyContent={'center'}
+        >
+          <Box>
             <AnimatedSection direction='left'>
               <TitleManager
                 fontWeight={'bold'}
                 color={'#FF7D27'}
-                mb={20}
+                sx={{
+                  mb: {
+                    xs: 4,
+                    lg: 20,
+                  },
+                  fontSize: {
+                    xs: 20,
+                    lg: 40,
+                  },
+                }}
                 fontSize={40}
                 variant='h1'
               >
@@ -43,10 +81,26 @@ function TeamInfoSection() {
               </AnimatedSection>
             </Box>
           </Box>
-          <Box  zIndex={10}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+            zIndex={10}
+          >
             <AnimatedSection direction='right'>
-              <Box borderRadius={'80%'} bgcolor='white'>
-                <img width={600} src='/images/undraw_wait_in_line_o2aq.webp' />
+              <Box
+                borderRadius={'80%'}
+                sx={{
+                  width: {
+                    xs: '320px',
+                    md: '480px',
+                    lg: '600px',
+                  },
+                }}
+                bgcolor='white'
+              >
+                <img width={'100%'} src='/images/undraw_wait_in_line_o2aq.webp' />
               </Box>
             </AnimatedSection>
           </Box>

@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -13,7 +12,17 @@ import { Box } from '@mui/material';
 
 function BannerSection() {
   return (
-    <Box px={30} py={10} bgcolor={'#02285e'}>
+    <Box
+      sx={{
+        display: {
+          xs: 'none',
+          md: 'block',
+        },
+      }}
+      px={20}
+      py={10}
+      bgcolor={'#02285e'}
+    >
       <Swiper
         spaceBetween={30}
         effect={'fade'}
@@ -34,7 +43,10 @@ function BannerSection() {
             backgroundSize: 'cover',
           }}
         >
-          <img style={{ display: 'block', height: '500px', width: '100%' }} src={`${bn1}`} />
+          <img
+            style={{ display: 'block', height: '520px', objectFit: 'cover', width: '100%' }}
+            src={`${bn1}`}
+          />
         </SwiperSlide>
         <SwiperSlide
           style={{
@@ -42,7 +54,10 @@ function BannerSection() {
             backgroundSize: 'cover',
           }}
         >
-          <img style={{ display: 'block', height: '500px', width: '100%' }} src={`${bn2}`} />
+          <img
+            style={{ display: 'block', height: '520px', objectFit: 'cover', width: '100%' }}
+            src={`${bn2}`}
+          />
         </SwiperSlide>
       </Swiper>
     </Box>

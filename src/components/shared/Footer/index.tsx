@@ -6,7 +6,15 @@ import React from 'react';
 function Footer() {
   return (
     <Box
-      p={50}
+      sx={{
+        p: {
+          xs: 6,
+          sm: 20,
+          md: 30,
+          lg: 40,
+          xl: 50,
+        },
+      }}
       height={{
         lg: 500,
       }}

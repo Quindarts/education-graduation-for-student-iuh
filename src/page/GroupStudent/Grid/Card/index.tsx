@@ -41,8 +41,9 @@ function CardGroupStudent({ numOfMembers, name, groupId }: any) {
         id={groupId}
         sx={{
           width: {
-            md: '25%',
-            lg: 'calc(20% - 8px)',
+            md: 'calc(50%  - 10px)',
+            lg: 'calc(20% - 10px)',
+            xl: 'calc(20%  -10px)',
           },
           cursor: 'pointer',
           border: '2px solid #fff',

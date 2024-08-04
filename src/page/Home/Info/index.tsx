@@ -30,15 +30,67 @@ import React from 'react';
 
 function InfoPropjectSection() {
   return (
-    <Box position={'relative'} bgcolor='white' px={30} py={60}>
-      <Box zIndex={10} display={'flex'} gap={20} justifyContent={'center'} alignItems={'center'}>
+    <Box
+      id='infoProp'
+      position={'relative'}
+      bgcolor='white'
+      sx={{
+        px: {
+          xs: 6,
+          md: 12,
+          sm: 30,
+        },
+        py: {
+          xs: 6,
+          sm: 60,
+        },
+      }}
+    >
+      <Box
+        zIndex={10}
+        sx={{
+          display: 'flex',
+          flexDirection: {
+            xs: 'column',
+            lg: 'row',
+          },
+        }}
+        gap={20}
+        justifyContent={'center'}
+        alignItems={'center'}
+      >
         <AnimatedSection direction='left'>
-          <Box position={'relative'} zIndex={10}>
-            <img width={600} src='/images/undraw_educator_re_ju47.webp' />
+          <Box
+            sx={{
+              width: {
+                xs: '320px',
+                md: '480px',
+                lg: '600px',
+              },
+            }}
+            position={'relative'}
+            zIndex={10}
+          >
+            <img width={'100%'} src='/images/undraw_educator_re_ju47.webp' />
           </Box>
         </AnimatedSection>
         <AnimatedSection direction='right'>
-          <TitleManager fontWeight={'bold'} color={'#FF7D27'} mb={30} fontSize={40} variant='h1'>
+          <TitleManager
+            fontWeight={'bold'}
+            color={'#FF7D27'}
+            sx={{
+              mb: {
+                xs: 5,
+                md: 10,
+                lg: 30,
+              },
+              fontSize: {
+                xs: 20,
+                lg: 40,
+              },
+            }}
+            variant='h1'
+          >
             Giới thiệu
           </TitleManager>
           <Typography position={'relative'} zIndex={10} variant='h6' color='grey.600'>
@@ -47,9 +99,36 @@ function InfoPropjectSection() {
             một cách hiệu quả. Với giao diện thân thiện và dễ sử dụng, phần mềm này giúp người dùng
             dễ dàng tạo, cập nhật và quản lý thông tin khóa luận chỉ với vài thao tác đơn giản.
           </Typography>
-          <Box position={'relative'} zIndex={10} pl={20} mt={10}>
+          <Box
+            position={'relative'}
+            zIndex={10}
+            sx={{
+              pl: {
+                xs: 0,
+                sm: 12,
+                lg: 20,
+              },
+              mt: {
+                xs: 4,
+                sm: 10,
+              },
+            }}
+          >
             <AnimatedSection direction='right'>
-              <Box display={'flex'} gap={6} alignItems={'center'} color='#FF7D27'>
+              <Box
+                display={'flex'}
+                gap={6}
+                alignItems={'center'}
+                sx={{
+                  '.MuiTypography-root': {
+                    fontSize: {
+                      xs: 14,
+                      sm: 16,
+                    },
+                  },
+                }}
+                color='#FF7D27'
+              >
                 <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
                   <Icon width={16} height={16} color='white' icon='subway:tick' />
                 </Box>
@@ -57,7 +136,21 @@ function InfoPropjectSection() {
               </Box>
             </AnimatedSection>
             <AnimatedSection direction='right'>
-              <Box display={'flex'} my={8} gap={6} alignItems={'center'} color='#FF7D27'>
+              <Box
+                display={'flex'}
+                gap={6}
+                alignItems={'center'}
+                sx={{
+                  '.MuiTypography-root': {
+                    fontSize: {
+                      xs: 14,
+                      sm: 16,
+                    },
+                  },
+                }}
+                color='#FF7D27'
+                my={8}
+              >
                 <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
                   <Icon width={16} height={16} color='white' icon='subway:tick' />
                 </Box>
@@ -65,7 +158,21 @@ function InfoPropjectSection() {
               </Box>
             </AnimatedSection>
             <AnimatedSection direction='right'>
-              <Box display={'flex'} my={8} gap={6} alignItems={'center'} color='#FF7D27'>
+              <Box
+                display={'flex'}
+                gap={6}
+                alignItems={'center'}
+                sx={{
+                  '.MuiTypography-root': {
+                    fontSize: {
+                      xs: 14,
+                      sm: 16,
+                    },
+                  },
+                }}
+                color='#FF7D27'
+                my={8}
+              >
                 <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
                   <Icon width={16} height={16} color='white' icon='subway:tick' />
                 </Box>

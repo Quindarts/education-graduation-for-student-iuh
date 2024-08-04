@@ -20,7 +20,6 @@ function CardFeed(props: CardFeedPropType) {
     <Card
       {...rest}
       sx={{
-        maxWidth: 'calc(25% - 30px)',
         '&:hover': {
           boxShadow: ' rgba(7, 76, 122, 0.24) 0px 6px 8px;',
           transition: 'all 0.3s ease-in',

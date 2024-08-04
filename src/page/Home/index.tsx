@@ -24,17 +24,37 @@ function HomeTemplate() {
           height={'60vh'}
           flexDirection={'column'}
         >
-          <img src='/images/logo-IUH-ngang-trang-300x131-1.webp' alt='' />
+          <Box>
+            <img src='/images/logo-IUH-ngang-trang-300x131-1.webp' alt='' />
+          </Box>
           <Typography
             mt={10}
             variant='h1'
             fontWeight={'bold'}
             textTransform={'uppercase'}
             color='grey.400'
+            sx={{
+              fontSize: {
+                xs: 14,
+                md: 30,
+              },
+            }}
           >
             Trang quản lý khóa luận tốt nghiệp
           </Typography>
-          <Typography variant='h1' textTransform={'uppercase'} mt={4} mb={10} color='grey.400'>
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 14,
+                md: 30,
+              },
+            }}
+            variant='h1'
+            textTransform={'uppercase'}
+            mt={4}
+            mb={10}
+            color='grey.400'
+          >
             Khoa công nghệ thông tin
           </Typography>
           <Button

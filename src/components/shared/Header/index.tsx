@@ -22,11 +22,28 @@ function Header() {
       display={'flex'}
     >
       <Box gap={10} display={'flex'}>
-        <Box>
-          <img width={120} src={logo} alt='' />
+        <Box
+          sx={{
+            width: {
+              xs: 160,
+              lg: 120,
+            },
+          }}
+        >
+          <img width={'100%'} src={logo} alt='' />
         </Box>
         <Box>
-          <Typography variant='body1' color='white' textTransform={'uppercase'}>
+          <Typography
+            sx={{
+              display: {
+                xs: 'none',
+                lg: 'flex',
+              },
+            }}
+            variant='body1'
+            color='white'
+            textTransform={'uppercase'}
+          >
             Thành phố Hồ Chí Minh
           </Typography>
           <Typography variant='h5' color='white'>
@@ -38,12 +55,27 @@ function Header() {
             fontWeight={600}
             textTransform={'uppercase'}
             color='white'
+            sx={{
+              display: {
+                xs: 'none',
+                lg: 'flex',
+              },
+            }}
           >
             Trường đại học công nghiệp
           </Typography>
         </Box>
       </Box>
-      <Box display={'flex'} alignItems={'center'} gap={20}>
+      <Box
+        sx={{
+          display: {
+            xs: 'none',
+            lg: 'flex',
+          },
+        }}
+        alignItems={'center'}
+        gap={20}
+      >
         <Box color={'white'}>
           <Link
             style={{
@@ -96,17 +128,37 @@ function Header() {
             Thông tin
           </Link>
         </Box>
-        <Box>
-          <Button
-            onClick={() => navigate('/auth/login')}
-            variant='contained'
-            sx={{ textTransform: 'uppercase' }}
-            color='primary'
-          >
-            <Icon icon='bxs:user' style={{ marginRight: '10px' }} width={20} />
-            Đăng nhập
-          </Button>
-        </Box>
+      </Box>
+      <Box
+        sx={{
+          button: {
+            svg: {
+              width: {
+                xs: 14,
+              },
+              marginRight: {
+                xs: 1,
+                lg: 4,
+              },
+            },
+            px: {
+              xs: 2,
+            },
+            fontSize: {
+              xs: 10,
+            },
+          },
+        }}
+      >
+        <Button
+          onClick={() => navigate('/auth/login')}
+          variant='contained'
+          sx={{ textTransform: 'uppercase' }}
+          color='primary'
+        >
+          <Icon icon='bxs:user' width={20} />
+          Đăng nhập
+        </Button>
       </Box>
     </Box>
   );

@@ -34,11 +34,24 @@ function NewFeedSection() {
   return (
     <Box
       borderTop={'10px solid #990303'}
-      px={30}
       bgcolor={'rgba(249, 248, 248, 0.9)'}
-      paddingY={30}
+      sx={{
+        p: {
+          xs: 4,
+          md: 30,
+        },
+      }}
     >
-      <Box display={'flex'} justifyContent={'space-between'}>
+      <Box
+        sx={{
+          mt: {
+            xs: 10,
+            md: 20,
+          },
+        }}
+        display={'flex'}
+        justifyContent={'space-between'}
+      >
         <TitleManager variant='h3' textTransform={'uppercase'}>
           Tin mới nhất
         </TitleManager>
@@ -46,14 +59,20 @@ function NewFeedSection() {
           Xem chi tiết
         </TitleManager>
       </Box>
-      <Box my={10} display={'flex'} gap={20}>
+      <Box my={10} flexWrap={'wrap'} display={'flex'} gap={12}>
         {ListCardFeed.map((feed, index: number) => (
-          <CardFeed
-            key={index}
-            title={feed.title}
-            description={feed.description}
-            image={feed.image}
-          />
+          <Box
+            sx={{
+              width: { xs: '100%', sm: 'calc(50% - 20px)', lg: 'calc(25% - 20px)' },
+            }}
+          >
+            <CardFeed
+              key={index}
+              title={feed.title}
+              description={feed.description}
+              image={feed.image}
+            />
+          </Box>
         ))}
       </Box>
     </Box>
