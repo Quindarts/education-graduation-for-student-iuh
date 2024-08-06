@@ -8,7 +8,6 @@ import { Box } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-
 function AdminLayout() {
   const { isOpen } = useSidebarStore();
 
@@ -17,7 +16,6 @@ function AdminLayout() {
 
   const { me } = HandleGetme();
   HandleGetCurrentTerm(`${me?.user?.majorId}`);
-
   return (
     <>
       <Box

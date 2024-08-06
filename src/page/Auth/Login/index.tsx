@@ -13,12 +13,13 @@ import { CircularProgress, Paper } from '@mui/material';
 import bgStudent from '/images/student-nobg.webp';
 import logoIUH from '/images/logo-light.webp';
 import useAuth from '@/hook/api/useAuth';
+import { useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show: boolean) => !show);
   const { HandleLogin } = useAuth();
   const { mutate: login, isPending } = HandleLogin();
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -122,6 +123,21 @@ function LoginPage() {
                 ),
               }}
             />
+            <Typography
+              variant='body1'
+              mb={4}
+              onClick={() => navigate('/auth/forgot-password')}
+              sx={{
+                '&:hover': {
+                  color: 'primary.dark',
+                  cursor: 'pointer',
+                },
+              }}
+              color='initial'
+              textAlign={'end'}
+            >
+              Quên mật khẩu ?
+            </Typography>
             <Button variant='contained' type='submit' fullWidth color='primary'>
               Đăng nhập
               {isPending && (

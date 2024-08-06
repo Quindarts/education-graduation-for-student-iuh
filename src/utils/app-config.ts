@@ -31,7 +31,8 @@ export const APP_ROUTES = {
   USER: {
     PROFILE: '/dashboard/profile',
     LOGIN: '/auth/login',
-    UPDATE_PASS: 'dashboard/update-password'
+    UPDATE_PASS: 'dashboard/update-password',
+    FORGOT: '/auth/forgot-password'
   },
   FORGOT_PASSWORD: '/auth/forgot-password',
   SUCCESS_MESSAGE: '/auth/success',

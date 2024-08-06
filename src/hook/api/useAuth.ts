@@ -33,7 +33,7 @@ function useAuth() {
                     setMe(data.user);
                     queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent] })
-                    navigate('/dashboard');
+                    navigate('/');
                 }
             },
             onError: (error) => {
@@ -75,6 +75,7 @@ function useAuth() {
             mutationFn: (data: { password: string, newPassword: string }) => auth.updatePassword(data),
             onSuccess: () => {
                 enqueueSnackbar('Cập nhật mật khẩu thành công', { variant: "success" });
+                navigate('/')
             },
             onError: (error) => {
                 enqueueSnackbar(error?.message, { variant: "error" });
@@ -93,8 +94,25 @@ function useAuth() {
             }
         })
     }
+    const HanldeForgotPassword = () => {
+        return useMutation({
+            mutationFn: (username: string) => auth.forgotPassword(username),
+            onSuccess: () => {
+                enqueueSnackbar('Mật khẩu mới đã được gửi về email của bạn', { variant: "success" });
+                navigate('/auth/login')
+            },
+            onError: (error) => {
+                enqueueSnackbar(error?.message, { variant: "error" });
+            }
+        })
 
-    return { HandleLogin, HandleUpdateMe, HandleGetme, HandleLogout, HandleUpdatePassword }
+    }
+
+    return {
+        HandleLogin,
+        HanldeForgotPassword,
+        HandleUpdateMe, HandleGetme, HandleLogout, HandleUpdatePassword
+    }
 }
 
 export default useAuth

@@ -8,6 +8,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 import LoginPage from '@/page/Auth/Login';
 import NotficationDetailPage from '@/page/NotificationDetail';
 import NotFoundPage from '@/components/page/404';
+import ForgotPassword from '@/page/Auth/ForgotPassword';
 
 const DashboardTemplate = lazy(() => import('@/page/DashBoard'));
 const TopicTemplate = lazy(() => import('@/page/Topic'));
@@ -23,7 +24,7 @@ function Routing() {
   return (
     <Routes>
       <Route path={APP_ROUTES.INDEX} element={<PrivateRouter />}>
-        <Route index path={APP_ROUTES.DASHBOARD} element={<DashboardTemplate />} />
+        <Route index path={APP_ROUTES.INDEX} element={<DashboardTemplate />} />
         <Route path={APP_ROUTES.TOPIC.MANAGEMENT} element={<TopicTemplate />} />
         <Route path={APP_ROUTES.TOPIC.STUDENT} element={<MyTopicPage />} />
         <Route path={APP_ROUTES.TOPIC.DETAIL} element={<TopicDetailPage />} />
@@ -42,6 +43,8 @@ function Routing() {
       </Route>
       <Route path={'/auth'} element={<AuthLayout />}>
         <Route index path={APP_ROUTES.USER.LOGIN} element={<LoginPage />} />
+        <Route index path={APP_ROUTES.USER.FORGOT} element={<ForgotPassword />} />
+
       </Route>
       <Route path='*' element={<NotFoundPage />} />
     </Routes>

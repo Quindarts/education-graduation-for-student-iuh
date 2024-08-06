@@ -39,5 +39,12 @@ class AuthService {
             method: 'delete',
         });
     }
+    async forgotPassword(username: string) {
+        return await axiosConfig({
+            url: `${this.endpoint}/forgot-password`,
+            method: 'post',
+            data: { username: username }
+        })
+    }
 }
 export default AuthService;    
