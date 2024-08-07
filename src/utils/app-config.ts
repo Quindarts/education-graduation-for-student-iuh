@@ -1,37 +1,37 @@
 
 export const APP_ROUTES = {
   INDEX: "/",
-  DASHBOARD: '/dashboard',
+  DASHBOARD: '/',
   HOME: '/home',
   NOTIFICATION: {
-    MANAGEMENT: "/dashboard/notifications",
-    DETAILS: "/dashboard/notifications/detail/:id",
+    MANAGEMENT: "/notifications",
+    DETAILS: "/notifications/detail/:id",
     CREATE: "/notifications/create",
   },
   SCORE_STUDENT: {
-    MANAGEMENT: "/dashboard/scores"
+    MANAGEMENT: "/scores"
   },
   STUDENT: {
-    MANAGEMENT: '/dashboard/students',
+    MANAGEMENT: '/students',
   },
   GROUP_STUDENT: {
-    MANAGEMENT: "/dashboard/group-students",
-    DETAIL: '/dashboard/group-students/detail',
+    MANAGEMENT: "/group-students",
+    DETAIL: '/group-students/detail',
   },
   TOPIC: {
-    MANAGEMENT: "/dashboard/topics",
-    DETAIL: "/dashboard/topics/:topic_id",
-    STUDENT: '/dashboard/topics/my-topic'
+    MANAGEMENT: "/topics",
+    DETAIL: "/topics/:topic_id",
+    STUDENT: '/topics/my-topic'
   },
   EVALUATION: {
-    MANAGEMENT: '/dashboard/evaluations',
+    MANAGEMENT: '/evaluations',
   },
-  FILE_UPLOADED: '/dashboard/files',
+  FILE_UPLOADED: '/files',
 
   USER: {
-    PROFILE: '/dashboard/profile',
+    PROFILE: '/profile',
     LOGIN: '/auth/login',
-    UPDATE_PASS: 'dashboard/update-password',
+    UPDATE_PASS: '/update-password',
     FORGOT: '/auth/forgot-password'
   },
   FORGOT_PASSWORD: '/auth/forgot-password',
@@ -116,7 +116,7 @@ export const APP_PROFILE_MENU = [
   {
     text: 'Cập nhật mật khẩu',
     icon: 'mdi:account-circle',
-    link: '/dashboard/update-password',
+    link: '/update-password',
   },
   {
     text: 'Đăng xuất',

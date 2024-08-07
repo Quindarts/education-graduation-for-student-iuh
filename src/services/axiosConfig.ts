@@ -1,4 +1,3 @@
-import { env } from '@/utils/env';
 import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
 
@@ -47,7 +46,7 @@ axiosConfig.interceptors.response.use(
 
       } catch (error: any) {
 
-        if (error.message === 'jwt expired' && error.status === 500 && error.success === false) {
+        if (error.message === 'jwt expired' && error.status === 401 && error.success === false) {
           localStorage.clear();
         }
         return Promise.reject(error);

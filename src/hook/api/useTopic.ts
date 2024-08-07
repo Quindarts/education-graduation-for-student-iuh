@@ -61,8 +61,8 @@ function useTopic() {
             mutationFn: (groupStudentId) => groupStudentService.cancelTopic(`${groupStudentId}`),
             onSuccess() {
                 enqueueSnackbar('Hủy Đề tài thành công', { variant: "success" })
-                navigate("/dashboard/topics")
-                queryClient.resetQueries({ queryKey: [QueryKeysTopic.getListTopicByTermByMajor, currentTermId, majorId] })
+                navigate("/topics")
+                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError(error: any) {
@@ -75,8 +75,8 @@ function useTopic() {
             mutationFn: ({ groupStudentId, topicId }: any) => groupStudentService.chooseTopic(`${groupStudentId}`, topicId),
             onSuccess() {
                 enqueueSnackbar('Chọn Đề tài thành công', { variant: "success" })
-                navigate("/dashboard/topics/my-topic")
-                queryClient.resetQueries({ queryKey: [QueryKeysTopic.getListTopicByTermByMajor, currentTermId, majorId] })
+                navigate("/topics/my-topic")
+                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError(error: any) {
