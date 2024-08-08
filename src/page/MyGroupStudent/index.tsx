@@ -59,7 +59,11 @@ function MyGroupStudentPage() {
                   Bạn Chưa có Nhóm
                 </Typography>
                 <Box>
+<<<<<<< HEAD
                   <Button variant='contained' onClick={() => navigate('/group-students')}>
+=======
+                  <Button variant='contained' onClick={() => navigate('/dashboard/group-students')}>
+>>>>>>> dcbf9c54abc9f4a93d98c4254c12cad65422db7e
                     <Icon icon='fluent-mdl2:leave' />
                     Đăng ký nhóm ngay
                   </Button>
