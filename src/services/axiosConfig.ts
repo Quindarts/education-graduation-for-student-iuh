@@ -2,8 +2,8 @@ import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  // baseURL: `${env.BASE_URL}/api/v1`,
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: `${env.BASE_URL}/api/v1`,
+  // baseURL: 'http://localhost:3000/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
