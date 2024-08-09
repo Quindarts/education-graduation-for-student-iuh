@@ -44,16 +44,13 @@ axiosConfig.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
         return axiosConfig(originalRequest);
-
       } catch (error: any) {
-
         if (error.message === 'jwt expired' && error.status === 500 && error.success === false) {
           localStorage.clear();
         }
         return Promise.reject(error);
       }
     }
-
     return Promise.reject(error.response.data);
 
   },
