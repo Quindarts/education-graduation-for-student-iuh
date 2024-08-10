@@ -18,6 +18,8 @@ function useGroupStudent() {
     const { enqueueSnackbar } = useSnackbar()
     const navigate = useNavigate();
     const setMyGroupId = useGroupStudentStore(s => s.setMyGroupId);
+    const setMyGroupDetail = useGroupStudentStore(s => s.setMyGroupDetail);
+
     const setMyTopic = useTopicStore(s => s.setMyTopic);
 
     const HandleGroupStudentByTerm = () => {
@@ -79,6 +81,7 @@ function useGroupStudent() {
             staleTime: 1000,
             select(data) {
                 setMyGroupId(data.group.info.id)
+                setMyGroupDetail(data.group.info)
                 setMyTopic(data.group.info.topic_id)
                 return data;
             },

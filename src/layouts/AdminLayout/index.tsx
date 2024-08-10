@@ -13,6 +13,7 @@ function AdminLayout() {
 
   const { HandleGetme } = useAuth();
   const { HandleGetCurrentTerm } = useTerm();
+  
 
   const { me } = HandleGetme();
   HandleGetCurrentTerm(`${me?.user?.majorId}`);

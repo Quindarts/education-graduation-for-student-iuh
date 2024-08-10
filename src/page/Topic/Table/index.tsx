@@ -66,22 +66,38 @@ function TableManagamentTopic(props: any) {
       headerAlign: 'center',
       align: 'center',
       renderCell: (params: any) => (
-        <Box display={'flex'} gap={2}>
-          {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE && (
-            <Tooltip onClick={() => handleOpenChooseModal(params.row.id)} title={'Đăng ký đề tài'}>
-              <IconButton color='primary'>
-                <Icon width={30} icon='bxs:book-add' style={{ color: '#2fac82' }} />
+        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} gap={2}>
+          <Box>
+            <Tooltip
+              onClick={() => navigate(`/topics/${params.row.id}`)}
+              title='Xem thông tin đề tài'
+            >
+              <IconButton>
+                <Icon icon='bx:detail' width={30} style={{ color: '#2f69ac' }} />
               </IconButton>
             </Tooltip>
+          </Box>
+
+          {partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.ACTIVE && (
+            <>
+              {params.row.quantityGroup >= params.row.quantityGroupMax ? (
+                <Tooltip title={'Đã đủ số lượng'}>
+                  <IconButton color='primary'>
+                    <Icon width={30} icon='bxs:book-add' style={{ color: '#AC2F2F' }} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip
+                  onClick={() => handleOpenChooseModal(params.row.id)}
+                  title={'Đăng ký đề tài'}
+                >
+                  <IconButton color='primary'>
+                    <Icon width={30} icon='bxs:book-add' style={{ color: '#2fac82' }} />
+                  </IconButton>
+                </Tooltip>
+              )}{' '}
+            </>
           )}
-          <Tooltip
-            onClick={() => navigate(`/topics/${params.row.id}`)}
-            title='Xem thông tin đề tài'
-          >
-            <IconButton>
-              <Icon icon='bx:detail' width={30} style={{ color: '#2f69ac' }} />
-            </IconButton>
-          </Tooltip>
         </Box>
       ),
     },

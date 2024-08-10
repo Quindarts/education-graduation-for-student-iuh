@@ -70,6 +70,7 @@ function useTopic() {
                 navigate("/topics")
                 queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, '10', '1', ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
+
             },
             onError(error: any) {
                 enqueueSnackbar(error.message, { variant: "error" })
@@ -84,6 +85,7 @@ function useTopic() {
                 navigate("/topics/my-topic")
                 queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, '10', '1', ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
+
             },
             onError(error: any) {
                 enqueueSnackbar(error.message, { variant: "error" })
