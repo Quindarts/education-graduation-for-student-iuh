@@ -36,7 +36,7 @@ function useGroupStudent() {
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
-                navigate('/dashboard/group-students/detail');
+                navigate('/group-students/detail');
             },
             onError: (error: any) => {
                 enqueueSnackbar(error.message, { variant: "error" })
@@ -64,7 +64,7 @@ function useGroupStudent() {
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
-                    navigate('/dashboard/group-students');
+                    navigate('/group-students');
                 }
             },
             onError: (error: any) => {

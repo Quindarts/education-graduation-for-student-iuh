@@ -75,7 +75,7 @@ function TableManagamentTopic(props: any) {
             </Tooltip>
           )}
           <Tooltip
-            onClick={() => navigate(`/dashboard/topics/${params.row.id}`)}
+            onClick={() => navigate(`/topics/${params.row.id}`)}
             title='Xem thông tin đề tài'
           >
             <IconButton>

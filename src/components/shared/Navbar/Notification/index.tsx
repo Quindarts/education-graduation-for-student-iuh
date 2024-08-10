@@ -15,7 +15,7 @@ function Notification() {
   const { data, isLoading, isFetching } = HandleGetMyNotification();
   const navigate = useNavigate();
   const handleNavigate = (id: string) => {
-    navigate(`/dashboard/notifications/detail/${id}`);
+    navigate(`/notifications/detail/${id}`);
     handleActive();
   };
   return (

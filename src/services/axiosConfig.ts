@@ -1,9 +1,10 @@
+import { env } from '@/utils/env';
 import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
 
 const axiosConfig = axios.create({
-  // baseURL: `${env.BASE_URL}/api/v1`,
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: `${env.API_URL}/api/v1`,
+  // baseURL: 'http://localhost:3000/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -36,23 +37,20 @@ axiosConfig.interceptors.response.use(
 
       try {
         const refreshToken = getValueFromLocalStorage("refreshTokenStudent");
-        const result: any = await axiosConfig.post('/lecturers/refresh-token', {
+        const result: any = await axiosConfig.post('/students/refresh-token', {
           refreshToken,
         });
         localStorage.setItem('accessTokenStudent', JSON.stringify(result.accessToken));
         originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
         return axiosConfig(originalRequest);
-
       } catch (error: any) {
-
-        if (error.message === 'jwt expired' && error.status === 401 && error.success === false) {
+        if (error.message === 'jwt expired' && error.status === 500 && error.success === false) {
           localStorage.clear();
         }
         return Promise.reject(error);
       }
     }
-
     return Promise.reject(error.response.data);
 
   },
