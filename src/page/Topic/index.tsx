@@ -1,7 +1,7 @@
 import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
 import { Box, Paper, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TableManagamentTopic from './Table';
 import useTopic from '@/hook/api/useTopic';
 import useTermStore from '@/store/termStore';
@@ -10,11 +10,30 @@ import {
   checkColorStatusPartTerm,
   ENUM_STATUS_OF_DATE_TERM,
 } from '@/utils/validations/term.validation';
+import useParams from '@/hook/ui/useParams';
 
 function TopicTemplate() {
-  const { HandleSearchTopic } = useTopic();
-  const { data, isLoading, isFetching } = HandleSearchTopic();
+  const { HandleSearchTopic,totalPages } = useTopic();
+  const { data, isLoading, isFetching, refetch } = HandleSearchTopic();
   const { partOfTerm, term } = useTermStore();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const { setLimit, setPage, getQueryField } = useParams();
+  const handleChangePage = (value: number) => {
+    setCurrentPage(value);
+  };
+  useEffect(() => {
+    setLimit(10);
+    setPage(currentPage);
+  }, [currentPage]);
+
+  useEffect(() => {
+    setLimit(10);
+    setPage(1);
+    if (getQueryField('keywords') === '') {
+      refetch();
+    }
+  }, [getQueryField('keywords')]);
   return (
     <Paper sx={{ py: 10, px: 10 }} elevation={1}>
       <TitleManager variant='h5' textTransform={'uppercase'} icon='ic:twotone-topic' mb={8} mt={2}>
@@ -56,6 +75,7 @@ function TopicTemplate() {
             </Typography>
           ) : (
             <TableManagamentTopic
+              handleChangePage={handleChangePage}
               isApprovePermission={true}
               rows={
                 data?.topics
@@ -64,6 +84,8 @@ function TopicTemplate() {
                       .map((t: any, index: number) => ({ ...t, stt: index + 1 }))
                   : []
               }
+              page={currentPage}
+              totalPages={totalPages}
             />
           )}
         </Box>

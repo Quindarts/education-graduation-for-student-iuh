@@ -10,7 +10,12 @@ import { CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '@/hook/api/useAuth';
-
+import * as Yup from 'yup';
+const ForgotValidationSchema = Yup.object({
+  username: Yup.string()
+    .matches(/^\d{6,}$/, 'Mã sinh viên chỉ gồm chữ số và lớn hơn 6 ký tự')
+    .required('Mã sinh viên không được để trống'),
+});
 function ForgotPassword() {
   const { HanldeForgotPassword } = useAuth();
   const { mutate: forgotPass, isPending } = HanldeForgotPassword();
@@ -19,6 +24,7 @@ function ForgotPassword() {
     initialValues: {
       username: '',
     },
+    validationSchema: ForgotValidationSchema,
     onSubmit: (values: { username: string }) => {
       forgotPass(values.username);
     },

@@ -8,6 +8,7 @@ import { queryClient } from '@/providers/ReactQuery';
 import GroupStudentService from '@/services/GroupStudentService';
 import { QueryKeysGroupStudent } from './useGroupStudent';
 import useParams from '../ui/useParams';
+import useTopicStore from '@/store/topicStore';
 
 enum QueryKeysTopic {
     getListTopicByTermByMajor = "getListTopicByTermByMajor",
@@ -22,10 +23,10 @@ function useTopic() {
     const currentTermId = useTermStore(s => s.term.id);
     const majorId = useMajorStore(s => s.major.id);
     const { getQueryField } = useParams()
-
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
-
+    const setTotalPageTopics = useTopicStore(s => s.setTotalPageTopics)
+    const totalPages = useTopicStore(s => s.totalPages)
 
     const HandleGetTopicById = (topicId: string) => {
         return useQuery({
@@ -35,8 +36,13 @@ function useTopic() {
     }
     const HandleSearchTopic = () => {
         return useQuery({
-            queryKey: [QueryKeysTopic.searchTopic, currentTermId, getQueryField('keywords')],
-            queryFn: () => topicService.getTopicsOfSearch(currentTermId, getQueryField('keywords'))
+            queryKey: [QueryKeysTopic.searchTopic, currentTermId, getQueryField('limit'), getQueryField('page'), getQueryField('keywords')],
+            queryFn: () => topicService.getTopicsOfSearch(currentTermId, getQueryField('keywords'), getQueryField('limit'), getQueryField('page')),
+            select(data: any) {
+                const totalPages = data.params ? data.params.totalPages : 0;
+                setTotalPageTopics(totalPages)
+                return data;
+            },
         })
     }
 
@@ -85,6 +91,7 @@ function useTopic() {
         })
     }
     return {
+        totalPages,
         HandleGetMyTopic,
         HandleGetAllTopic,
         OnCancelTopic,

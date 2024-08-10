@@ -14,6 +14,16 @@ import bgStudent from '/images/student-nobg.webp';
 import logoIUH from '/images/logo-light.webp';
 import useAuth from '@/hook/api/useAuth';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+
+const LoginValidationSchema = Yup.object({
+  username: Yup.string()
+    .matches(/^\d{6,}$/, 'Tên đăng nhập chỉ gồm chữ số và lớn hơn 6 ký tự')
+    .required('Tên đăng nhập không được để trống'),
+  password: Yup.string()
+    .min(8, 'Mật khẩu chứa ít nhất 8 ký tự')
+    .required('Mật khẩu không được để trống'),
+});
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show: boolean) => !show);
@@ -25,6 +35,7 @@ function LoginPage() {
       username: '',
       password: '',
     },
+    validationSchema: LoginValidationSchema,
     onSubmit: (values) => {
       login({ username: values.username, password: values.password });
     },
