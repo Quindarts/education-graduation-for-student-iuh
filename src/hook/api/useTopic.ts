@@ -68,7 +68,7 @@ function useTopic() {
             onSuccess() {
                 enqueueSnackbar('Hủy Đề tài thành công', { variant: "success" })
                 navigate("/topics")
-                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, ''] })
+                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, '10', '1', ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError(error: any) {
@@ -82,7 +82,7 @@ function useTopic() {
             onSuccess() {
                 enqueueSnackbar('Chọn Đề tài thành công', { variant: "success" })
                 navigate("/topics/my-topic")
-                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, ''] })
+                queryClient.resetQueries({ queryKey: [QueryKeysTopic.searchTopic, currentTermId, '10', '1', ''] })
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError(error: any) {
