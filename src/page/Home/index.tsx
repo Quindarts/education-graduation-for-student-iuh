@@ -25,7 +25,10 @@ function HomeTemplate() {
           flexDirection={'column'}
         >
           <Box>
-            <img src='/images/logo-IUH-ngang-trang-300x131-1.webp' alt='' />
+            <img
+              src='/images/logo-IUH-ngang-trang-300x131-1.webp'
+              alt='Logo của Đại học Công nghiệp TP.HCM (IUH)'
+            />
           </Box>
           <Typography
             mt={10}

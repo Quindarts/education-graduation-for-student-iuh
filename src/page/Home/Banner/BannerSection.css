@@ -1,0 +1,7 @@
+.zoomSlide {
+    transition: transform 1s ease-in;
+}
+
+.zoomSlide.swiper-slide-active {
+    transform: scale(1.1);
+}

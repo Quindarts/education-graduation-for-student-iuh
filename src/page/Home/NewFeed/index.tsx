@@ -9,25 +9,31 @@ const ListCardFeed = [
     description:
       'Lưu ý: thông báo này dành cho sinh viên ngành Kỹ thuật phần mềm - khoa CNTT (1) Khóa luận tốt nghiệp (KLTN)....',
     image: feedImg,
+    links:
+      'https://fit.iuh.edu.vn/news.html@detail@177@3286@[Nganh-KTPM]-ve-Khoa-luan-tot-nghiep-va-Thuc-tap-doanh-nghiep-HK1-2024-2025',
   },
   {
     title: ' Danh sách báo cáo Khóa luận tốt nghiệp (hệ ĐH) HK2/2023-2024',
     description:
       'Khoa CNTT thông báo: * Thời gian tập trung sinh viên treo poster và đánh giá Hội đồng: sáng thứ sáu ngày 31/5/2024, lúc...',
     image: feedImg,
+    links:
+      'https://fit.iuh.edu.vn/news.html@detail@177@3275@Danh-sach-bao-cao-Khoa-luan-tot-nghiep-(he-DH)-HK2-2023-2024',
   },
   {
     title: ' [Ngành CNTT] Danh sách báo cáo Khóa luận tốt nghiệp (hệ ĐH) HK2/2023-2024',
     description:
       'Các Sinh viên ngành CNTT có tên trong danh sách đính kèm, chuẩn bi Poster để báo cáo KLTN vào sáng ngày 31/05/2024....',
     image: feedImg,
+    link: 'https://fit.iuh.edu.vn/news.html@detail@177@3274@[Nganh-CNTT]-Danh-sach-bao-cao-Khoa-luan-tot-nghiep-(he-DH)-HK2-2023-2024',
   },
   {
     title:
-      'Thông báo thời gian đánh giá Khóa luận tốt nghiệp, Thực tập doanh nghiệp, Bài tập lớn học phần hệ ĐH, CĐ_HK2/2023-2024 ',
+      'Khóa luận tốt nghiệp Ngành HTTT HK1 năm học 2024-2025',
     description:
-      'Khoa CNTT thông báo đến các bạn sinh viên hệ Đại học, Bài tập lớn học phần như...',
+      'Ngành Hệ thống thông tin xin thông báo đến sinh viên đã đăng ký học phần Khóa luận tốt nghiệp (KLTN) học kỳ 1 năm học 2024-2025',
     image: feedImg,
+    link:'https://fit.iuh.edu.vn/news.html@detail@177@3292@[IS]-Khoa-luan-tot-nghiep-Nganh-HTTT-HK1-nam-hoc-2024-2025'
   },
 ];
 function NewFeedSection() {
@@ -71,6 +77,7 @@ function NewFeedSection() {
               title={feed.title}
               description={feed.description}
               image={feed.image}
+              links={feed.links}
             />
           </Box>
         ))}

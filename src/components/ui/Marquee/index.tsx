@@ -9,7 +9,7 @@ const MarqueeRunning = () => {
       <Marquee pauseOnHover speed={70} gradientColor='white'>
         <Box className='running__text' mx={40}>
           <span className='icon'>
-            Trang chủ Quản lý Khóa luận Tốt nghiệp Khoa công nghệ thông tin
+            Trang Quản lý Khóa luận Tốt nghiệp Khoa công nghệ thông tin
           </span>
         </Box>
         <Box className='running__text' mx={40}>
@@ -18,8 +18,8 @@ const MarqueeRunning = () => {
           </span>
         </Box>
         <Box className='running__text' mx={40}>
-          <span className='icon'>Thời gian mở đăng ký nhóm :</span>
-          <span className='text'> Ngày: 01/08/2024</span>
+          <span className='icon'>Thời gian mở đăng ký nhóm sinh viên:</span>
+          <span className='text'> 08/2024</span>
         </Box>
       </Marquee>
     </Box>
