@@ -163,7 +163,7 @@ function ProfilePage() {
                           onChange={(e) => {
                             setFieldValue('role', e.target.value);
                           }}
-                          label='Lớp học phần'
+                          label='Lớp danh nghĩa'
                         />
                       </Box>
                       <Box mt={8} width={'full'}>
