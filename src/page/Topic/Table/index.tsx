@@ -3,14 +3,13 @@ import { Icon } from '@iconify/react';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import React, { useState } from 'react';
-import { CustomToolbar } from './custom';
 import ChooseModal from '@/components/page/Topic/Modal/ChooseModal';
 import { useNavigate } from 'react-router-dom';
 import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 
 function TableManagamentTopic(props: any) {
-  const { rows, ...rest } = props;
+  const { rows, page, totalPages, handleChangePage, ...rest } = props;
   const partOfTerm = useTermStore((s) => s.partOfTerm);
   const navigate = useNavigate();
   const [openChooseModal, setOpenChooseModal] = useState({ topicId: '', isOpen: false });
@@ -109,18 +108,16 @@ function TableManagamentTopic(props: any) {
         <Table
           rows={rows}
           sx={{
-            bgcolor: 'white',
+            height: 600,
           }}
-          minHeight={500}
+          minHeight={600}
           columns={basicColumns}
           totalItems={rows.length}
-          totalPages={1}
-          page={1}
-          handleChangePage={() => {}}
+          totalPages={totalPages}
+          page={page}
+          handleChangePage={handleChangePage}
           disableColumnFilter
-          slots={{
-            toolbar: CustomToolbar,
-          }}
+      
         />
       </>
       <ChooseModal

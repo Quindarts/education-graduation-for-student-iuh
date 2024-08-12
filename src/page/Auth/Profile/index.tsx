@@ -83,14 +83,14 @@ function ProfilePage() {
               }}
               validationSchema={validateSchemaStudent}
               initialValues={{
-                fullName: `${me?.fullName}`,
+                fullName: `${me?.fullName ? me.fullName : ''}`,
                 username: `${me?.username}`,
                 email: `${me?.email ? me.email : ''}`,
-                phone: `${me?.phone}`,
+                phone: `${me?.phone ? me.phone : ''}`,
                 gender: `${me?.gender}`,
-                clazzName: `${me?.clazzName}`,
-                typeTraining: `${me?.typeTraining}`,
-                majorName: `${me?.majorName}`,
+                clazzName: `${me?.clazzName ? me.clazzName : ''}`,
+                typeTraining: `${me?.typeTraining ? me.typeTraining : ''}`,
+                majorName: `${me?.majorName ? me.majorName : ''}`,
               }}
             >
               {({ values, handleChange, handleBlur, handleSubmit, errors, setFieldValue }) => (

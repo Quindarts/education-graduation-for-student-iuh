@@ -1,14 +1,16 @@
+import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'lodash';
 
-type QueryType = "limit" | "page" | "searchField" | "keywords" | "filter" | "totalPage"
+type QueryType = "limit" | "page" | "searchField" | "keywords" | "sort" | "totalPage"
 enum QueryEnum {
     LIMIT = "limit",
     PAGE = "page",
     SEARCH_FIELD = "searchField",
     KEYWORDS = "keywords",
     FILTER = "filters",
-    TOTALPAGE = "totalPage"
+    TOTALPAGE = "totalPage",
+    SORT = "sort"
 }
 function useParams() {
     const [query, setSearch] = useSearchParams();
@@ -33,6 +35,12 @@ function useParams() {
         })
 
     }
+    const setTypeSort = (type: string) => {
+        query.set(QueryEnum.SORT, type)
+        setSearch(query, {
+            replace: true,
+        })
+    }
 
     const getQueryField = (type: QueryType) => {
         return query.get(type) ? `${query.get(type)}` : ''
@@ -52,8 +60,7 @@ function useParams() {
                 replace: true,
             });
         }
-    }, 300)
-
+    }, 0.6)
 
     const setLimit = (limit?: number) => {
         if (!limit) {
@@ -96,7 +103,7 @@ function useParams() {
         }
     }
 
-    return { onSearchChange, setDefaultTypeSearch, onTypeSearchChange, getQueryField, setPage, setLimit, setTotalPage }
+    return { onSearchChange, setDefaultTypeSearch, onTypeSearchChange, getQueryField, setPage, setTypeSort, setLimit, setTotalPage }
 }
 
 export default useParams

@@ -13,12 +13,12 @@ import {
 import useParams from '@/hook/ui/useParams';
 
 function TopicTemplate() {
-  const { HandleSearchTopic,totalPages } = useTopic();
+  const { HandleSearchTopic, totalPages } = useTopic();
   const { data, isLoading, isFetching, refetch } = HandleSearchTopic();
   const { partOfTerm, term } = useTermStore();
-
   const [currentPage, setCurrentPage] = useState(1);
   const { setLimit, setPage, getQueryField } = useParams();
+
   const handleChangePage = (value: number) => {
     setCurrentPage(value);
   };
@@ -77,13 +77,7 @@ function TopicTemplate() {
             <TableManagamentTopic
               handleChangePage={handleChangePage}
               isApprovePermission={true}
-              rows={
-                data?.topics
-                  ? data.topics
-                      .filter((topic: any) => topic.status === 'APPROVED')
-                      .map((t: any, index: number) => ({ ...t, stt: index + 1 }))
-                  : []
-              }
+              rows={data?.topics ? data.topics : []}
               page={currentPage}
               totalPages={totalPages}
             />

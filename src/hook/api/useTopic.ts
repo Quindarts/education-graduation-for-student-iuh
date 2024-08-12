@@ -1,7 +1,7 @@
 import TopicService from '@/services/TopicService'
 import useMajorStore from '@/store/majorStore';
 import useTermStore from '@/store/termStore';
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { queryClient } from '@/providers/ReactQuery';
@@ -22,7 +22,7 @@ function useTopic() {
     const groupStudentService = new GroupStudentService();
     const currentTermId = useTermStore(s => s.term.id);
     const majorId = useMajorStore(s => s.major.id);
-    const { getQueryField } = useParams()
+    const { getQueryField, setLimit, setPage } = useParams()
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
     const setTotalPageTopics = useTopicStore(s => s.setTotalPageTopics)
@@ -35,14 +35,18 @@ function useTopic() {
         })
     }
     const HandleSearchTopic = () => {
+        getQueryField('limit') ? getQueryField('limit') : setLimit(10)
+        getQueryField('page') ? getQueryField('page') : setPage(1)
         return useQuery({
-            queryKey: [QueryKeysTopic.searchTopic, currentTermId, getQueryField('limit'), getQueryField('page'), getQueryField('keywords')],
-            queryFn: () => topicService.getTopicsOfSearch(currentTermId, getQueryField('keywords'), getQueryField('limit'), getQueryField('page')),
+            queryKey: [QueryKeysTopic.searchTopic, currentTermId, getQueryField('limit'), getQueryField('page'), getQueryField('searchField'), getQueryField('sort'), getQueryField('keywords')],
+            queryFn: () => topicService.getTopicsOfSearch(currentTermId, getQueryField('searchField'), getQueryField("keywords"), getQueryField("sort"), getQueryField('limit'), getQueryField('page')),
             select(data: any) {
-                const totalPages = data.params ? data.params.totalPages : 0;
+                const totalPages = data.params ? data.params.totalPage : 0;
                 setTotalPageTopics(totalPages)
                 return data;
             },
+            refetchInterval: 1000 * (20 * 60),
+            placeholderData: keepPreviousData,
         })
     }
 

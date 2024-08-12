@@ -14,7 +14,6 @@ function DashboardTemplate() {
   HandleGetMyGroupStudent();
 
   const myGroupStudent = useGroupStudentStore((s) => s.groupDetails);
-  console.log('🚀 ~ DashboardTemplate ~ myGroupStudent:', myGroupStudent);
   return (
     <Box mx={40} my={10}>
       <Box display={'flex'} gap={10}>
