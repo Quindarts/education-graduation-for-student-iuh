@@ -23,13 +23,6 @@ function TableManagamentTopic(props: any) {
 
   const basicColumns: GridColDef[] = [
     {
-      headerName: 'STT',
-      field: 'stt',
-      flex: 0.2,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
       headerName: 'Tên Đề tài',
       field: 'name',
       flex: 2,
@@ -103,7 +96,7 @@ function TableManagamentTopic(props: any) {
     },
   ];
   return (
-    <Box {...rest}>
+    <Box width={'100%'} {...rest}>
       {' '}
       <>
         <Table
@@ -121,31 +114,6 @@ function TableManagamentTopic(props: any) {
           rowHeight={80}
           slots={{
             toolbar: CustomToolbar,
-            // noRowsOverlay: () => (
-            //   <Box
-            //     mx={'auto'}
-            //     display={'flex'}
-            //     flexDirection={'column'}
-            //     alignContent={'center'}
-            //     justifyContent={'center'}
-            //     textAlign={'center'}
-            //     py={20}
-            //     width={'100%'}
-            //   >
-            //     <Box>
-            //       <img
-            //         style={{ opacity: 0.7 }}
-            //         width={200}
-            //         height={200}
-            //         src={'/images/nodata.webp'}
-            //         alt='nodata'
-            //       />
-            //     </Box>
-            //     <Typography variant='h3' sx={{ mt: 2 }}>
-            //       Không có dữ liệu ( Data not found)
-            //     </Typography>
-            //   </Box>
-            // ),
           }}
         />
       </>

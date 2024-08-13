@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import useNotification from '@/hook/api/useNotification';
 import usePopup from '@/hook/ui/usePopup';
 
-function Notification() {
+function Notification({ color }: any) {
   const { handleActive, active, menuRef } = usePopup();
   const { HandleGetMyNotification } = useNotification();
   const { data, isLoading, isFetching } = HandleGetMyNotification();
@@ -33,7 +33,7 @@ function Notification() {
         className={`${active && 'active'}`}
         sx={{
           '& svg': {
-            color: 'text.secondary',
+            color: color,
           },
         }}
         size='small'

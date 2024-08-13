@@ -1,14 +1,14 @@
+import { Box } from '@mui/material';
 import {
-  GridToolbarContainer,
   GridToolbarColumnsButton,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 
 export function CustomToolbar() {
   return (
-    <GridToolbarContainer>
+    <Box>
       <GridToolbarColumnsButton sx={{ px: 2, py: 1 }} />
       <GridToolbarDensitySelector sx={{ px: 2, py: 1 }} />
-    </GridToolbarContainer>
+    </Box>
   );
 }

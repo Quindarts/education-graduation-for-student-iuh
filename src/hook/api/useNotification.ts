@@ -21,6 +21,7 @@ function useNotification() {
             select(data: any) {
                 return data.notification;
             },
+            staleTime: 60 * 60 * 1000,
         });
     }
 
@@ -29,10 +30,10 @@ function useNotification() {
         return useQuery({
             queryKey: [QueryKeysNotification.getMyNotification],
             queryFn: () => notificationService.getMyNotification(),
-            staleTime: 5000,
+            staleTime: 60 * 10 * 1000,
             select(data: any) {
                 return data.notificationStudents;
-            },  
+            },
         });
     }
 
@@ -43,9 +44,13 @@ function useNotification() {
                 enqueueSnackbar("Đã xem", { variant: "success" })
                 queryClient.resetQueries({ queryKey: [QueryKeysNotification.getMyNotification] })
             },
-            onError: (err) => {
-                enqueueSnackbar(err.message, { variant: "error" })
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         })
     }
     const OnDeleteNotification = () => {
@@ -54,9 +59,13 @@ function useNotification() {
             onSuccess: () => {
                 enqueueSnackbar("Xóa tin nhắn thành công", { variant: "success" })
             },
-            onError: (err) => {
-                enqueueSnackbar(err.message, { variant: "error" })
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         })
     }
     return {

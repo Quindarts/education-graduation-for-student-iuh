@@ -57,7 +57,7 @@ function useTopic() {
             queryFn: () => topicService.getTopicId(`${myTopicId}`),
             enabled: !!myTopicId,
             staleTime: 1000 * (20 * 60),
-            
+
         })
     }
 
@@ -79,7 +79,12 @@ function useTopic() {
 
             },
             onError(error: any) {
-                enqueueSnackbar(error.message, { variant: "error" })
+                if (error.status < 500)
+                    enqueueSnackbar(error.message, { variant: "error" })
+                else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                    // navigate('/group-students/detail');
+                }
             }
         })
     }
@@ -94,7 +99,12 @@ function useTopic() {
 
             },
             onError(error: any) {
-                enqueueSnackbar(error.message, { variant: "error" })
+                if (error.status < 500)
+                    enqueueSnackbar(error.message, { variant: "error" })
+                else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                
+                }
             }
         })
     }

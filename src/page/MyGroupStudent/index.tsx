@@ -1,6 +1,6 @@
 import TitleManager from '@/components/ui/Title';
 import { Box, Button, Paper, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StudentCard from './StudentCard';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import SekeletonUI from '@/components/ui/Sekeleton';
@@ -13,7 +13,7 @@ import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 
 function MyGroupStudentPage() {
   const { HandleGetMyGroupStudent } = useGroupStudent();
-  const { data, isLoading, isFetching } = HandleGetMyGroupStudent();
+  const { data, isLoading, refetch } = HandleGetMyGroupStudent();
   const [openLeaveModal, setOpenEditLeaveModal] = useState({ groupId: '', isOpen: false });
   const handleCloseLeaveModal = () => {
     setOpenEditLeaveModal({ ...openLeaveModal, isOpen: false });
@@ -24,6 +24,10 @@ function MyGroupStudentPage() {
   const { me } = useUserStore();
   const navigate = useNavigate();
   const { partOfTerm } = useTermStore();
+
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <Paper sx={{ px: 10, py: 20 }} elevation={1}>
       <TitleManager icon='ic:baseline-home' textTransform={'uppercase'}>
@@ -31,7 +35,7 @@ function MyGroupStudentPage() {
       </TitleManager>
       <Box width={'100%'} height={500}>
         {' '}
-        {isLoading || isFetching ? (
+        {isLoading ? (
           <SekeletonUI />
         ) : (
           <>
@@ -98,11 +102,22 @@ function MyGroupStudentPage() {
                         />
                       ))}
                     </Box>
-                    <Box mt={10} mr={2} alignSelf={'flex-end'} justifyItems={'end'}>
+                    <Box
+                      mt={10}
+                      mr={2}
+                      alignSelf={'flex-end'}
+                      display={'flex'}
+                      width={'100%'}
+                      justifyContent={'space-between'}
+                    >
+                      <Button onClick={() => navigate('/topics/my-topic')} sx={{ ml: 4 }}>
+                        Xem Đề tài của tôi
+                      </Button>
                       <Button
                         onClick={() => handleOpenLeaveModal(data?.group?.info.id)}
                         variant='contained'
-                        color='error'
+                        color='primary'
+                        size='large'
                         disabled={
                           partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE
                         }

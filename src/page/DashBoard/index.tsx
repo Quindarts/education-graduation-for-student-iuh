@@ -49,7 +49,7 @@ function DashboardTemplate() {
               </Box>{' '}
               <Box display={'flex'} gap={3}>
                 <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Lớp học phần:{' '}
+                  Lớp danh nghĩa:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
                   {me?.clazzName}
@@ -107,7 +107,7 @@ function DashboardTemplate() {
               </Box>{' '}
               <Box display={'flex'} gap={3}>
                 <Link style={{ color: '#0C4B93' }} to={`/group-students/detail`}>
-                  Xem chi tiết 
+                  Xem chi tiết
                 </Link>
               </Box>{' '}
               {/* <Box display={'flex'} gap={3}>

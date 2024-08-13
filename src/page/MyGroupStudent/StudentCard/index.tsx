@@ -1,7 +1,9 @@
 import AssignAdminModal from '@/components/page/GroupStudent/Modal/AssignAdminModal';
+import RemoveMemberGroupModal from '@/components/page/GroupStudent/RemoveMemberModal';
 import useTermStore from '@/store/termStore';
 import { checkGender } from '@/utils/validations/person.validation';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
+import { Icon } from '@iconify/react';
 import { Box, Card, CardContent, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
 
@@ -23,6 +25,14 @@ function StudentCard({
   };
   const handleOpenAssignAdmin = () => {
     setOpenAssignAdmin(true);
+  };
+
+  const [openRemoveMember, setOpenRemoveMember] = useState(false);
+  const handleCloseRemoveMember = () => {
+    setOpenRemoveMember(false);
+  };
+  const handleOpenRemoveMember = () => {
+    setOpenRemoveMember(true);
   };
   const { partOfTerm } = useTermStore();
   return (
@@ -74,14 +84,26 @@ function StudentCard({
           </Box>
           <Box justifyContent={'end'} display={'flex'} gap={4}>
             {!isMe && !isAdmin && (
-              <Button
-                disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
-                onClick={handleOpenAssignAdmin}
-                variant='contained'
-                color='success'
-              >
-                Chọn làm trưởng nhóm
-              </Button>
+              <>
+                <Button
+                  disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
+                  onClick={handleOpenAssignAdmin}
+                  variant='contained'
+                  color='success'
+                >
+                  <Icon icon='clarity:assign-user-solid' />
+                  Chọn làm trưởng nhóm
+                </Button>
+                <Button
+                  onClick={() => handleOpenRemoveMember()}
+                  variant='contained'
+                  color='error'
+                  disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
+                >
+                  <Icon icon='line-md:remove' />
+                  Xóa khỏi nhóm
+                </Button>
+              </>
             )}
           </Box>
         </CardContent>
@@ -93,6 +115,13 @@ function StudentCard({
         studentName={name}
         open={openAssignAdmin}
         onClose={handleCloseAssignAdmin}
+      />
+      <RemoveMemberGroupModal
+        groupId={groupId}
+        studentId={studentId}
+        studentName={name}
+        open={openRemoveMember}
+        onClose={handleCloseRemoveMember}
       />
     </>
   );

@@ -95,6 +95,7 @@ export default function Table(props: Props) {
             width: '100%',
           },
           '& .MuiDataGrid-columnHeaders': {
+            position: 'relative',
             borderColor: 'text.disabled',
             bgcolor: 'primary.dark',
             color: 'white',

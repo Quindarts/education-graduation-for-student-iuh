@@ -77,7 +77,7 @@ const keyframes = `
     }
   }
 `;
-function ProfileMenu() {
+function ProfileMenu({color}:any) {
   const navigate = useNavigate();
   const { handleActive, active, menuRef } = usePopup();
   const me = useUserStore((state: any) => state.me);
@@ -89,7 +89,7 @@ function ProfileMenu() {
       sx={{
         cursor: 'pointer',
         '&:hover': {
-          bgcolor: 'grey.200',
+          bgcolor: 'color',
         },
         gap: {
           xs: 0,
@@ -122,10 +122,10 @@ function ProfileMenu() {
           },
         }}
       >
-        <Typography color='grey.700' variant='h6' fontWeight={600}>
+        <Typography color={color} variant='h6' fontWeight={600}>
           {me?.fullName}
         </Typography>
-        <Typography color='grey.600' variant='body2' fontWeight={600}>
+        <Typography color={color} variant='body2' fontWeight={600}>
           Sinh viên
         </Typography>
       </Box>
@@ -172,7 +172,7 @@ function ProfileMenu() {
                 <ListItemIcon sx={{ color: 'text.secondary' }}>
                   <Icon width={18} height={22} icon={menuItem.icon} />
                 </ListItemIcon>
-                <Typography variant='body2' fontWeight={500} color='grey.700'>
+                <Typography variant='body2' fontWeight={500} color='color'>
                   {menuItem.text}
                 </Typography>
               </MenuItem>

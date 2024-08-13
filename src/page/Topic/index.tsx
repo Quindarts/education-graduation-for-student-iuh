@@ -14,7 +14,7 @@ import useParams from '@/hook/ui/useParams';
 
 function TopicTemplate() {
   const { HandleSearchTopic, totalPages } = useTopic();
-  const { data, isLoading, isFetching, refetch } = HandleSearchTopic();
+  const { data, isLoading, refetch } = HandleSearchTopic();
   const { partOfTerm, term } = useTermStore();
   const [currentPage, setCurrentPage] = useState(1);
   const { setLimit, setPage, getQueryField } = useParams();
@@ -59,7 +59,7 @@ function TopicTemplate() {
       ) : (
         <></>
       )}
-      {isLoading || isFetching ? (
+      {isLoading ? (
         <SekeletonUI />
       ) : (
         <Box width={'full'} my={4}>

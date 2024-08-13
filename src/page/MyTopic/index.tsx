@@ -6,11 +6,11 @@ import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 import { Icon } from '@iconify/react';
 import { Box, Button, Paper } from '@mui/material';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MyTopicPage() {
   const { HandleGetMyGroupStudent } = useGroupStudent();
-  const { data, isLoading, isFetching } = HandleGetMyGroupStudent();
+  const { data, isLoading, refetch } = HandleGetMyGroupStudent();
   const [openModalCancel, setOpenModalCancel] = useState({ isOpen: false, groupId: '' });
   const handleOpenModalCancel = (groupId: string) => {
     setOpenModalCancel({ isOpen: true, groupId: groupId });
@@ -19,9 +19,13 @@ function MyTopicPage() {
     setOpenModalCancel((pre: any) => ({ ...pre, isOpen: false }));
   };
   const partOfTerm = useTermStore((s) => s.partOfTerm);
+
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <Paper elevation={1}>
-      {isLoading || isFetching ? (
+      {isLoading ? (
         <SekeletonUI />
       ) : (
         <>

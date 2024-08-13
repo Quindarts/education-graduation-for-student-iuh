@@ -41,7 +41,11 @@ function useGroupStudent() {
                 navigate('/group-students/detail');
             },
             onError: (error: any) => {
-                enqueueSnackbar(error.message, { variant: "error" })
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
             },
         })
     }
@@ -53,10 +57,34 @@ function useGroupStudent() {
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError: (error: any) => {
-                enqueueSnackbar(error.message, { variant: "error" })
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
             },
         })
     }
+    const OnRemoveMemberByAdmin = (groupId: string) => {
+        return useMutation({
+            mutationFn: (studentId: string) => groupStudentService.removeMember(groupId, `${studentId}`),
+            onSuccess: () => {
+                enqueueSnackbar('Xóa thành viên ra khỏi nhóm thành công', { variant: "success" })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
+            },
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
+        })
+    }
+
+
     const OnLeaveGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.leaveGroup(`${groupId}`),
@@ -66,11 +94,15 @@ function useGroupStudent() {
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
                     queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
-                    navigate('/group-students');
                 }
             },
             onError: (error: any) => {
-                enqueueSnackbar(error.message, { variant: "error" })
+                if (error.status < 500)
+                    enqueueSnackbar(error.message, { variant: "error" })
+                else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+
             },
         })
     }
@@ -78,13 +110,14 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId],
             queryFn: () => groupStudentService.getMyGroup(`${currentTermId}`),
-            staleTime: 20 * (60 * 1000),
+            staleTime: 5 * (60 * 1000), // 5min
             select(data) {
                 setMyGroupId(data.group.info.id)
                 setMyGroupDetail(data.group.info)
                 setMyTopic(data.group.info.topic_id)
                 return data;
             },
+
         })
     }
     const HandleGetGroupStudentById = () => {
@@ -97,7 +130,11 @@ function useGroupStudent() {
             queryFn: () => groupStudentService.getGroupMembers(groupId),
         })
     }
-    return { HandleGroupStudentByTerm, HandleGetGroupMembers, HandleGetMyGroupStudent, HandleGetGroupStudentById, OnInviteGroupStudent, OnLeaveGroupStudent, OnAssignAdminGroupStudent }
+    return {
+        HandleGroupStudentByTerm, HandleGetGroupMembers, HandleGetMyGroupStudent, HandleGetGroupStudentById,
+        OnRemoveMemberByAdmin,
+        OnInviteGroupStudent, OnLeaveGroupStudent, OnAssignAdminGroupStudent
+    }
 }
 
 export default useGroupStudent

@@ -341,8 +341,8 @@ const AdminSidebar = () => {
             borderBottom={'2px solid #1467db'}
             height={200}
           >
-            <Box sx={{ mb: 10 }}>
-              <Box mb={4} justifyContent={'center'} display={'flex'}>
+            <Box sx={{ my: 10 }}>
+              <Box my={4} justifyContent={'center'} display={'flex'}>
                 <img width={120} src='/images/logo-IUH-ngang-trang-300x131-1.webp' />
               </Box>
               <Typography

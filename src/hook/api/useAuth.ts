@@ -36,10 +36,13 @@ function useAuth() {
                     navigate('/');
                 }
             },
-            onError: (error) => {
-                enqueueSnackbar(error?.message, { variant: "error" });
-
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         });
     }
     const HandleGetme = () => {
@@ -64,10 +67,13 @@ function useAuth() {
                 removeValueInLocalStorage('refreshTokenStudent');
                 navigate('/home');
             },
-            onError: (error) => {
-                enqueueSnackbar(error?.message, { variant: "error" });
-
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         });
     }
 
@@ -78,9 +84,13 @@ function useAuth() {
                 enqueueSnackbar('Cập nhật mật khẩu thành công', { variant: "success" });
                 navigate('/')
             },
-            onError: (error) => {
-                enqueueSnackbar(error?.message, { variant: "error" });
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         })
     }
     const HandleUpdateMe = () => {
@@ -90,9 +100,13 @@ function useAuth() {
                 enqueueSnackbar('Cập nhật thông tin cá nhân thành công', { variant: "success" });
                 queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
             },
-            onError: (error) => {
-                enqueueSnackbar(error?.message, { variant: "error" });
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         })
     }
     const HanldeForgotPassword = () => {
@@ -102,9 +116,13 @@ function useAuth() {
                 enqueueSnackbar('Mật khẩu mới đã được gửi về email của bạn', { variant: "success" });
                 navigate('/auth/login')
             },
-            onError: (error) => {
-                enqueueSnackbar(error?.message, { variant: "error" });
-            }
+            onError: (error: any) => {
+                if (error < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            },
         })
 
     }
