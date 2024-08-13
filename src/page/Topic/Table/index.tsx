@@ -7,6 +7,7 @@ import ChooseModal from '@/components/page/Topic/Modal/ChooseModal';
 import { useNavigate } from 'react-router-dom';
 import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
+import { CustomToolbar } from './custom';
 
 function TableManagamentTopic(props: any) {
   const { rows, page, totalPages, handleChangePage, ...rest } = props;
@@ -107,17 +108,45 @@ function TableManagamentTopic(props: any) {
       <>
         <Table
           rows={rows}
-          sx={{
-            height: 600,
-          }}
-          minHeight={600}
           columns={basicColumns}
           totalItems={rows.length}
           totalPages={totalPages}
           page={page}
           handleChangePage={handleChangePage}
           disableColumnFilter
-      
+          sx={{
+            minHeight: 600,
+            height: rows.length > 0 ? 'auto' : 600,
+          }}
+          rowHeight={80}
+          slots={{
+            toolbar: CustomToolbar,
+            // noRowsOverlay: () => (
+            //   <Box
+            //     mx={'auto'}
+            //     display={'flex'}
+            //     flexDirection={'column'}
+            //     alignContent={'center'}
+            //     justifyContent={'center'}
+            //     textAlign={'center'}
+            //     py={20}
+            //     width={'100%'}
+            //   >
+            //     <Box>
+            //       <img
+            //         style={{ opacity: 0.7 }}
+            //         width={200}
+            //         height={200}
+            //         src={'/images/nodata.webp'}
+            //         alt='nodata'
+            //       />
+            //     </Box>
+            //     <Typography variant='h3' sx={{ mt: 2 }}>
+            //       Không có dữ liệu ( Data not found)
+            //     </Typography>
+            //   </Box>
+            // ),
+          }}
         />
       </>
       <ChooseModal

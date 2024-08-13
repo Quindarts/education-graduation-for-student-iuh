@@ -26,7 +26,7 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId],
             queryFn: () => groupStudentService.getListGroup(`${currentTermId}`),
-            staleTime: 1000,
+            staleTime: 20 * (60 * 1000),
         })
     }
 
@@ -78,7 +78,7 @@ function useGroupStudent() {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId],
             queryFn: () => groupStudentService.getMyGroup(`${currentTermId}`),
-            staleTime: 1000,
+            staleTime: 20 * (60 * 1000),
             select(data) {
                 setMyGroupId(data.group.info.id)
                 setMyGroupDetail(data.group.info)

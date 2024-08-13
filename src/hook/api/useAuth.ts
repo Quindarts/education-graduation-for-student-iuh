@@ -47,6 +47,7 @@ function useAuth() {
         } = useQuery({
             queryKey: [QueryKeysAuth.getMe],
             queryFn: () => auth.getMe(),
+            staleTime: 1000 * (20 * 60),
         });
         if (successMe === true) {
             setMe(me.user);

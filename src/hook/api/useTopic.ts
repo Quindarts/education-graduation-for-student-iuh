@@ -32,6 +32,7 @@ function useTopic() {
         return useQuery({
             queryKey: [QueryKeysTopic.getTopicById, topicId],
             queryFn: () => topicService.getTopicId(`${topicId}`),
+            staleTime: 1000 * (120 * 60),
         })
     }
     const HandleSearchTopic = () => {
@@ -46,16 +47,17 @@ function useTopic() {
                 return data;
             },
             refetchInterval: 1000 * (20 * 60),
+            staleTime: 1000 * (20 * 60),
             placeholderData: keepPreviousData,
         })
     }
-
     const HandleGetMyTopic = (myTopicId: string) => {
         return useQuery({
             queryKey: [QueryKeysTopic.getMyTopic, myTopicId],
             queryFn: () => topicService.getTopicId(`${myTopicId}`),
             enabled: !!myTopicId,
-            staleTime: 1000,
+            staleTime: 1000 * (20 * 60),
+            
         })
     }
 
@@ -63,7 +65,7 @@ function useTopic() {
         return useQuery({
             queryKey: [QueryKeysTopic.getListTopicByTermByMajor, currentTermId, majorId],
             queryFn: () => topicService.getTopicList(`${currentTermId}`, `${majorId}`),
-            staleTime: 1000,
+            staleTime: 1000 * (20 * 60),
         })
     }
     const OnCancelTopic = () => {
