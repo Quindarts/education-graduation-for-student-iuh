@@ -3,30 +3,6 @@ import TitleManager from '@/components/ui/Title';
 import { Icon } from '@iconify/react';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-// const VALUE = [
-//   {
-//     icon: 'cil:happy',
-//     title: 'Thuận tiện',
-//     desc: 'Đăng ký khóa luận mọi nơi',
-//   },
-//   {
-//     icon: 'carbon:flash-filled',
-
-//     title: 'Nhanh',
-//     desc: 'Tốc độ load nhanh, hỗ trợ đăng ký học phần ',
-//   },
-//   {
-//     icon: 'material-symbols:security',
-
-//     title: 'Bảo mật',
-//     desc: 'Thông tin bảo mật',
-//   },
-//   {
-//     icon: 'hugeicons:developer',
-//     title: 'Dễ sử dụng',
-//     desc: 'Giao diện thân thiện',
-//   },
-// ];
 
 function InfoPropjectSection() {
   return (

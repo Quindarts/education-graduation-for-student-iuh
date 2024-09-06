@@ -3,6 +3,7 @@ import React from 'react';
 import CardGroupStudent from './Card';
 import useTermStore from '@/store/termStore';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 function GridGroupStudent({ groupStudents }: any) {
   const { partOfTerm } = useTermStore();
@@ -17,8 +18,24 @@ function GridGroupStudent({ groupStudents }: any) {
           flexDirection={'column'}
           display={'flex'}
         >
-          <img style={{ opacity: 0.4 }} width={100} height={100} src='/public/images/time.png' />
-          <Typography variant='h1' textTransform={'uppercase'} fontWeight={'bold'} color='grey.400'>
+          <DotLottieReact
+            style={{
+              width: '350px',
+              height: '350px',
+            }}
+            src='https://lottie.host/d5ee136a-961a-4bc7-bfa6-709dcb8e1038/WNAl4pFATV.json'
+            loop
+            autoplay
+          />
+          <Typography
+            sx={{
+              position: 'relative',
+              top: 0,
+            }}
+            variant='h4'
+            fontWeight={'500'}
+            color='grey.600'
+          >
             Đã hết hạn đăng kí Nhóm.
           </Typography>
         </Box>

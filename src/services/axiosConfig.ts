@@ -1,6 +1,7 @@
 import { env } from '@/utils/env';
 import { getValueFromLocalStorage } from '@/utils/localStorage';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 const axiosConfig = axios.create({
   baseURL: `${env.API_URL}/api/v1`,
@@ -45,8 +46,9 @@ axiosConfig.interceptors.response.use(
 
         return axiosConfig(originalRequest);
       } catch (error: any) {
-        if (error.message === 'jwt expired' && error.status === 500 && error.success === false) {
+        if (error.message === 'jwt expired' && error.status >= 500 && error.success === false) {
           localStorage.clear();
+          redirect("/auth/login")
         }
         return Promise.reject(error);
       }

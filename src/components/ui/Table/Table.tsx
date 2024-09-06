@@ -1,6 +1,13 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { DataGrid, DataGridProps } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  DataGridProps,
+  GridToolbarColumnsButton,
+  GridToolbarContainer,
+  GridToolbarDensitySelector,
+  viVN,
+} from '@mui/x-data-grid';
 import React from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -53,8 +60,20 @@ export default function Table(props: Props) {
             },
           },
         }}
+        localeText={{
+          ...viVN.components.MuiDataGrid.defaultProps.localeText,
+          toolbarColumns: 'Điều chỉnh Cột hiển thị',
+          toolbarDensity: 'Thay đổi độ cao của dòng',
+        }}
         slots={{
           ...slots,
+          toolbar: () => (
+            <GridToolbarContainer>
+              <GridToolbarColumnsButton />
+              <GridToolbarDensitySelector />
+            </GridToolbarContainer>
+          ),
+
           noRowsOverlay: () => (
             <Box
               mx={'auto'}

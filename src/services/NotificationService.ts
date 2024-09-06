@@ -15,9 +15,9 @@ class NotificationService {
         });
     }
 
-    async getMyNotification() {
+    async getMyNotification(limit: string) {
         return await axiosConfig<AxiosResponse>({
-            url: `${this.endpoint}/me`,
+            url: `${this.endpoint}/me?limit=${limit}`,
             method: 'get',
         });
     }

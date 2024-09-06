@@ -3,17 +3,23 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import { CircularProgress, Paper } from '@mui/material';
+import { Button, CircularProgress, Paper } from '@mui/material';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
-import useNotification from '@/hook/api/useNotification';
+import { useState } from 'react';
 import usePopup from '@/hook/ui/usePopup';
+import useNotification from '@/hook/api/useNotification';
 
-function Notification({ color }: any) {
+function Notification() {
   const { handleActive, active, menuRef } = usePopup();
+  const [limit, setLimit] = useState(5);
   const { HandleGetMyNotification } = useNotification();
-  const { data, isLoading, isFetching } = HandleGetMyNotification();
+  const { data, isLoading, isFetching } = HandleGetMyNotification(limit.toString());
   const navigate = useNavigate();
+
+  const handleChangeLimit = () => {
+    setLimit((pre) => pre + 5);
+  };
   const handleNavigate = (id: string) => {
     navigate(`/notifications/detail/${id}`);
     handleActive();
@@ -33,14 +39,14 @@ function Notification({ color }: any) {
         className={`${active && 'active'}`}
         sx={{
           '& svg': {
-            color: color,
+            color: 'text.secondary',
           },
         }}
         size='small'
         color='info'
       >
         <Badge
-          badgeContent={data ? data?.filter((noti: any) => noti.isRead === false).length : 0}
+          badgeContent={data ? data.filter((noti: any) => noti.isRead === 0).length : 0}
           color='error'
           sx={{
             height: '100%',
@@ -69,7 +75,7 @@ function Notification({ color }: any) {
               xs: '100vw',
               sm: 450,
             },
-            height: 500,
+            height: active ? 500 : 0,
             position: {
               xs: 'fixed',
               sm: 'absolute',
@@ -86,22 +92,22 @@ function Notification({ color }: any) {
             borderRadius='8px 8px 0 0 '
             sx={{ backgroundColor: 'primary.dark' }}
           >
-            <Typography ml={4} mt={4} fontWeight={500} variant='body1' color={'white'}>
+            <Typography m={4} mt={4} fontWeight={500} variant='body1' color={'white'}>
               Thông báo mới
             </Typography>
             <Box borderRadius={1} alignSelf={'center'} px={4} py={2}>
               <Typography fontWeight={500} variant='body2' color='white'>
-                {data ? data.length : 0} Thông báo
+                {data ? data?.length : 0} Thông báo
               </Typography>
             </Box>
           </Box>
           <Box sx={{ overflowY: 'auto', height: '80%', px: 2 }}>
             {isLoading || isFetching ? (
               <CircularProgress />
-            ) : data?.length === 0 ? (
+            ) : data?.length < 1 ? (
               <Box width={'100%'}>
                 <Box textAlign={'center'} m={'auto'} p='auto' width={240}>
-                  <img width={100} src='/public/images/bell-alarm.png' alt='' />
+                  <img width={100} src='/public/images/bell-alarm.webp' alt='' />
                   <Typography
                     variant='h6'
                     fontWeight={'500'}
@@ -114,7 +120,7 @@ function Notification({ color }: any) {
               </Box>
             ) : (
               <>
-                {data?.map((noti: any) => (
+                {data.map((noti: any) => (
                   <Paper
                     sx={{
                       my: 2,
@@ -136,15 +142,11 @@ function Notification({ color }: any) {
                       color='grey.600'
                       sx={{}}
                     >
-                      {dayjs(noti.created_at).format('DD/MM/YYYY hh:ss')}
+                      {dayjs(noti.createdAt).format('DD/MM/YYYY hh:ss')}
                     </Typography>
-
-                    <Typography
-                      variant='body2'
-                      fontSize={10}
-                      color='grey.700'
-                      dangerouslySetInnerHTML={{ __html: noti.message.split('<br/>')[1] }}
-                    />
+                    <Typography variant='body1' color='grey.700'>
+                      {noti.title}
+                    </Typography>
                     <Box justifyContent={'end'} display={'flex'}>
                       <>
                         {noti.isRead ? (
@@ -173,9 +175,9 @@ function Notification({ color }: any) {
             borderRadius={'0 0 8px 8px '}
             bgcolor={'#f6fcff'}
           >
-            {/* <Button size='small' color='warning'>
-              Đánh dấu tất cả là đã đọc
-            </Button> */}
+            <Button onClick={handleChangeLimit} size='small' color='warning'>
+              Xem thêm
+            </Button>
           </Box>
         </Box>
       )}

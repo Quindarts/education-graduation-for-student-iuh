@@ -26,13 +26,13 @@ function useNotification() {
     }
 
 
-    const HandleGetMyNotification = () => {
+    const HandleGetMyNotification = (limit: string) => {
         return useQuery({
             queryKey: [QueryKeysNotification.getMyNotification],
-            queryFn: () => notificationService.getMyNotification(),
+            queryFn: () => notificationService.getMyNotification(limit),
             staleTime: 60 * 10 * 1000,
             select(data: any) {
-                return data.notificationStudents;
+                return data?.notifications;
             },
         });
     }

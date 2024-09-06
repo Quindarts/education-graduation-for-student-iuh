@@ -22,58 +22,46 @@ function NotficationDetailPage() {
     }
   }, [isSuccess]);
   return (
-    <Paper elevation={1} sx={{ px: 10, py: 6 }}>
-      {isLoading || isFetching ? (
-        <SekeletonUI />
-      ) : (
-        <Box>
-          {/* <TitleManager mb={6} variant='h4' textTransform={'uppercase'}>
-            Chi tiết thông báo
-          </TitleManager> */}
-          <Typography variant='body1' component={'i'} color='grey.700'>
-            Ngày {dayjs(data?.created_at).format('DD/MM/YYYY hh:ss')}
-          </Typography>
+    <Paper elevation={1} sx={{ px: 10, py: 12 }}>
+    {isLoading || isFetching ? (
+      <SekeletonUI />
+    ) : (
+      <Box>
+        {/* <TitleManager mb={6} variant='h4' textTransform={'uppercase'}>
+          Chi tiết thông báo
+        </TitleManager> */}
+        <Typography variant='body1' color='grey.700'>
+          Ngày gửi {dayjs(data?.createdAt).format('DD/MM/YYYY')}
+        </Typography>
 
+        <Typography mt={4} mb={10} variant='h3' color='grey.700' fontWeight={'bold'}>
+          {data?.title}
+        </Typography>
+        <Box>
           <Typography
-            mt={4}
-            mb={5}
-            variant='h3'
-            color='primary.dark'
+            mt={6}
+            variant='h6'
+            color='initial'
             fontFamily={'Arial, sans-serif'}
-            dangerouslySetInnerHTML={{ __html: data?.message.split('<br/>')[0] }}
+            dangerouslySetInnerHTML={{ __html: data?.content }}
           />
-          <Box>
-            <Typography
-              mt={6}
-              variant='h6'
-              color='initial'
-              fontFamily={'Arial, sans-serif'}
-              dangerouslySetInnerHTML={{ __html: data?.message.split('<br/>')[1] }}
-            />
-            <Typography
-              mt={6}
-              variant='h6'
-              color='initial'
-              fontFamily={'Arial, sans-serif'}
-              dangerouslySetInnerHTML={{ __html: data?.message.split('<br/>')[2] }}
-            />
-          </Box>
-          <Box justifyContent={'end'} display={'flex'}>
-            {data?.isRead ? (
-              <Typography variant='h6' component={'i'} color='success.dark'>
-                Đã xem
-                <Icon width={12} style={{ marginLeft: 2 }} icon='subway:tick' />
-              </Typography>
-            ) : (
-              <Button onClick={hanldeToggleRead} variant='contained' color='success'>
-                <Icon icon='subway:tick' />
-                Đánh dấu là đã đọc
-              </Button>
-            )}
-          </Box>
         </Box>
-      )}
-    </Paper>
+        <Box justifyContent={'end'} display={'flex'}>
+          {data?.isRead === 1 ? (
+            <Typography variant='h6' component={'i'} color='success.dark'>
+              Đã xem
+              <Icon width={12} style={{ marginLeft: 2 }} icon='subway:tick' />
+            </Typography>
+          ) : (
+            <Button onClick={hanldeToggleRead} variant='contained' color='primary'>
+              <Icon style={{ marginRight: 2 }} icon='subway:tick' />
+              Đánh dấu là đã đọc
+            </Button>
+          )}
+        </Box>
+      </Box>
+    )}
+  </Paper>
   );
 }
 

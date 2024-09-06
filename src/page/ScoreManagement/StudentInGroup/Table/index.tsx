@@ -155,9 +155,7 @@ function MyScoreTable() {
             totalPages={1}
             page={1}
             handleChangePage={() => {}}
-            disableColumnMenu
             disableColumnFilter
-            disableColumnSelector
           />
         </Box>
       </Box>

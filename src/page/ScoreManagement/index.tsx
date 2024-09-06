@@ -11,7 +11,7 @@ import {
 function ScoreManagementTemplate() {
   const partOfTerm = useTermStore((state) => state.partOfTerm);
   return (
-    <Paper sx={{ px: 20, py: 10 }}>
+    <Paper sx={{ px: 10, py: 10 }}>
       <TitleManager variant='h5' icon='ph:exam-duotone' textTransform={'uppercase'} mb={4}>
         Bảng điểm của tôi
       </TitleManager>

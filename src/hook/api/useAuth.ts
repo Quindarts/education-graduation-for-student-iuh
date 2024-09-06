@@ -37,7 +37,7 @@ function useAuth() {
                 }
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -68,7 +68,7 @@ function useAuth() {
                 navigate('/home');
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -85,7 +85,7 @@ function useAuth() {
                 navigate('/')
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -101,7 +101,7 @@ function useAuth() {
                 queryClient.resetQueries({ queryKey: [QueryKeysAuth.getMe] })
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -117,7 +117,7 @@ function useAuth() {
                 navigate('/auth/login')
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })

@@ -35,32 +35,18 @@ function ForgotPassword() {
   return (
     <Grid container spacing={2} pb={8}>
       <Grid item xs={12}>
-        <Card>
+        <Card sx={{ boxShadow: '0px 0px 0px white' }}>
           <CardContent>
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyItems: 'center',
               }}
             >
-              <img width={150} height={60} src='/images/logo-light.webp' alt='logo_app' />
-              <Typography
-                mt={10}
-                variant='h3'
-                align='center'
-                lineHeight={1.6}
-                fontWeight={700}
-                color='error.dark'
-              >
-                TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HỒ CHÍ MINH
-              </Typography>
               <Typography
                 variant='h5'
                 mt={4}
                 fontWeight={600}
-                align='center'
                 color={'primary.main'}
                 mb={2}
                 textTransform={'uppercase'}

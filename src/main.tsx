@@ -10,6 +10,8 @@ import MUIThemeProvider from './providers/MUIThemeProvider';
 import { SnackbarProvider } from 'notistack';
 import { Zoom } from '@mui/material';
 import { themeSnackbar } from './theme/ThemeSnackbar';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { env } from './utils/env';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -24,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         >
           <QueryClientProvider client={queryClient}>
             <App />
-            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+            {env.NODE_ENV === 'local' && <ReactQueryDevtools initialIsOpen={false} />}
           </QueryClientProvider>
         </SnackbarProvider>
       </BrowserRouter>

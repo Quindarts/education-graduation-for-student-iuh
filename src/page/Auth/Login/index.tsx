@@ -9,9 +9,7 @@ import Typography from '@mui/material/Typography';
 import { useFormik } from 'formik';
 import CustomTextField from '@/components/ui/CustomTextField';
 import { Icon } from '@iconify/react';
-import { CircularProgress, Paper } from '@mui/material';
-import bgStudent from '/images/student-nobg.webp';
-import logoIUH from '/images/logo-light.webp';
+import { CircularProgress } from '@mui/material';
 import useAuth from '@/hook/api/useAuth';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -43,130 +41,124 @@ function LoginPage() {
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = formik;
 
   return (
-    <Paper
+    <Card
       sx={{
-        borderRadius: 100,
-        width: 650,
-        display: 'flex',
-        bgcolor: '#132e65',
-        boxShadow:
-          ' rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;',
+        boxShadow: '0px 0px 0px white',
+        width: {
+          xs: '100%',
+          lg: 600,
+        },
+        p: 0,
       }}
     >
-      <Card sx={{ width: 400 }}>
-        <CardContent>
-          <Box
+      <CardContent
+        sx={{
+          p: {
+            xs: 4,
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            mt: {
+              xs: 20,
+              md: 0,
+            },
+          }}
+        >
+          <Typography
+            variant='h3'
+            mt={10}
+            fontWeight={600}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyItems: 'center',
+              textAlign: {
+                xs: 'center',
+                lg: 'start',
+              },
             }}
+            color={'primary.dark'}
+            textTransform={'uppercase'}
           >
-            <img width={150} height={60} src={`${logoIUH}`} />
-            <Typography
-              mt={10}
-              variant='body1'
-              align='center'
-              lineHeight={1.2}
-              fontWeight={'bold'}
-              color='error.dark'
-              textTransform={'uppercase'}
-            >
-              Trang Quản lý khóa luận dành cho sinh viên Khoa Công Nghệ Thông Tin
-            </Typography>
-            <Typography
-              variant='h3'
-              mt={10}
-              fontWeight={600}
-              align='center'
-              color={'primary.dark'}
-              textTransform={'uppercase'}
-            >
-              Đăng nhập
-            </Typography>
-          </Box>
-          <Box component='form' onSubmit={handleSubmit} mt={8} p={4} method='POST'>
-            <CustomTextField
-              label='Tên đăng nhập'
-              error={Boolean(errors.username) && touched.username}
-              helperText={touched.username && errors.username}
-              value={values.username}
-              required
-              onBlur={handleBlur}
-              onChange={handleChange}
-              placeholder='Nhập tên đăng nhập'
-              id='username'
-              name='username'
-            />
-            <CustomTextField
-              label='Mật khẩu'
-              error={Boolean(errors.password) && touched.password}
-              helperText={touched.password && errors.password}
-              onBlur={handleBlur}
-              required
-              onChange={handleChange}
-              placeholder='Nhập mật khẩu'
-              id='password'
-              name='password'
-              type={showPassword ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='toggle password visibility'
-                      onClick={handleClickShowPassword}
-                      edge='end'
-                      size='small'
-                      sx={{
-                        '& svg': {
-                          color: 'text.primary',
-                        },
-                      }}
-                    >
-                      {showPassword ? (
-                        <Icon icon='mdi:eye-outline' />
-                      ) : (
-                        <Icon icon='mdi:eye-off-outline' />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Typography
-              variant='body1'
-              mb={4}
-              onClick={() => navigate('/auth/forgot-password')}
-              sx={{
-                '&:hover': {
-                  color: 'primary.dark',
-                  cursor: 'pointer',
-                },
-              }}
-              color='initial'
-              textAlign={'end'}
-            >
-              Quên mật khẩu ?
-            </Typography>
-            <Button variant='contained' type='submit' fullWidth color='primary'>
-              Đăng nhập
-              {isPending && (
-                <CircularProgress
-                  size={'small'}
-                  sx={{ mx: 4, color: 'white', width: 20, height: 20 }}
-                />
-              )}
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
-      <Box position={'relative'}>
-        <Box position={'absolute'} top={'-150px'}>
-          <img height={600} width={600} src={`${bgStudent}`} />
+            Đăng nhập
+          </Typography>
         </Box>
-      </Box>
-    </Paper>
+        <Box component='form' onSubmit={handleSubmit} mt={8} method='POST'>
+          <CustomTextField
+            label='Tên đăng nhập'
+            error={Boolean(errors.username) && touched.username}
+            helperText={touched.username && errors.username}
+            value={values.username}
+            required
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder='Nhập tên đăng nhập'
+            id='username'
+            name='username'
+          />
+          <CustomTextField
+            label='Mật khẩu'
+            error={Boolean(errors.password) && touched.password}
+            helperText={touched.password && errors.password}
+            onBlur={handleBlur}
+            required
+            onChange={handleChange}
+            placeholder='Nhập mật khẩu'
+            id='password'
+            name='password'
+            type={showPassword ? 'text' : 'password'}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <IconButton
+                    aria-label='toggle password visibility'
+                    onClick={handleClickShowPassword}
+                    edge='end'
+                    size='small'
+                    sx={{
+                      '& svg': {
+                        color: 'text.primary',
+                      },
+                    }}
+                  >
+                    {showPassword ? (
+                      <Icon icon='mdi:eye-outline' />
+                    ) : (
+                      <Icon icon='mdi:eye-off-outline' />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Typography
+            variant='body1'
+            mb={4}
+            onClick={() => navigate('/auth/forgot-password')}
+            sx={{
+              '&:hover': {
+                color: 'primary.dark',
+                cursor: 'pointer',
+              },
+            }}
+            color='initial'
+            textAlign={'end'}
+          >
+            Quên mật khẩu ?
+          </Typography>
+          <Button variant='contained' type='submit' fullWidth color='primary'>
+            Đăng nhập
+            {isPending && (
+              <CircularProgress
+                size={'small'}
+                sx={{ mx: 4, color: 'white', width: 20, height: 20 }}
+              />
+            )}
+          </Button>
+        </Box>
+      </CardContent>
+    </Card>
   );
 }
 

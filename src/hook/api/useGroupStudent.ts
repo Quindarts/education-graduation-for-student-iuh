@@ -41,7 +41,7 @@ function useGroupStudent() {
                 navigate('/group-students/detail');
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -57,7 +57,7 @@ function useGroupStudent() {
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
@@ -75,7 +75,7 @@ function useGroupStudent() {
                 queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId] })
             },
             onError: (error: any) => {
-                if (error < 500) {
+                if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })

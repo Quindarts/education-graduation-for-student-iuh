@@ -11,6 +11,7 @@ import {
   ENUM_STATUS_OF_DATE_TERM,
 } from '@/utils/validations/term.validation';
 import useParams from '@/hook/ui/useParams';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 function TopicTemplate() {
   const { HandleSearchTopic, totalPages } = useTopic();
@@ -65,14 +66,45 @@ function TopicTemplate() {
         <Box width={'full'} my={4}>
           {partOfTerm.PublicTopic?.status === ENUM_STATUS_OF_DATE_TERM.EXPIRED ||
           partOfTerm.PublicTopic?.status === ENUM_STATUS_OF_DATE_TERM.INACTIVE ? (
-            <Typography
-              mt={3}
-              ml={20}
-              variant='body1'
-              color={checkColorStatusPartTerm(partOfTerm.PublicTopic?.status)}
-            >
-              Thời gian xem và công bố Đề tài {partOfTerm.PublicTopic?.mess}
-            </Typography>
+            <>
+              <Typography
+                mt={3}
+                ml={20}
+                variant='body1'
+                color={checkColorStatusPartTerm(partOfTerm.PublicTopic?.status)}
+              >
+                Thời gian xem và công bố Đề tài {partOfTerm.PublicTopic?.mess}
+              </Typography>{' '}
+              <Box
+                height={500}
+                width={'100%'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                flexDirection={'column'}
+                display={'flex'}
+              >
+                <DotLottieReact
+                  style={{
+                    width: '350px',
+                    height: '350px',
+                  }}
+                  src='https://lottie.host/d5ee136a-961a-4bc7-bfa6-709dcb8e1038/WNAl4pFATV.json'
+                  loop
+                  autoplay
+                />
+                <Typography
+                  sx={{
+                    position: 'relative',
+                    top: 0,
+                  }}
+                  variant='h4'
+                  fontWeight={'500'}
+                  color='grey.600'
+                >
+                  Đã hết hạn chọn đề tài
+                </Typography>
+              </Box>
+            </>
           ) : (
             <TableManagamentTopic
               handleChangePage={handleChangePage}
