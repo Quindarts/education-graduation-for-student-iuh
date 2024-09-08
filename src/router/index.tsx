@@ -20,6 +20,7 @@ const TopicDetailPage = lazy(() => import('@/page/TopicDetail'));
 const ProfilePage = lazy(() => import('@/page/Auth/Profile'));
 const EvaluationPage = lazy(() => import('@/page/Evaluation/Management'));
 const UpdatePassPage = lazy(() => import('@/page/Auth/UpdatePassword'));
+
 function Routing() {
   return (
     <Routes>
@@ -32,7 +33,6 @@ function Routing() {
         <Route path={APP_ROUTES.GROUP_STUDENT.DETAIL} element={<MyGroupStudentPage />} />
         <Route path={APP_ROUTES.USER.PROFILE} element={<ProfilePage />} />
         <Route path={APP_ROUTES.USER.UPDATE_PASS} element={<UpdatePassPage />} />
-
         <Route path={APP_ROUTES.EVALUATION.MANAGEMENT} element={<EvaluationPage />} />
         <Route path={APP_ROUTES.SCORE_STUDENT.MANAGEMENT} element={<ScoreManagementTemplate />} />
 
@@ -42,11 +42,10 @@ function Routing() {
       <Route path={APP_ROUTES.HOME} element={<MainLayout />}>
         <Route index path={APP_ROUTES.HOME} element={<HomeTemplate />} />
       </Route>
-      
+
       <Route path={'/auth'} element={<PublicRouter />}>
         <Route index path={APP_ROUTES.USER.LOGIN} element={<LoginPage />} />
         <Route index path={APP_ROUTES.USER.FORGOT} element={<ForgotPassword />} />
-
       </Route>
       <Route path='*' element={<NotFoundPage />} />
     </Routes>

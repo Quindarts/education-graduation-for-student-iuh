@@ -20,7 +20,7 @@ export default function CustomTextField(props: CustomTextFieldProps) {
           )}
         </InputLabel>
       )}
-      <TextField variant='outlined' id={id} fullWidth size={size} {...rest} />
+      <TextField variant='outlined' id={id} fullWidth size={size}  {...rest} />
     </Box>
   );
 }

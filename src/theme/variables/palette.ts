@@ -38,7 +38,7 @@ export const color = {
 const palette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: color.indigo,
+    main: color.dark_indigo,
     light: color.light_blue,
     dark: color.dark_indigo,
   },

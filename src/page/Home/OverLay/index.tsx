@@ -1,5 +1,5 @@
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const OverlaySection = ({ fadeInOut }: any) => {
   const galaxyTextStyle = {
@@ -12,6 +12,10 @@ const OverlaySection = ({ fadeInOut }: any) => {
             0 0 15px rgba(255, 255, 255, 0.2)  // Ánh sáng yếu hơn
           `,
     animation: `${fadeInOut}`,
+    fontSize: {
+      xs: 16,
+      md: 20,
+    },
   };
   return (
     <Box>
@@ -55,8 +59,13 @@ const OverlaySection = ({ fadeInOut }: any) => {
             alignItems: 'center',
           }}
         >
-          <CircularProgress color='warning'/>
-          <Typography mx={4} variant='h1' fontWeight={'bold'} sx={galaxyTextStyle}>
+          <Typography
+            textAlign={'center'}
+            mx={4}
+            variant='h3'
+            fontWeight={'bold'}
+            sx={galaxyTextStyle}
+          >
             KHOA CÔNG NGHỆ THÔNG TIN
           </Typography>
         </Box>

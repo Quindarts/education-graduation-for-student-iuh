@@ -167,7 +167,7 @@ function AuthLayout() {
             },
             bgcolor: 'white',
             width: {
-              sm: '100%',
+              sm: '100vw',
               md: '100%',
               lg: 'calc(50% - 4px)',
             },
