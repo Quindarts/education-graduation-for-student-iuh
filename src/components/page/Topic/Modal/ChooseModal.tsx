@@ -28,13 +28,13 @@ function ChooseModal(props: any) {
         flexDirection='column'
         alignItems='center'
         justifyContent='center'
-        px={10}
+        px={'10px'}
         py={12}
       >
         <Box borderRadius='50%' padding={6} sx={{ background: 'rgba(49, 255, 159, 0.2)' }}>
           <Icon color='#0F9B6CD4' height={70} width={70} icon='fluent:book-add-20-filled' />
         </Box>
-        <Typography variant='h3' mt={10} mb={14}>
+        <Typography variant='h3' textAlign={'center'} mt={10} mb={14}>
           Bạn có chắc chắn muốn đăng ký đề tài này?
         </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>

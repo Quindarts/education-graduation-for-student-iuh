@@ -2,22 +2,29 @@ import Modal from '@/components/ui/Modal';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 interface AssignAdminModalProps {
   onClose: () => void;
   open: boolean;
   groupId: string;
   studentId: string;
   studentName: string;
+  refetch?: () => any;
 }
 function AssignAdminModal(props: AssignAdminModalProps) {
-  const { onClose, open, groupId, studentId, studentName } = props;
+  const { onClose, open, groupId, refetch, studentId, studentName } = props;
   const { OnAssignAdminGroupStudent } = useGroupStudent();
-  const { mutate: assignAdmin } = OnAssignAdminGroupStudent();
+  const { mutate: assignAdmin, isSuccess } = OnAssignAdminGroupStudent();
   const handleSubmit = () => {
     const data = { groupId, studentId };
     assignAdmin(data);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+      refetch();
+    }
+  }, [isSuccess]);
   return (
     <Modal onClose={onClose} open={open}>
       <Box
@@ -32,7 +39,7 @@ function AssignAdminModal(props: AssignAdminModalProps) {
         <Box borderRadius='50%' padding={6} sx={{ background: 'rgba(61, 113, 232, 0.2)' }}>
           <Icon color='#0F429BD4' height={70} width={70} icon='fluent-mdl2:party-leader' />
         </Box>
-        <Typography variant='h3' mt={10} mb={14}>
+        <Typography textAlign={'center'} variant='h3' mt={10} mb={14}>
           Chọn {studentName} làm Trưởng nhóm ?
         </Typography>
         <Box width='100%' display='flex' gap={6} marginTop={1}>
@@ -42,7 +49,7 @@ function AssignAdminModal(props: AssignAdminModalProps) {
           </Button>
           <Button onClick={handleSubmit} sx={{ width: '50%' }} color='success' variant='contained'>
             <Icon width={20} style={{ marginRight: 4 }} icon='subway:tick' />
-           Chấp nhận
+            Chấp nhận
           </Button>
         </Box>
       </Box>

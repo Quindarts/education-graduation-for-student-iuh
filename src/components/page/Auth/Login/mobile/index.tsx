@@ -52,11 +52,10 @@ function LoginMobile() {
     >
       <img width={212} src='/images/login_mobile.png' />
       <Typography fontSize={'36px'} variant='body1' fontWeight={'bold'} color='#000000'>
-        ĐĂNG NHẬP{' '}
+        Đăng nhập
       </Typography>
-      <Box component='form' onSubmit={handleSubmit} width={'100%'} mt={8} method='POST'>
+      <Box component='form' onSubmit={handleSubmit} width={'100%'} mt={'20px'} method='POST'>
         <CustomTextField
-          // label='Tên đăng nhập'
           error={Boolean(errors.username) && touched.username}
           helperText={touched.username && errors.username}
           value={values.username}
@@ -65,17 +64,18 @@ function LoginMobile() {
           onBlur={handleBlur}
           onChange={handleChange}
           placeholder='Nhập tên đăng nhập'
+          label='Mã số sinh viên'
           id='username'
           name='username'
         />
         <CustomTextField
-          // label='Mật khẩu'
           error={Boolean(errors.password) && touched.password}
           helperText={touched.password && errors.password}
           onBlur={handleBlur}
           size='medium'
           required
           onChange={handleChange}
+          label='Mật khẩu'
           placeholder='Nhập mật khẩu'
           id='password'
           name='password'
@@ -110,18 +110,18 @@ function LoginMobile() {
           onClick={() => navigate('/auth/forgot-password')}
           sx={{
             '&:hover': {
-              color: '#666666',
+              color: 'grey.500',
               cursor: 'pointer',
             },
           }}
-          color='initial'
+          color='grey.600'
           textAlign={'end'}
         >
           Quên mật khẩu ?
         </Typography>
         <Button
           variant='contained'
-          sx={{ height: 50, fontSize: 17, textTransform: 'uppercase' }}
+          sx={{ height: 50, fontSize: 17, marginTop: '20px' }}
           type='submit'
           fullWidth
           color='primary'

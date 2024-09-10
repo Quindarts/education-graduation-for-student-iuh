@@ -23,6 +23,7 @@ export const APP_ROUTES = {
     DETAIL: "/topics/:topic_id",
     STUDENT: '/topics/my-topic'
   },
+
   EVALUATION: {
     MANAGEMENT: '/evaluations',
   },

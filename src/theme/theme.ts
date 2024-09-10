@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import components from './variables/components';
 import palette from './variables/palette';
 

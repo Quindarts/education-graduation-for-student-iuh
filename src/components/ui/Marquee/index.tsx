@@ -1,25 +1,32 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Marquee from 'react-fast-marquee';
 const MarqueeRunning = () => {
   return (
     <Box
-      sx={{ py: 10, bgcolor: 'error.dark', color: 'white', textTransform: 'uppercase' }}
+      sx={{
+        py: {
+          xs: 4,
+          md: 10,
+        },
+        bgcolor: 'error.dark',
+        color: 'white',
+        textTransform: 'uppercase',
+      }}
       className='running'
     >
       <Marquee pauseOnHover speed={70} gradientColor='white'>
         <Box className='running__text' mx={40}>
-          <span className='icon'>
+          <Typography className='icon'>
             Trang Quản lý Khóa luận Tốt nghiệp Khoa công nghệ thông tin
-          </span>
+          </Typography>
         </Box>
         <Box className='running__text' mx={40}>
-          <span className='icon'>
-            Trang sinh viên: Thông báo mới nhất về đăng kí Khóa luận Tốt nghiệp Học kì I 2024 - 2025
-          </span>
+          <Typography className='icon'>
+            Trang sinh viên: Thông báo mới nhất về đăng kí Khóa luận Tốt nghiệp
+          </Typography>
         </Box>
         <Box className='running__text' mx={40}>
-          <span className='icon'>Thời gian mở đăng ký nhóm sinh viên:</span>
-          <span className='text'> 08/2024</span>
+          <Typography className='icon'>Thời gian mở đăng ký nhóm sinh viên:</Typography>
         </Box>
       </Marquee>
     </Box>

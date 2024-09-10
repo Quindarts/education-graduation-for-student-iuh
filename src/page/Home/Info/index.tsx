@@ -105,8 +105,17 @@ function InfoPropjectSection() {
                 }}
                 color='#FF7D27'
               >
-                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
-                  <Icon width={16} height={16} color='white' icon='subway:tick' />
+                <Box
+                  bgcolor='#FF7D27'
+                  borderRadius={'50%'}
+                  sx={{
+                    px: {
+                      xs: 2,
+                      md: 3,
+                    },
+                  }}
+                >
+                  <Icon width={16} color='white' icon='subway:tick' />
                 </Box>
                 <Typography variant='h5'>Tăng cường hiệu quả quản lý và theo dõi</Typography>
               </Box>
@@ -127,7 +136,16 @@ function InfoPropjectSection() {
                 color='#FF7D27'
                 my={8}
               >
-                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
+                <Box
+                  bgcolor='#FF7D27'
+                  borderRadius={'50%'}
+                  sx={{
+                    px: {
+                      xs: 2,
+                      md: 3,
+                    },
+                  }}
+                >
                   <Icon width={16} height={16} color='white' icon='subway:tick' />
                 </Box>
                 <Typography variant='h5'> Hỗ trợ nâng cao chất lượng khóa luận</Typography>
@@ -149,7 +167,16 @@ function InfoPropjectSection() {
                 color='#FF7D27'
                 my={8}
               >
-                <Box bgcolor='#FF7D27' borderRadius={'50%'} pt={3} pb={2} px={4}>
+                <Box
+                  bgcolor='#FF7D27'
+                  borderRadius={'50%'}
+                  sx={{
+                    px: {
+                      xs: 2,
+                      md: 3,
+                    },
+                  }}
+                >
                   <Icon width={16} height={16} color='white' icon='subway:tick' />
                 </Box>
                 <Typography variant='h5'>Bảo mật thông tin và dễ dàng truy cập tài liệu</Typography>

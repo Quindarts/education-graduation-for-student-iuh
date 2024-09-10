@@ -116,8 +116,22 @@ export default function Table(props: Props) {
           '& .MuiDataGrid-columnHeaders': {
             position: 'relative',
             borderColor: 'text.disabled',
-            bgcolor: 'primary.dark',
-            color: 'white',
+            bgcolor: {
+              xs: 'grey.50',
+              md: 'primary.dark',
+            },
+            color: {
+              xs: 'grey.700',
+              md: 'white',
+            },
+            fontSize: {
+              xs: 16,
+              md: 'auto',
+            },
+            fontWeight: {
+              xs: 'bold',
+              md: 'auto',
+            },
           },
 
           '& .MuiDataGrid-columnHeaderst > .MuiDataGrid-virtualScroller': {

@@ -7,6 +7,50 @@ import useSidebarStore from '@/store/ui/sidebarStore';
 import { Box } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { useMobile } from '@/hook/ui/useMobile';
+import BottomNavigationApp from '@/components/shared/BottomNavigation';
+// import PageWrapper from '@/components/ui/PaperWrapper';
+
+const DesktopUI = ({ isOpen }) => {
+  return (
+    <Box
+      display='flex'
+      sx={{
+        height: '100%',
+        overflowX: 'hidden',
+      }}
+    >
+      <Sidebar />
+      <Box
+        height='100%'
+        component='section'
+        sx={{
+          maxWidth: '100vw',
+          width: '100%',
+          minHeight: '100vh',
+        }}
+      >
+        <Box
+          pt={12}
+          pb={6}
+          mt={20}
+          sx={{
+            height: '100%',
+            width: 'auto',
+            transition: 'all 0.2s ease-in',
+            marginLeft: isOpen ? '270px' : '90px',
+            marginRight: 10,
+          }}
+        >
+          <Navbar />
+          <React.Suspense fallback={<GlobalLoading />}>
+            <Outlet />
+          </React.Suspense>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
 function AdminLayout() {
   const { isOpen } = useSidebarStore();
@@ -16,45 +60,29 @@ function AdminLayout() {
 
   const { me } = HandleGetme();
   HandleGetCurrentTerm(`${me?.user?.majorId}`);
+  const { isMobile } = useMobile();
+
   return (
-    <>
-      <Box
-        display='flex'
-        sx={{
-          height: '100%',
-          overflowX: 'hidden',
-        }}
-      >
-        <Sidebar />
+    <Box>
+      {isMobile ? (
         <Box
-          height='100%'
-          component='section'
           sx={{
             maxWidth: '100vw',
-            width: '100%',
-            minHeight: '100vh',
           }}
         >
-          <Box
-            pt={12}
-            pb={6}
-            mt={20}
-            sx={{
-              height: '100%',
-              width: 'auto',
-              transition: 'all 0.2s ease-in',
-              marginLeft: isOpen ? '270px' : '90px',
-              marginRight: 10,
-            }}
-          >
-            <Navbar />
-            <React.Suspense fallback={<GlobalLoading />}>
-              <Outlet />
-            </React.Suspense>
+          {/* <PageWrapper> */}
+          <React.Suspense fallback={<GlobalLoading />}>
+            <Outlet />
+          </React.Suspense>
+          {/* </PageWrapper> */}
+          <Box mt={50}>
+            <BottomNavigationApp />
           </Box>
         </Box>
-      </Box>
-    </>
+      ) : (
+        <DesktopUI isOpen={isOpen} />
+      )}
+    </Box>
   );
 }
 

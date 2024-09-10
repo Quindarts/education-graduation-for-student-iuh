@@ -25,7 +25,7 @@ export const checkColorStatusPartTerm = (status?: string) => {
       color = '#b23838';
       break;
     case ENUM_STATUS_OF_DATE_TERM.INACTIVE:
-      color = '#1168aa';
+      color = '#2c8cd6';
       break;
   }
   return color;

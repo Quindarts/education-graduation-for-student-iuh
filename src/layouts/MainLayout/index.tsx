@@ -14,14 +14,14 @@ function MainLayout() {
           backgroundSize: 'cover',
           overflowY: 'hidden',
           backgroundClip: 'revert',
-          height:'100vh'
+          height: '100vh',
         }}
         component={'section'}
       >
         <Header />
         <Box sx={{ overflowY: 'auto', height: '100vh', width: 'full', mt: '70px' }}>
-            <Outlet />
-            <Footer />
+          <Outlet />
+          <Footer />
         </Box>
       </Box>
     </>

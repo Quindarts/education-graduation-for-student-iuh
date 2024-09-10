@@ -2,15 +2,21 @@ import Modal from '@/components/ui/Modal';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Icon } from '@iconify/react';
 import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function RemoveMemberGroupModal(props: any) {
-  const { onClose, open, groupId, studentId, studentName } = props;
+  const { onClose, open, groupId, studentId, refetch, studentName } = props;
   const { OnRemoveMemberByAdmin } = useGroupStudent();
-  const { mutate: leave } = OnRemoveMemberByAdmin(groupId);
+  const { mutate: leave, isSuccess } = OnRemoveMemberByAdmin(groupId);
   const handleSubmit = () => {
     leave(studentId);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+      refetch();
+    }
+  }, [isSuccess]);
   return (
     <Modal onClose={onClose} open={open}>
       <Box
