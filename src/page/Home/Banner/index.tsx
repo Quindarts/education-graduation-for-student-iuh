@@ -9,8 +9,8 @@ import bn1 from '/images/sl01.webp';
 import bn2 from '/images/sl02.webp';
 import bn3 from '/images/sl03.webp';
 import bn4 from '/images/sl04.webp';
-// import bn5 from '/images/sl05.webp';
-// import bn6 from '/images/sl06.webp';
+import bn5 from '/images/sl05.webp';
+import bn6 from '/images/sl06.webp';
 import { Box, Typography } from '@mui/material';
 import './BannerSection.css'; // Import your CSS file
 
@@ -42,11 +42,11 @@ function BannerSection() {
         autoplay={{ delay: 3000, disableOnInteraction: false }}
       >
         <SwiperSlide className='zoomSlide'>
-          {/* <img
+          <img
             style={{ display: 'block', height: '540px', objectFit: 'cover', width: '100%' }}
             src={bn5}
             alt='Toàn cảnh khuôn viên Đại học Công nghiệp TP.HCM'
-          /> */}
+          />
           <Typography
             variant='h4'
             sx={{
@@ -63,11 +63,11 @@ function BannerSection() {
           </Typography>
         </SwiperSlide>
         <SwiperSlide className='zoomSlide'>
-          {/* <img
+          <img
             style={{ display: 'block', height: '540px', objectFit: 'cover', width: '100%' }}
             src={bn6}
             alt='Sinh viên Đại học Công nghiệp TP.HCM'
-          /> */}
+          />
           <Typography
             variant='h4'
             sx={{
