@@ -2,6 +2,7 @@ import CustomTextField from '@/components/ui/CustomTextField';
 import SekeletonUI from '@/components/ui/Sekeleton';
 import TitleManager from '@/components/ui/Title';
 import useTopic from '@/hook/api/useTopic';
+import { stripHtmlTags } from '@/utils/convertHtmlText';
 import { Icon } from '@iconify/react';
 import {
   Accordion,
@@ -22,20 +23,15 @@ function TopicOfGroupSection({ topicId }: any) {
   const navigate = useNavigate();
   return (
     <>
-      <Accordion disableGutters sx={{ px: 10, borderTop: '5px solid #b10000' }} defaultExpanded>
+      {/**  LECTURER SUPPORT */}
+      <Accordion disableGutters sx={{ px: 10 }}>
         <AccordionSummary
           expandIcon={<GridExpandMoreIcon color='primary' />}
           aria-controls='panel-topic-content'
           id='panel-topic-header'
         >
-          <TitleManager
-            textTransform={'uppercase'}
-            color={'grey.800'}
-            icon='ri:user-2-fill'
-            variant='h6'
-            fontWeight={600}
-          >
-            Thông tin giảng viên hướng dẫn
+          <TitleManager color={'grey.900'} fontWeight={500} variant='h5'>
+            Giảng viên hướng dẫn
           </TitleManager>
         </AccordionSummary>
         <AccordionDetails>
@@ -43,7 +39,6 @@ function TopicOfGroupSection({ topicId }: any) {
             <SekeletonUI />
           ) : (
             <>
-              {' '}
               {!data?.topic ? (
                 <Box
                   mx={'auto'}
@@ -75,14 +70,14 @@ function TopicOfGroupSection({ topicId }: any) {
                   </Box>
                 </Box>
               ) : (
-                <Box sx={{ lineHeight: '2em' }} px={10} pb={8}>
-                  <Typography variant='h5' fontWeight={500} color='grey.700'>
+                <Box sx={{ lineHeight: '2em' }} px={10} py={4}>
+                  <Typography variant='h5' fontWeight={400} color='grey.700'>
                     Họ và tên giảng viên: {'  '} {data?.topic?.lecturerTerm?.lecturer.fullName}
                   </Typography>
-                  <Typography variant='h6' fontWeight={500} color='grey.700'>
+                  <Typography variant='h6' fontWeight={400} color='grey.700'>
                     Email liên hệ: {'  '} {data?.topic.lecturerTerm?.lecturer.email}
                   </Typography>
-                  <Typography variant='h6' fontWeight={500} color='grey.700'>
+                  <Typography variant='h6' fontWeight={400} color='grey.700'>
                     Số điện thoại: {'  '} {data?.topic.lecturerTerm?.lecturer.phone}
                   </Typography>
                 </Box>
@@ -91,23 +86,17 @@ function TopicOfGroupSection({ topicId }: any) {
           )}
         </AccordionDetails>
       </Accordion>
-      <Accordion disableGutters sx={{ px: 10, borderTop: '5px solid #0052b1' }}>
+      <Accordion disableGutters sx={{ px: 10, borderTop: '1px solid #4a97f0' }}>
         <AccordionSummary
           expandIcon={<GridExpandMoreIcon color='primary' />}
           aria-controls='panel-topic-content'
           id='panel-topic-header'
         >
-          <TitleManager
-            variant='h6'
-            fontWeight={600}
-            color='primary.dark'
-            textTransform={'uppercase'}
-            icon='material-symbols:topic-sharp'
-          >
-            Tên đề tài: {'  '} {data?.topic?.name}
+          <TitleManager variant='h5' fontWeight={'500'} color={'primary.dark'}>
+            Đề tài: {'  '} {data?.topic?.name}
           </TitleManager>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ bgcolor: 'white', borderRadius: 3, px: 10 }}>
           {isLoading || isFetching ? (
             <SekeletonUI />
           ) : (
@@ -144,31 +133,30 @@ function TopicOfGroupSection({ topicId }: any) {
                     <CustomTextField
                       disabled
                       multiline
-                      value={data?.topic?.description}
+                      value={stripHtmlTags(data?.topic?.description)}
                       maxRows={8}
                     />
-                    <Typography fontWeight={400} px={2} variant='body1'></Typography>
                   </Typography>
                   <Typography my={4} fontWeight={500} variant='h6'>
                     Dự kiến sản phẩm nghiên cứu của Đề tài và khả năng ứng dụng
                     <CustomTextField
                       disabled
                       multiline
-                      value={data?.topic?.expectedResult}
+                      value={stripHtmlTags(data?.topic?.expectedResult)}
                       maxRows={8}
                     />
                     <Typography fontWeight={400} px={2} variant='body1'></Typography>
                   </Typography>
                   <Typography my={4} fontWeight={500} variant='h6'>
                     Mục tiêu cần đạt được
-                    <CustomTextField disabled multiline value={data?.topic?.target} maxRows={8} />
+                    <CustomTextField disabled multiline value={stripHtmlTags(data?.topic?.target)} maxRows={8} />
                   </Typography>
                   <Typography my={4} fontWeight={500} variant='h6'>
                     Yêu cầu đầu vào
                     <CustomTextField
                       disabled
                       multiline
-                      value={data?.topic?.requireInput}
+                      value={stripHtmlTags(data?.topic?.requireInput)}
                       maxRows={8}
                     />
                   </Typography>
@@ -177,7 +165,7 @@ function TopicOfGroupSection({ topicId }: any) {
                     <CustomTextField
                       disabled
                       multiline
-                      value={data?.topic?.standardOutput}
+                      value={stripHtmlTags(data?.topic?.standardOutput)}
                       maxRows={12}
                     />
                     <Typography fontWeight={400} px={2} variant='body1'></Typography>

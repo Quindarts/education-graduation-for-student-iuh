@@ -16,8 +16,8 @@ export const color = {
   gray_700: '#495057',
   gray_800: '#343a40',
   gray_900: '#212529',
-  green: '#55AD9B',
-  dark_green: '#09735C',
+  green: '#3FA784',
+  dark_green: '#066D54 ',
   light_green: '#dbecf0',
   blue: '#3577f1',
   light_blue: '#299cdb',
@@ -38,7 +38,7 @@ export const color = {
 const palette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: color.dark_indigo,
+    main: color.indigo,
     light: color.light_blue,
     dark: color.dark_indigo,
   },

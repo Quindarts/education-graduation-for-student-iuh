@@ -4,7 +4,7 @@ import useTermStore from '@/store/termStore';
 import { checkGender } from '@/utils/validations/person.validation';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 import { Icon } from '@iconify/react';
-import { Box, Card, CardContent, Typography, Button } from '@mui/material';
+import { Box, Card, CardContent, Typography, Button, CardActions } from '@mui/material';
 import React, { useState } from 'react';
 
 function StudentCard({
@@ -40,88 +40,97 @@ function StudentCard({
       <Card
         sx={{
           width: '100%',
-          maxWidth: 'calc(100% - 16px)',
           backgroundColor: '#fff',
-          border: '2px solid #e4f1fe',
-          color: 'primary.dark',
-          margin: 'auto',
           marginTop: 4,
+          px: 20,
+          py:10,
           transition: 'transform 0.3s, box-shadow 0.3s',
-          '&:hover': {
-            transform: 'scale(1.01)',
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
-          },
+          borderRadius:3,
         }}
       >
-        <CardContent sx={{ px: 10, py: 2 }}>
-          <Typography sx={{ fontSize: 20, fontWeight: 'bold', color: 'primary.dark' }} gutterBottom>
-            Sinh viên {index}: {name}
+        <CardContent sx={{ px: 10, display: 'flex', gap: 10 }}>
+          <img
+            width={100}
+            height={100}
+            style={{
+              filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))',
+            }}
+            src='/images/man.png'
+          />
+
+          <Box>
             {isAdmin && (
               <>
-                <Typography variant='h6' fontWeight={'bold'} color='error.main'>
-                  Vai trò: Trưởng Nhóm
+                <Typography variant='h6' fontWeight={'600'} color='#faa931'>
+                  Trưởng Nhóm
                 </Typography>
               </>
             )}
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 10 }}>
-            <Box width={'300px'}>
-              <Typography sx={{ fontSize: 16, marginBottom: 1, color: 'primary.dark' }}>
-                Mã số sinh viên: {mssv}
-              </Typography>
-              <Typography variant='h6' component='p'>
-                Email liên hệ: {email ? email : 'Đang cập nhật'}
-              </Typography>
+            <Typography
+              sx={{ fontSize: 20, fontWeight: '500', color: 'primary.dark  ' }}
+              gutterBottom
+            >
+              Thành viên {index}: {name}
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 10, width: '100%' }}>
+              <Box>
+                <Typography sx={{ fontSize: 16, marginBottom: 1 }}>
+                  Mã số sinh viên: {mssv}
+                </Typography>
+                <Typography variant='h6' component='p'>
+                  Email liên hệ: {email ? email : 'Đang cập nhật'}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant='h6' component='p'>
+                  Số điện thoại: {phone ? phone : 'Đang cập nhật'}
+                </Typography>
+                <Typography variant='h6' component='p'>
+                  Giới tính: {checkGender(gender)}
+                </Typography>
+              </Box>
             </Box>
-            <Box width={'200px'}>
-              <Typography variant='h6' component='p'>
-                Số điện thoại: {phone}
-              </Typography>
-              <Typography variant='h6' component='p'>
-                Giới tính: {checkGender(gender)}
-              </Typography>
-            </Box>
-          </Box>
-          <Box justifyContent={'end'} display={'flex'} gap={4}>
-            {!isMe && !isAdmin && (
-              <>
-                <Button
-                  disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
-                  onClick={handleOpenAssignAdmin}
-                  variant='contained'
-                  color='success'
-                >
-                  <Icon icon='clarity:assign-user-solid' />
-                  Chọn làm trưởng nhóm
-                </Button>
-                <Button
-                  onClick={() => handleOpenRemoveMember()}
-                  variant='contained'
-                  color='error'
-                  disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
-                >
-                  <Icon icon='line-md:remove' />
-                  Xóa khỏi nhóm
-                </Button>
-              </>
-            )}
           </Box>
         </CardContent>
+        {!isMe && !isAdmin && (
+          <Box justifyContent={'end'} display={'flex'} height={40} gap={4}>
+            <>
+              <Button
+                disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
+                onClick={handleOpenAssignAdmin}
+                variant='contained'
+                color='success' 
+              >
+                <Icon icon='clarity:assign-user-solid' />
+                Chọn làm trưởng nhóm
+              </Button>
+              <Button
+                onClick={() => handleOpenRemoveMember()}
+                variant='contained'
+                color='error'
+                disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
+              >
+                <Icon icon='line-md:remove' />
+                Xóa khỏi nhóm
+              </Button>
+            </>
+          </Box>
+        )}
       </Card>
 
-        <AssignAdminModal
-          groupId={groupId}
-          studentId={studentId}
-          studentName={name}
-          open={openAssignAdmin}
-          onClose={handleCloseAssignAdmin}
-        />
-        <RemoveMemberGroupModal
-          groupId={groupId}
-          studentId={studentId}
-          studentName={name}
-          open={openRemoveMember}
-          onClose={handleCloseRemoveMember}
+      <AssignAdminModal
+        groupId={groupId}
+        studentId={studentId}
+        studentName={name}
+        open={openAssignAdmin}
+        onClose={handleCloseAssignAdmin}
+      />
+      <RemoveMemberGroupModal
+        groupId={groupId}
+        studentId={studentId}
+        studentName={name}
+        open={openRemoveMember}
+        onClose={handleCloseRemoveMember}
       />
     </>
   );

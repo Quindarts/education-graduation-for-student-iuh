@@ -29,11 +29,11 @@ function MyGroupStudentDesktop() {
     refetch();
   }, []);
   return (
-    <Paper sx={{ px: 10, py: 20 }} elevation={1}>
-      <TitleManager icon='ic:baseline-home' textTransform={'uppercase'}>
-        Nhóm Đề tài của tôi
+    <Paper sx={{ mx: 30, my: 10, px: 20, py: 10, borderRadius: 4 }} elevation={1}>
+      <TitleManager fontWeight={'bold'} variant='h4' icon='mingcute:group-3-fill'>
+        Nhóm sinh viên {data?.group?.info.name}
       </TitleManager>
-      <Box width={'100%'} height={500}>
+      <Box width={'100%'} minHeight={500}>
         {' '}
         {isLoading ? (
           <SekeletonUI />
@@ -71,19 +71,7 @@ function MyGroupStudentDesktop() {
               </Box>
             ) : (
               <>
-                <Box height={500} flex={1} px={4} py={2}>
-                  <Box display={'flex'}>
-                    <TitleManager
-                      mx={10}
-                      mt={10}
-                      variant='h6'
-                      component={'u'}
-                      textTransform={'uppercase'}
-                      color={'success'}
-                    >
-                      {data?.group?.info.name}
-                    </TitleManager>
-                  </Box>
+                <Box minHeight={500} flex={1} px={4} py={2}>
                   <Box mt={4} display={'flex'} flexDirection={'column'}>
                     <Box width={'full'}>
                       {data?.group?.members.map((mem: any, index: number) => (
@@ -111,7 +99,7 @@ function MyGroupStudentDesktop() {
                       justifyContent={'space-between'}
                     >
                       <Button onClick={() => navigate('/topics/my-topic')} sx={{ ml: 4 }}>
-                        Xem Đề tài của tôi
+                        Xem đề tài
                       </Button>
                       <Button
                         onClick={() => handleOpenLeaveModal(data?.group?.info.id)}

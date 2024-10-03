@@ -21,10 +21,7 @@ const DropDown: React.FC<SelectPropsType> = (props: SelectPropsType) => {
   return (
     <Box>
       {label && (
-        <InputLabel
-          htmlFor={id}
-          sx={{ mb: 4, color: 'grey.900', fontWeight: '500', fontSize: '13px' }}
-        >
+        <InputLabel htmlFor={id} sx={{ mb: 4,color:'grey.800', fontWeight: 'bold', fontSize: '14px' }}>
           {label}
         </InputLabel>
       )}

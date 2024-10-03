@@ -33,9 +33,22 @@ function ForgotPasswordDesktop() {
   const navigate = useNavigate();
 
   return (
-    <Grid container spacing={2} pb={8}>
+    <Grid container spacing={2} pb={8} sx={{}}>
       <Grid item xs={12}>
-        <Card sx={{ boxShadow: '0px 0px 0px white' }}>
+        <Card
+          sx={{
+            boxShadow:
+              'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;',
+            border: '1px solid #6D6E6E44',
+            bgcolor: 'rgba(240, 249, 250, 0.684)',
+            px: 20,
+            py: 10,
+            width: {
+              xs: '100%',
+              lg: 500,
+            },
+          }}
+        >
           <CardContent>
             <Box
               sx={{
@@ -44,12 +57,13 @@ function ForgotPasswordDesktop() {
               }}
             >
               <Typography
-                variant='h5'
+                variant='h3'
                 mt={4}
                 fontWeight={600}
                 color={'primary.main'}
                 mb={2}
                 textTransform={'uppercase'}
+                textAlign={'center'}
               >
                 Quên Mật Khẩu
               </Typography>
@@ -61,12 +75,23 @@ function ForgotPasswordDesktop() {
                 helperText={touched.username && errors.username}
                 value={values.username}
                 onBlur={handleBlur}
+                size='medium'
                 onChange={handleChange}
                 placeholder='01xxxxx'
                 id='username'
                 name='username'
               />
-              <Button variant='contained' type='submit' fullWidth color='primary'>
+              <Button
+                variant='contained'
+                type='submit'
+                size='large'
+                sx={{
+                  height: 50,
+                  fontSize:14
+                }}
+                fullWidth
+                color='primary'
+              >
                 Quên mật khẩu
                 {isPending && (
                   <CircularProgress

@@ -24,7 +24,7 @@ function MyTopicDesktop() {
     refetch();
   }, []);
   return (
-    <Paper elevation={1}>
+    <Paper elevation={1} sx={{ mt: 20, mx: 30 }}>
       {isLoading ? (
         <SekeletonUI />
       ) : (
@@ -35,7 +35,7 @@ function MyTopicDesktop() {
               <Button
                 onClick={() => handleOpenModalCancel(data?.group.info?.id)}
                 size='large'
-                sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}
+                sx={{ fontWeight: '400' }}
                 color='error'
                 disabled={partOfTerm.ChooseTopic?.status === ENUM_STATUS_OF_DATE_TERM.EXPIRED}
                 variant='contained'

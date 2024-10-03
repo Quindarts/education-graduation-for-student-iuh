@@ -43,12 +43,17 @@ function LoginDesktop() {
   return (
     <Card
       sx={{
-        boxShadow: '0px 0px 0px white',
+        boxShadow:
+          'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;',
+        border: '1px solid #D9E5FADE',
+        bgcolor: 'rgba(234, 248, 250, 0.481)',
+        px: 20,
+        py: 40,
         width: {
           xs: '100%',
-          lg: 600,
+          lg: 500,
         },
-        p: 0,
+        // p: 0,
       }}
     >
       <CardContent
@@ -66,22 +71,27 @@ function LoginDesktop() {
               xs: 20,
               md: 0,
             },
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
+          <img src='/images/logo-light.webp' width={150} />
           <Typography
-            variant='h3'
+            variant='h2'
             mt={10}
-            fontWeight={600}
+            fontWeight={700}
             sx={{
+              borderBottom: '2px solid #198df2',
+              pb: 2,
               textAlign: {
                 xs: 'center',
                 lg: 'start',
               },
             }}
-            color={'primary.dark'}
+            color={'white'}
             textTransform={'uppercase'}
           >
-            Đăng nhập
+            Đăng nhập hệ thống
           </Typography>
         </Box>
         <Box component='form' onSubmit={handleSubmit} mt={8} method='POST'>
@@ -93,6 +103,7 @@ function LoginDesktop() {
             required
             onBlur={handleBlur}
             onChange={handleChange}
+            size='medium'
             placeholder='Nhập tên đăng nhập'
             id='username'
             name='username'
@@ -103,6 +114,7 @@ function LoginDesktop() {
             helperText={touched.password && errors.password}
             onBlur={handleBlur}
             required
+            size='medium'
             onChange={handleChange}
             placeholder='Nhập mật khẩu'
             id='password'
@@ -132,22 +144,15 @@ function LoginDesktop() {
               ),
             }}
           />
-          <Typography
-            variant='body1'
-            mb={4}
-            onClick={() => navigate('/auth/forgot-password')}
-            sx={{
-              '&:hover': {
-                color: 'primary.dark',
-                cursor: 'pointer',
-              },
-            }}
-            color='initial'
-            textAlign={'end'}
+
+          <Button
+            variant='contained'
+            type='submit'
+            size='large'
+            sx={{ height: 50, mt: 10 }}
+            fullWidth
+            color='primary'
           >
-            Quên mật khẩu ?
-          </Typography>
-          <Button variant='contained' type='submit' fullWidth color='primary'>
             Đăng nhập
             {isPending && (
               <CircularProgress
@@ -156,6 +161,22 @@ function LoginDesktop() {
               />
             )}
           </Button>
+          <Typography
+            variant='h6'
+            mt={10}
+            onClick={() => navigate('/auth/forgot-password')}
+            sx={{
+              color: 'primary.main',
+              '&:hover': {
+                color: 'primary.dark',
+                cursor: 'pointer',
+              },
+            }}
+            color='initial'
+            textAlign={'center'}
+          >
+            Quên mật khẩu ?
+          </Typography>
         </Box>
       </CardContent>
     </Card>

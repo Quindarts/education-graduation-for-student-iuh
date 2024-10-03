@@ -5,78 +5,66 @@ import { Outlet, useNavigate } from 'react-router-dom';
 function AuthLayout() {
   const navigate = useNavigate();
   return (
-    <Box>
+    <Box
+      position={'relative'}
+      gap={4}
+      justifyContent={'center'}
+      display={'flex'}
+      flexWrap={'wrap'}
+      sx={{
+        minHeight: {
+          lg: '100vh',
+        },
+        flexDirection: {
+          xs: 'column',
+          lg: 'row',
+        },
+        backgroundImage: 'url(/images/bgiuh.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Lớp overlay phủ toàn bộ màn hình */}
       <Box
-        position={'relative'}
-        gap={4}
-        justifyContent={'center'}
-        display={'flex'}
-        flexWrap={'wrap'}
         sx={{
-          minHeight: {
-            lg: '100vh',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(55, 53, 53, 0.5)', 
+          backdropFilter: 'blur(10px)', 
+          zIndex: 1, 
+        }}
+      />
+
+      <Box
+        sx={{
+          order: {
+            xs: 2,
+            md: 1,
           },
-          flexDirection: {
-            xs: 'column',
-            lg: 'row',
+          position: 'relative',
+          width: {
+            sm: '100%',
+            md: '100%',
+            lg: 'calc(50% - 4px)',
           },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 2, // Đảm bảo nội dung nằm trên lớp overlay
         }}
       >
         <Box
           sx={{
-            top: 0,
-            left: {
-              xs: '-205px',
-              md: 0,
-            },
-            right: {
-              xs: 0,
-            },
-          }}
-          position={'absolute'}
-        >
-          <Box alignItems={'center'} flexDirection={'column'} display={'flex'}>
-            <Box
-              sx={{
-                width: {
-                  xs: 100,
-                  lg: 150,
-                },
-              }}
-            >
-              <img width={'100%'} src='/images/logo_login.webp' alt='' />
-            </Box>
-            <Typography
-              sx={{
-                display: {
-                  xs: 'none',
-                  lg: 'block',
-                },
-              }}
-              textAlign={'center'}
-              fontWeight={'700'}
-              variant='h1'
-              color='grey.600'
-            >
-              Đại học Công nghiệp Thành phố Hồ Chí Minh
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            order: {
-              xs: 2,
-              md: 1,
-            },
-            bgcolor: 'grey.100',
-            width: {
-              sm: '100%',
-              md: '100%',
-              lg: 'calc(50% - 4px)',
-            },
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            position: 'relative', // Để nội dung nằm trên lớp phủ
+            bgcolor: 'rgba(173, 216, 230,0.7)',
+            px: 20,
+            py: 10,
+            borderRadius: 2,
+            color: 'white',
           }}
         >
           <Box
@@ -98,7 +86,7 @@ function AuthLayout() {
             >
               Hướng dẫn
             </Typography>
-            <Typography variant='h3' textAlign={'center'} fontWeight={'500'} color='grey.700'>
+            <Typography variant='h3' textAlign={'center'} fontWeight={'bold'} color='error.main'>
               Trang quản lý khóa luận tốt nghiệp khoa công nghệ thông tin
             </Typography>
             <Box
@@ -148,7 +136,7 @@ function AuthLayout() {
                   </li>
                 </ol>
               </Box>
-              <Button sx={{ mt: 5 }} onClick={() => navigate('/home')} size='large'>
+              <Button sx={{ mt: 5 }} color='error' onClick={() => navigate('/home')} size='large'>
                 <Icon
                   icon='ic:baseline-home'
                   width={20}
@@ -159,24 +147,26 @@ function AuthLayout() {
             </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            order: {
-              xs: 1,
-              md: 2,
-            },
-            bgcolor: 'white',
-            width: {
-              sm: '100vw',
-              md: '100%',
-              lg: 'calc(50% - 4px)',
-            },
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <Outlet />
-        </Box>
+      </Box>
+      <Box
+        sx={{
+          order: {
+            xs: 1,
+            md: 2,
+          },
+          
+          width: {
+            sm: '100vw',
+            md: '100%',
+            lg: 'calc(50% - 4px)',
+          },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 2, 
+        }}
+      >
+        <Outlet />
       </Box>
     </Box>
   );

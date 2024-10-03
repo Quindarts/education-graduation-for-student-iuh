@@ -30,9 +30,9 @@ function EvaluationManagementPage() {
   const { HandleGetAllEvaluationByType } = useEvaluation();
   const { evaluations, isFetching, isLoading } = HandleGetAllEvaluationByType(currentTypeReview);
   return (
-    <Paper sx={{ py: 10, px: 10 }} elevation={1}>
+    <Paper sx={{ pt:4, pb: 10, px: 20, mx: 20, my: 10 }} elevation={1}>
       <Box my={4} display={'flex'} justifyContent={'space-between'} gap={2}>
-        <TitleManager textTransform={'uppercase'} icon='pajamas:review-checkmark'>
+        <TitleManager  variant='h6' textTransform={'uppercase'} icon='pajamas:review-checkmark'>
           Tiêu chí Đánh giá
         </TitleManager>
 
@@ -44,15 +44,15 @@ function EvaluationManagementPage() {
             }}
             options={[
               {
-                name: 'Tiêu chí Đánh giá Hướng dẫn',
+                name: 'Tiêu chí hướng dẫn',
                 _id: 'ADVISOR',
               },
               {
-                name: 'Tiêu chí Đánh giá Phản biện',
+                name: 'Tiêu chí phản biện',
                 _id: 'REVIEWER',
               },
               {
-                name: 'Tiêu chí Đánh giá Báo cáo',
+                name: 'Tiêu chí báo cáo',
                 _id: 'REPORT',
               },
             ]}

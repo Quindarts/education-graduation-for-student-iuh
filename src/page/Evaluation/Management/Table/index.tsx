@@ -18,7 +18,6 @@ function TableEvaluation(props: any) {
       headerName: 'Tên tiêu chí',
       field: 'name',
       flex: 6,
-      headerAlign: 'center',
     },
     // {
     //   headerName: 'Mô tả',
@@ -31,8 +30,8 @@ function TableEvaluation(props: any) {
       headerName: 'Điểm tối đa',
       field: 'scoreMax',
       flex: 1,
-      headerAlign: 'center',
-      align: 'center',
+      headerAlign: 'right',
+      align: 'right',
     },
   ];
   return (
@@ -51,6 +50,7 @@ function TableEvaluation(props: any) {
         disableColumnMenu
         disableColumnFilter
         disableColumnSelector
+        disableDensitySelector
       />
     </Box>
   );

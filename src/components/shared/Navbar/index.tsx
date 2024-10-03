@@ -16,7 +16,7 @@ function Navbar() {
       setColor('grey.600');
     } else {
       setBgColor('grey.100');
-      setColor('primary.dark');
+      setColor('primary.main');
     }
   };
   useEffect(() => {
@@ -76,6 +76,7 @@ function Navbar() {
             <Icon width={30} icon={isOpen ? 'grommet-icons:previous' : 'ep:menu'} />
           </Box>
           <Box display={'flex'} justifyContent={'center'} alignItems={'center'} gap={4} ml={2}>
+            <img width={100} src='/images/Logo_IUH.webp'/>
             <Box>
               <Typography
                 fontWeight={'bold'}

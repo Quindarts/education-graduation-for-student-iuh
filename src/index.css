@@ -1,13 +1,8 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
 
 /**
  * 1. Correct the line height in all browsers.
@@ -19,6 +14,15 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 30% 0;
+  }
+  100% {
+    background-position: 70% 0;
+  }
 }
 
 html {
@@ -50,7 +54,7 @@ fieldset {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d497a; /* Màu của thumb scrollbar khi hover */
+  background: #132e65; /* Màu của thumb scrollbar khi hover */
 }
 
 /* Áp dụng cho tất cả các scrollbars */

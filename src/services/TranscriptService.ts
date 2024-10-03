@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import ResponseType from "@/types/axios.type";
 import axiosConfig from "./axiosConfig";
 
 class TranscriptService {
@@ -8,11 +8,11 @@ class TranscriptService {
         this.endpoint = endpoint ? endpoint : '/transcripts';
     }
     getTranscripts(termId: string) {
-        return axiosConfig.get<AxiosResponse>(`${this.endpoint}/summary?termId=${termId}`);
+        return axiosConfig.get<ResponseType, any>(`${this.endpoint}/summary?termId=${termId}`);
     }
 
     getTranscriptByStudent(termId: string, type: string) {
-        return axiosConfig.get<AxiosResponse>(`${this.endpoint}/student?termId=${termId}&type=${type}`);
+        return axiosConfig.get<ResponseType, any>(`${this.endpoint}/student?termId=${termId}&type=${type}`);
     }
 }
 

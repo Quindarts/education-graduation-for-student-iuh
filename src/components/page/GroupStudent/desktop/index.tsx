@@ -7,13 +7,12 @@ import SekeletonUI from '@/components/ui/Sekeleton';
 import useTermStore from '@/store/termStore';
 import { checkColorStatusPartTerm } from '@/utils/validations/term.validation';
 
-
 function GroupStudentDesktop() {
   const { HandleGroupStudentByTerm } = useGroupStudent();
   const { data, isLoading, isFetching } = HandleGroupStudentByTerm();
   const { partOfTerm, term } = useTermStore();
   return (
-    <Paper sx={{ px: 20, py: 10 }} elevation={0}>
+    <Paper sx={{ px: 20, py: 10, mt: 10 }} elevation={0}>
       <TitleManager textTransform={'uppercase'} mb={4}>
         Tham gia Đăng ký Nhóm đề tài - {term.name}
         <Typography

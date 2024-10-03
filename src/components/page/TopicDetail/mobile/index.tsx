@@ -6,7 +6,6 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ChooseModal from '../../Topic/Modal/ChooseModal';
 import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
-import useTerm from '@/hook/api/useTerm';
 import useTermStore from '@/store/termStore';
 
 function TopicDetailMobile() {

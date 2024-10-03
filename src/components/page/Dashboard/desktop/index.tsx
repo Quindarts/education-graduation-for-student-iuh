@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import ProfilePage from '@/page/Auth/Profile';
 
 function DashBoardDesktop() {
-  const { me } = useUserStore();
+  const  me = useUserStore(s => s.me);
   const { HandleGetMyGroupStudent } = useGroupStudent();
   HandleGetMyGroupStudent();
 
@@ -30,17 +30,11 @@ function DashBoardDesktop() {
               <Icon color='#fff' width={'100%'} icon='mdi:account-student' />
             </Box>
             <Box>
-              <Typography
-                variant='h5'
-                fontWeight={600}
-                textTransform={'uppercase'}
-                mb={6}
-                color='dark'
-              >
-                Thông tin Cá nhân
+              <Typography variant='h4' fontWeight={'600'} mb={6} color='primary.main'>
+                Thông tin sinh viên
               </Typography>
               <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
+                <Typography variant='h5' fontWeight={400} my={1} color='dark'>
                   Họ và tên:
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
@@ -48,7 +42,7 @@ function DashBoardDesktop() {
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
+                <Typography variant='h5' fontWeight={400} my={1} color='dark'>
                   Lớp danh nghĩa:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
@@ -56,7 +50,7 @@ function DashBoardDesktop() {
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
+                <Typography variant='h5' fontWeight={400} my={1} color='dark'>
                   Giới tính:{' '}
                 </Typography>
                 <Typography variant='h5' my={1} color='dark'>
@@ -80,26 +74,20 @@ function DashBoardDesktop() {
               <Icon color='#fff' width={'100%'} icon='mingcute:group-2-fill' />
             </Box>
             <Box>
-              <Typography
-                variant='h5'
-                fontWeight={600}
-                textTransform={'uppercase'}
-                mb={6}
-                color='dark'
-              >
-                Thông tin Nhóm Đề tài
+              <Typography variant='h4' fontWeight={'600'} mb={6} color='primary.main'>
+                Nhóm sinh viên
               </Typography>
               <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Tên nhóm:{' '}
+                <Typography variant='h5' fontWeight={400} my={1} color='dark'>
+                  Mã nhóm:{' '}
                 </Typography>
                 <Typography variant='body1' my={1} component={'i'} color='primary'>
                   {myGroupStudent?.name ? myGroupStudent.name : 'Đang cập nhật'}
                 </Typography>
               </Box>{' '}
               <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Trạng thái Đề tài
+                <Typography variant='h5' fontWeight={400} my={1} color='dark'>
+                  Trạng thái đề tài:
                 </Typography>
                 <Typography variant='body1' my={1} component={'i'} color='primary'>
                   {myGroupStudent?.topic_id ? 'Đã có đề tài' : 'Chưa có đề tài'}
@@ -110,43 +98,12 @@ function DashBoardDesktop() {
                   Xem chi tiết
                 </Link>
               </Box>{' '}
-              {/* <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Giảng viên hướng dẫn:
-                </Typography>
-                <Typography variant='body1' my={1} component={'i'} color='primary'>
-                  {myGroupStudent ? myGroupStudent : 'Đang cập nhật'}
-                </Typography>
-              </Box>{' '} */}
-              {/* <Box display={'flex'} gap={3}>
-                <Typography variant='h5' fontWeight={600} my={1} color='dark'>
-                  Số lượng thành viên
-                </Typography>
-                <Typography variant='body1' my={1} component={'i'} color='primary'>
-                  {myGroupStudent ? myGroupStudent : 'Đang cập nhật'}
-                </Typography>
-              </Box> */}
             </Box>
           </Box>
         </Paper>
       </Box>
       <Paper sx={{ mt: 10 }} elevation={1}>
         <ProfilePage />
-        {/* <TitleManager icon='material-symbols:edit-note'>Thông báo mới</TitleManager>
-        <Box
-          flexDirection={'column'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          display={'flex'}
-          py={10}
-        >
-          <Box>
-            <img style={{ opacity: 0.7 }} width={200} height={200} src={nodataImg} alt='nodata' />
-          </Box>
-          <Typography variant='h3' sx={{ mt: 2 }}>
-            chưa có thông báo mới
-          </Typography>
-        </Box> */}
       </Paper>
     </Box>
   );

@@ -25,7 +25,6 @@ function TopicDetailDesktop() {
                   variant='h3'
                   color={'primary.dark'}
                   fontWeight={'600'}
-                  textTransform={'uppercase'}
                   gutterBottom
                   mb={10}
                 >

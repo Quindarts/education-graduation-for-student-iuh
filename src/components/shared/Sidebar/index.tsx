@@ -96,7 +96,8 @@ const AdminSidebar = () => {
       sx={{
         width: isOpen ? drawerWidth : hidedDrawerWidth,
         animation: `${isOpen ? opacity__animations_in : opacity__animations_out}  0.2s ease-in`,
-        transition: 'width 0.7s ease forwards',
+        transition: 'width 0.4s ease forwards',
+        opacity: 1,
         maxHeight: '100vh',
         height: '100%',
         position: 'fixed',
@@ -119,46 +120,46 @@ const AdminSidebar = () => {
             textTransform={'uppercase'}
             flexDirection={'column'}
             sx={{
-              background: 'linear-gradient(135deg, #083880, #001f3f, #00274d, #003366)',
+              transition: '0.3s all ease',
+              transform: isOpen ? 'translateX(0)' : 'translateX(-100px)',
+              opacity: isOpen ? 1 : 0,
             }}
-            borderBottom={'2px solid #1467db'}
-            height={200}
+            borderBottom={'0px solid #1467db'}
+            height={240}
           >
-            <Box sx={{ my: 10 }}>
-              <Box my={4} justifyContent={'center'} display={'flex'}>
-                <img width={120} src='/images/logo-IUH-ngang-trang-300x131-1.webp' />
-              </Box>
+            <Box sx={{ mb: 10, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+              <img width={100} src='/images/logo-IUH-ngang-trang-300x131-1.webp' />
               <Typography
                 textAlign={'center'}
                 variant='body1'
                 color={'grey.100'}
-                fontWeight={500}
+                fontWeight={400}
+                mt={10}
                 sx={{
                   opacity: 0.7,
-                  mb: 10,
                 }}
               >
                 Danh mục quản lý
               </Typography>
               <Box sx={{ my: 10 }}>
-                <TitleManager mb={10} color={'#118599'} fontWeight={600} textAlign={'center'}>
+                <TitleManager mb={10} color={'#8cb9de'} fontWeight={700} textAlign={'center'}>
                   Khóa luận tốt nghiệp
                 </TitleManager>
-                <TitleManager mb={10} color={'grey.300'} fontWeight={500} textAlign={'center'}>
+                <TitleManager mb={10} color={'grey.300'} fontWeight={400} textAlign={'center'}>
                   {term.name}
                 </TitleManager>
               </Box>
             </Box>
           </Box>
           <Drawer
-            variant={isMobile ? 'temporary' : 'permanent'}
+            variant={'permanent'}
             open={isOpen}
             onClose={toggleSidebar}
             sx={{
               flexShrink: 0,
-              height: isMobile ? '100%' : 'calc(100% - 200px)',
+              height: 'calc(100% - 200px)',
               ['& .MuiDrawer-paper']: {
-                width: isMobile ? 250 : '100%',
+                width: '100%',
                 border: 'none',
                 height: 'calc(100%)',
                 boxSizing: 'border-box',
@@ -183,15 +184,15 @@ const AdminSidebar = () => {
                   margin: 0,
                 },
                 '& .MuiTypography-root': {
-                  color: 'white',
+                  color: 'grey.400',
 
                   overFlow: 'hidden',
                   '&.active': {
                     fontWeight: 600,
-                    color: 'white',
+                    color: 'grey.400',
 
                     '& svg': {
-                      color: 'white',
+                      color: 'grey.400',
                     },
                     '&:hover': {
                       fontSize: 'body2',
@@ -233,37 +234,38 @@ const AdminSidebar = () => {
                     sx={{
                       overflow: 'hidden',
                       height: 50,
-                      px: 4,
+                      px: 10,
                       '&.Mui-expanded': {
                         minHeight: 0,
                       },
+
                       '&:hover': {
-                        bgcolor: '#333',
+                        bgcolor: '#0d5db6',
                         transform: 'scale(1.02)',
                         transition: '0.2s all ease-in',
                         '.MuiTypography-root': {
-                          color: 'white',
+                          color: 'grey.400',
                         },
                         '& .MuiAccordionSummary-content': {
                           '& svg': {
-                            color: 'white',
+                            color: 'grey.400',
                           },
                         },
                       },
                       '& .MuiAccordionSummary-content': {
                         margin: 0,
                         '& svg': {
-                          color: 'white',
+                          color: 'grey.400',
                         },
                       },
                       '& svg': {
-                        color: 'white',
+                        color: 'grey.400',
                       },
                       '&.active': {
                         color: '#0859db',
                         bgcolor: '#06275c',
                         '& svg': {
-                          color: 'white',
+                          color: 'grey.400',
                         },
                       },
                     }}
@@ -283,7 +285,7 @@ const AdminSidebar = () => {
                       <Icon onClick={toggleSidebar} icon={item.icon} width={20} height={20} />
                       <Typography
                         variant='body1'
-                        fontWeight={500}
+                        fontWeight={400}
                         sx={{
                           flex: 1,
                           textWrap: 'nowrap',
@@ -325,7 +327,7 @@ const AdminSidebar = () => {
                                 transform: 'scale(1.02)',
                                 transition: '0.2s all ease-in',
                                 '& .MuiTypography-root': {
-                                  color: 'white',
+                                  color: 'grey.400',
                                 },
                               },
                             }}
@@ -342,7 +344,7 @@ const AdminSidebar = () => {
                                   bgcolor: 'rgba(15, 124, 249, 0.8)',
                                   borderRadius: 2,
                                   '& svg': {
-                                    color: '#333',
+                                    color: '#0d5db6',
                                   },
                                 },
                               }}
@@ -365,15 +367,15 @@ const AdminSidebar = () => {
         </>
       ) : (
         <Drawer
-          variant={isMobile ? 'temporary' : 'permanent'}
+          variant={'permanent'}
           open={isOpen}
           onClose={toggleSidebar}
           sx={{
             flexShrink: 0,
             mt: 70,
-            height: isMobile ? '100%' : 'calc(100% - 200px)',
+            height: 'calc(100% - 200px)',
             ['& .MuiDrawer-paper']: {
-              width: isMobile ? 250 : '100%',
+              width: '100%',
               border: 'none',
               height: 'calc(100%)',
               boxSizing: 'border-box',
@@ -398,15 +400,15 @@ const AdminSidebar = () => {
                 margin: 0,
               },
               '& .MuiTypography-root': {
-                color: 'white',
+                color: 'grey.400',
 
                 overFlow: 'hidden',
                 '&.active': {
-                  fontWeight: 600,
-                  color: 'white',
+                  fontWeight: 500,
+                  color: 'grey.400',
 
                   '& svg': {
-                    color: 'white',
+                    color: 'grey.400',
                   },
                   '&:hover': {
                     fontSize: 'body2',
@@ -445,32 +447,32 @@ const AdminSidebar = () => {
                       minHeight: 0,
                     },
                     '&:hover': {
-                      bgcolor: '#333',
+                      bgcolor: '#0d5db6',
                       transform: 'scale(1.2)',
                       transition: '0.2s all ease-in',
                       '.MuiTypography-root': {
-                        color: 'white',
+                        color: 'grey.400',
                       },
                       '& .MuiAccordionSummary-content': {
                         '& svg': {
-                          color: 'white',
+                          color: 'grey.400',
                         },
                       },
                     },
                     '& .MuiAccordionSummary-content': {
                       margin: 0,
                       '& svg': {
-                        color: 'white',
+                        color: 'grey.400',
                       },
                     },
                     '& svg': {
-                      color: 'white',
+                      color: 'grey.400',
                     },
                     '&.active': {
                       color: '#0859db',
                       bgcolor: '#06275c',
                       '& svg': {
-                        color: 'white',
+                        color: 'grey.400',
                       },
                     },
                   }}

@@ -9,7 +9,7 @@ import { Box, Button } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-export const validateSchemaStudent = Yup.object().shape({
+const validateSchemaStudent = Yup.object().shape({
   username: Yup.string()
     .matches(/^\d{6,}$/, 'Mã số sinh viên phải chỉ gồm chữ số và lớn hơn 6 ký tự')
     .required('Mã số sinh viên không được để trống'),
@@ -20,9 +20,7 @@ export const validateSchemaStudent = Yup.object().shape({
     )
     .required('Họ và tên không được để trống'),
   phone: Yup.string().matches(/^0\d{9}$/, 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số'),
-  // .required('Số điện thoại không được để trống'),
   email: Yup.string().email('Email phải hợp lệ'),
-  // .required('Email không được để trống'),
 });
 
 enum EnumGender {
@@ -64,7 +62,7 @@ function ProfileDesktop() {
             width: '100%',
             height: '10px',
             borderRadius: '4px 4px 0 0 ',
-            background: '#092b69',
+            background: '#c4d9ff',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             position: 'absolute',
@@ -72,10 +70,8 @@ function ProfileDesktop() {
           }}
         ></Box>
 
-        <Box sx={{ px: 10, pt: '20px', zIndex: 10, position: 'relative' }}>
-          <TitleManager textTransform={'uppercase'} icon='bxs:user-detail'>
-            Cập nhật thông tin
-          </TitleManager>
+        <Box sx={{ px: 20, pt: '20px', zIndex: 10, position: 'relative' }}>
+          <TitleManager variant='h4' icon='solar:user-bold-duotone'>Cập nhật thông tin</TitleManager>
           <Box py={10} px={5}>
             <Formik
               onSubmit={(values) => {
@@ -95,7 +91,7 @@ function ProfileDesktop() {
             >
               {({ values, handleChange, handleBlur, handleSubmit, errors, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
-                  <Box gap={10} display={'flex'}>
+                  <Box gap={20} display={'flex'}>
                     <Box flex={1}>
                       <CustomTextField
                         required
@@ -178,8 +174,11 @@ function ProfileDesktop() {
 
                   <Box mt={4} justifyContent={'end'} gap={4} display={'flex'}>
                     <Button variant='contained' color='success' type='submit'>
-                      <Icon icon='subway:tick' />
-                      Cập nhật
+                      <Icon
+                        style={{ marginRight: 6 }}
+                        icon='material-symbols:sync-saved-locally-rounded'
+                      />
+                      Lưu cập nhật
                     </Button>
                   </Box>
                 </form>

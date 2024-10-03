@@ -8,20 +8,23 @@ import {
   GridToolbarDensitySelector,
   viVN,
 } from '@mui/x-data-grid';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import LinearProgress from '@mui/material/LinearProgress';
 import IconButton from '@mui/material/IconButton';
-import nodataImg from '/images/nodata.webp';
+import DropDown from '../Dropdown';
 interface Props extends DataGridProps {
   minHeight?: number;
-  page: number;
+  page?: number;
   totalPages: number;
   totalItems: number;
-  handleChangePage: (page: number) => void;
+  limit?: number;
+  handleChangePage?: (page: number) => void;
   needReset?: boolean;
-  onReset?: () => void;
+  isLimit?: boolean;
   slots?: any;
+  onReset?: () => void;
+  handleChangeLimit?: (limit: number) => void;
   noData?: React.ReactNode;
 }
 
@@ -31,12 +34,15 @@ export default function Table(props: Props) {
     sx,
     page,
     totalPages,
-    slots,
     totalItems,
     needReset,
+    limit,
+    isLimit,
     handleChangePage,
+    handleChangeLimit,
     onReset,
     noData,
+    slots,
     ...rest
   } = props;
   return (
@@ -53,10 +59,10 @@ export default function Table(props: Props) {
         componentsProps={{
           cell: {
             style: {
-              whiteSpace: 'normal', // Cho phép nội dung xuống dòng
-              wordWrap: 'break-word', // Ngắt từ nếu quá dài
-              lineHeight: '1.5em', // Khoảng cách dòng
-              overflow: 'visible', // Hiển thị toàn bộ nội dung
+              whiteSpace: 'normal',
+              wordWrap: 'break-word',
+              lineHeight: '1.5em',
+              overflow: 'visible',
             },
           },
         }}
@@ -73,7 +79,6 @@ export default function Table(props: Props) {
               <GridToolbarDensitySelector />
             </GridToolbarContainer>
           ),
-
           noRowsOverlay: () => (
             <Box
               mx={'auto'}
@@ -90,11 +95,11 @@ export default function Table(props: Props) {
                   style={{ opacity: 0.7 }}
                   width={200}
                   height={200}
-                  src={nodataImg}
+                  src='/images/nodata.webp'
                   alt='nodata'
                 />
               </Box>
-              <Typography variant='h3' sx={{ mt: 2 }}>
+              <Typography variant='h6' sx={{ mt: 2 }}>
                 Không có dữ liệu ( Data not found)
               </Typography>
               <Box>{noData}</Box>
@@ -122,10 +127,10 @@ export default function Table(props: Props) {
             },
             color: {
               xs: 'grey.700',
-              md: 'white',
+              md: 'grey.400',
             },
             fontSize: {
-              xs: 16,
+              xs: 14,
               md: 'auto',
             },
             fontWeight: {
@@ -160,17 +165,25 @@ export default function Table(props: Props) {
       />
       <Box display='flex' alignItems='center' justifyContent='space-between' mr={2} mt={4}>
         <Box display='flex' alignItems='center'>
-          {/* <Box width={190}> */}
-          {/* <DropDown
-              value={5}
-              options={[
-                { _id: 5, name: 'Hiển thị 5 dòng' },
-                { _id: 10, name: 'Hiển thị 10 dòng' },
-                { _id: 15, name: 'Hiển thị 15 dòng' },  
-                { _id: 20, name: 'Hiển thị 20 dòng' },
-              ]}
-            /> */}
-          {/* </Box> */}
+          {isLimit && (
+            <Box width={190}>
+              <DropDown
+                onChange={(e: any) => {
+                  handleChangeLimit(e.target.value);
+                }}
+                value={limit}
+                options={[
+                  { _id: '10', name: 'Hiển thị 10 dòng' },
+                  { _id: '15', name: 'Hiển thị 15 dòng' },
+                  { _id: '20', name: 'Hiển thị 20 dòng' },
+                  { _id: '30', name: 'Hiển thị 30 dòng' },
+                  { _id: '50', name: 'Hiển thị 50 dòng' },
+                  { _id: '100', name: 'Hiển thị 100 dòng' },
+                  { _id: '300', name: 'Hiển thị 300 dòng' },
+                ]}
+              />
+            </Box>
+          )}
           <Typography variant='body1' sx={{ mx: 2 }} display='flex'>
             Tổng số dòng:{'  '}
             <Typography variant='body1' fontWeight={600}>
