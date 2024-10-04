@@ -82,7 +82,7 @@ function DetailModal({ open, onClose, type }) {
           }}
         >
           <Typography color='primary.dark' variant='h4'>
-            Tổng điểm: {transcript?.totalAvgScore}.0
+            Tổng điểm: {transcript?.totalAvgScore}
           </Typography>
         </Box>
       </DialogContent>
