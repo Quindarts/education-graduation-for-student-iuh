@@ -23,6 +23,12 @@ function TableManagamentTopic(props: any) {
 
   const basicColumns: GridColDef[] = [
     {
+      headerName: 'Mã Đề tài',
+      field: 'key',
+      flex: 0.5,
+      headerAlign: 'center',
+    },
+    {
       headerName: 'Tên Đề tài',
       field: 'name',
       flex: 2,
