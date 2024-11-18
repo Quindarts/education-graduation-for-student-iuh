@@ -56,5 +56,3 @@ fieldset {
 ::-webkit-scrollbar-thumb:hover {
   background: #132e65; /* Màu của thumb scrollbar khi hover */
 }
-
-/* Áp dụng cho tất cả các scrollbars */

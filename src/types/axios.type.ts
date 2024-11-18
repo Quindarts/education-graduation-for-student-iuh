@@ -5,8 +5,13 @@ export default interface ResponseType {
     success?: boolean;
     message?: string;
     params?: any,
+    status?: number,
     lecturer?: any,
     student?: any,
+    event?: any,
+    events?: any,
+    article: any,
+    articles: any,
     topic?: any,
     term: ITerm,
     lecturerTerm?: any,

@@ -4,8 +4,8 @@ import { Navigate } from 'react-router-dom';
 const AdminLayout = lazy(() => import('@/layouts/AdminLayout'));
 
 function PrivateRouter() {
-  return getValueFromLocalStorage('accessTokenStudent') &&
-    getValueFromLocalStorage('refreshTokenStudent') ? (
+  return getValueFromLocalStorage('refreshTokenStudent') ||
+    getValueFromLocalStorage('accessTokenStudent') ? (
     <AdminLayout />
   ) : (
     <Navigate to='/home' />

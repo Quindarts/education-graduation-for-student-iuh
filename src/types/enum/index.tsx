@@ -16,6 +16,14 @@ enum RoleCheck {
   HEAD_LECTURER = 'HEAD_LECTURER',
   ADMIN = 'ADMIN',
 }
+enum EnumStatusSubmit {
+  SUBMITTED = 'SUBMITTED',
+  NOT_SUBMITTED = 'NOT_SUBMITTED',
+  EXPIRED = 'EXPIRED',
+}
+enum EnumChatMessageType {
+  SEND = 'send',
+  REPLY = 'reply',
+}
 
-
-export { EnumRole, EnumGender, RoleCheck };
+export { EnumRole, EnumGender, EnumStatusSubmit, RoleCheck, EnumChatMessageType };

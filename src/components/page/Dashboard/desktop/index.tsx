@@ -7,18 +7,26 @@ import useGroupStudentStore from '@/store/groupStudentStore';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import { Link } from 'react-router-dom';
 import ProfilePage from '@/page/Auth/Profile';
+import EventManagement from './EventManagement';
 
 function DashBoardDesktop() {
-  const  me = useUserStore(s => s.me);
+  const me = useUserStore((s) => s.me);
   const { HandleGetMyGroupStudent } = useGroupStudent();
-  HandleGetMyGroupStudent();
+  const { data } = HandleGetMyGroupStudent();
 
   const myGroupStudent = useGroupStudentStore((s) => s.groupDetails);
   return (
-    <Box mx={40} my={10}>
-      <Box display={'flex'} gap={10}>
-        <Paper elevation={1} sx={{ width: '100%', display: 'flex', gap: 10 }}>
-          <Box px={10} py={10} width={'100% '} display={'flex'} borderRadius={1} gap={10}>
+    <Box mx={0} my={2}>
+      <Box display={'flex'} mb={10} gap={10}>
+        <Paper elevation={0} sx={{ width: '70%', display: 'flex', gap: 10 }}>
+          <Box
+            px={10}
+            py={10}
+            display={'flex'}
+            justifyContent={'space-between'}
+            borderRadius={1}
+            gap={10}
+          >
             <Box
               border={'10px solid #E7F5FF'}
               borderRadius={'50%'}
@@ -30,7 +38,13 @@ function DashBoardDesktop() {
               <Icon color='#fff' width={'100%'} icon='mdi:account-student' />
             </Box>
             <Box>
-              <Typography variant='h4' fontWeight={'600'} mb={6} color='primary.main'>
+              <Typography
+                variant='h6'
+                textTransform={'uppercase'}
+                fontWeight={'600'}
+                color='primary.main'
+                mb={4}
+              >
                 Thông tin sinh viên
               </Typography>
               <Box display={'flex'} gap={3}>
@@ -58,23 +72,14 @@ function DashBoardDesktop() {
                 </Typography>
               </Box>
             </Box>
-          </Box>
-        </Paper>
-
-        <Paper elevation={1} sx={{ width: '100%', display: 'flex', gap: 10 }}>
-          <Box px={10} py={10} width={'100% '} display={'flex'} borderRadius={1} gap={10}>
-            <Box
-              border={'10px solid #E7F5FF'}
-              borderRadius={'50%'}
-              width={100}
-              height={100}
-              bgcolor={'primary.dark'}
-              p={10}
-            >
-              <Icon color='#fff' width={'100%'} icon='mingcute:group-2-fill' />
-            </Box>
-            <Box>
-              <Typography variant='h4' fontWeight={'600'} mb={6} color='primary.main'>
+            <Box ml={60}>
+              <Typography
+                variant='h6'
+                textTransform={'uppercase'}
+                fontWeight={'600'}
+                color='primary.main'
+                mb={4}
+              >
                 Nhóm sinh viên
               </Typography>
               <Box display={'flex'} gap={3}>
@@ -87,24 +92,55 @@ function DashBoardDesktop() {
               </Box>{' '}
               <Box display={'flex'} gap={3}>
                 <Typography variant='h5' fontWeight={400} my={1} color='dark'>
-                  Trạng thái đề tài:
+                  Trạng thái:
                 </Typography>
                 <Typography variant='body1' my={1} component={'i'} color='primary'>
                   {myGroupStudent?.topic_id ? 'Đã có đề tài' : 'Chưa có đề tài'}
                 </Typography>
               </Box>{' '}
-              <Box display={'flex'} gap={3}>
-                <Link style={{ color: '#0C4B93' }} to={`/group-students/detail`}>
+              <Box mt={2} display={'flex'} gap={3}>
+                <Link style={{ color: 'red', fontSize: 12 }} to={`/group-students/detail`}>
                   Xem chi tiết
                 </Link>
               </Box>{' '}
             </Box>
           </Box>
         </Paper>
+        <Paper elevation={0} sx={{ width: '30%', display: 'flex', gap: 10 }}>
+          <Box px={10} py={10} width={'100% '} borderRadius={1}>
+            <Typography
+              variant='h6'
+              textTransform={'uppercase'}
+              fontWeight={'600'}
+              color='primary.main'
+              mb={4}
+            >
+              Sự kiện trong tuần
+            </Typography>
+            <Box>
+              <Box></Box>
+              <Typography mt={4} variant='h6' color='grey.600' fontWeight={'500'} component='span'>
+                Đang cập nhật sau.
+              </Typography>
+              <Typography
+                sx={{ cursor: 'pointer', '&:hover': { color: 'error.dark' }, textAlign: 'end' }}
+                mt={10}
+                variant='body1'
+                color='primary.dark'
+                onClick={() => {}}
+              >
+                Xem chi tiết
+              </Typography>
+            </Box>
+          </Box>
+        </Paper>
       </Box>
-      <Paper sx={{ mt: 10 }} elevation={1}>
-        <ProfilePage />
+      <Paper elevation={0}>
+        <EventManagement />
       </Paper>
+      {/* <Paper sx={{ mt: 10 }} elevation={1}>
+        <ProfilePage />
+      </Paper> */}
     </Box>
   );
 }

@@ -23,7 +23,14 @@ export const APP_ROUTES = {
     DETAIL: "/topics/:topic_id",
     STUDENT: '/topics/my-topic'
   },
-
+  EVENT: {
+    MANAGEMENT: '/events',
+    DETAIL: '/events/:event_id',
+  },
+  ARTICLE: {
+    MANAGEMENT: '/articles',
+    DETAIL: '/articles/:article_id',
+  },
   EVALUATION: {
     MANAGEMENT: '/evaluations',
   },
@@ -60,7 +67,13 @@ export const APP_SIDEBAR = [
     key: '/',
   },
   {
-    icon: 'mingcute:group-fill',
+    text: 'Bài báo khoa học',
+    icon: 'ph:article-ny-times',
+    link: APP_ROUTES.ARTICLE.MANAGEMENT,
+    key: APP_ROUTES.ARTICLE.MANAGEMENT,
+  },
+  {
+    icon: 'fa:group',
     text: 'Nhóm sinh viên',
     link: [APP_ROUTES.GROUP_STUDENT.MANAGEMENT],
     children: [
@@ -78,7 +91,7 @@ export const APP_SIDEBAR = [
     ],
   },
   {
-    icon: 'material-symbols:topic',
+    icon: 'fluent-mdl2:script',
     text: 'Đề tài',
     link: [APP_ROUTES.TOPIC.MANAGEMENT],
     children: [
@@ -97,15 +110,15 @@ export const APP_SIDEBAR = [
     ],
   },
   {
-    icon: 'fluent-mdl2:review-solid',
-    text: 'Tiêu chí Đánh giá của học kì',
+    icon: 'qlementine-icons:preview-16',
+    text: 'Tiêu chí đánh giá',
     link: APP_ROUTES.EVALUATION.MANAGEMENT,
     key: '/evaluations',
 
   },
 
   {
-    icon: 'healthicons:i-exam-multiple-choice',
+    icon: 'carbon:result-new',
     text: 'Bảng điểm của tôi',
     link: APP_ROUTES.SCORE_STUDENT.MANAGEMENT,
     key: APP_ROUTES.SCORE_STUDENT.MANAGEMENT

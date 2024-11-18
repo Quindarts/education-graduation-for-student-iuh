@@ -12,13 +12,16 @@ class TopicService {
     async getTopicId(id: string) {
         return await axiosConfig.get<AxiosResponse, any>(`${this.endpoint}/${id}`);
     }
+
     async getTopicsOfSearch(termId: string, searchField: string, keywords: string, sort: string, limit: string, page: string) {
         const searchFieldSend = searchField ? searchField : "name";
         const keywordSend = keywords ? keywords : ""
         const sortSend = sort ? sort : "ASC"
         return await axiosConfig.get<AxiosResponse, any>(`/topics?termId=${termId}&keywords=${keywordSend}&searchField=${searchFieldSend}&limit=${limit}&page=${page}&sort=${sortSend}`)
     }
-
+    async getKeywords(termId: string) {
+        return await axiosConfig.get<AxiosResponse, any>(`/topics/keywords?termId=${termId}`)
+    }
     async getTopicList(termId: string, majorId: string): Promise<Pick<ResponseType, 'success' | 'message' | 'topics'>> {
         return await axiosConfig.get(`${this.endpoint}?termId=${termId}&majorId=${majorId}`);
     }

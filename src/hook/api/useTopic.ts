@@ -14,7 +14,8 @@ enum QueryKeysTopic {
     getListTopicByTermByMajor = "getListTopicByTermByMajor",
     getMyTopic = 'getMyTopic',
     getTopicById = "getTopicById",
-    searchTopic = "searchTopic"
+    searchTopic = "searchTopic",
+    getKeywords = "getKeywords"
 }
 
 function useTopic() {
@@ -35,6 +36,24 @@ function useTopic() {
             staleTime: 1000 * (120 * 60),
         })
     }
+
+    const HandleGetKeywords = () => {
+        const fetch = useQuery({
+            queryKey: [QueryKeysTopic.getKeywords, currentTermId],
+            queryFn: () => topicService.getKeywords(`${currentTermId}`),
+            select(data: any) {
+                return data?.keywords;
+            },
+            staleTime: 1000 * (20 * 60),
+        })
+        return {
+            keywords: fetch.data,
+            isLoading: fetch.isLoading,
+            isSuccess: fetch.isSuccess,
+            refetch: fetch.refetch
+        }
+    }
+
     const HandleSearchTopic = () => {
         getQueryField('limit') ? getQueryField('limit') : setLimit(10)
         getQueryField('page') ? getQueryField('page') : setPage(1)
@@ -103,7 +122,7 @@ function useTopic() {
                     enqueueSnackbar(error.message, { variant: "error" })
                 else {
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
-                
+
                 }
             }
         })
@@ -112,6 +131,7 @@ function useTopic() {
         totalPages,
         HandleGetMyTopic,
         HandleGetAllTopic,
+        HandleGetKeywords,
         OnCancelTopic,
         OnChooseTopic,
         HandleSearchTopic,

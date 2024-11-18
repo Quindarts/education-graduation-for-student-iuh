@@ -9,15 +9,22 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useMobile } from '@/hook/ui/useMobile';
 import BottomNavigationApp from '@/components/shared/BottomNavigation';
+import useGroupStudent from '@/hook/api/useGroupStudent';
+import ControlledOpenSpeedDial from '@/components/ui/SpeedDial';
 // import PageWrapper from '@/components/ui/PaperWrapper';
 
 const DesktopUI = ({ isOpen }) => {
+  const { HandleGetMyGroupStudent } = useGroupStudent();
+  const { HandleGetme } = useAuth();
+  HandleGetMyGroupStudent();
+  HandleGetme();
   return (
     <Box
       display='flex'
       sx={{
         height: '100%',
         overflowX: 'hidden',
+        backgroundColor: 'background.default',
       }}
     >
       <Sidebar />
@@ -31,7 +38,8 @@ const DesktopUI = ({ isOpen }) => {
         }}
       >
         <Box
-          pt={12}
+          pt={20}
+          px={10}
           pb={6}
           mt={20}
           sx={{
@@ -48,6 +56,7 @@ const DesktopUI = ({ isOpen }) => {
           </React.Suspense>
         </Box>
       </Box>
+      <ControlledOpenSpeedDial />
     </Box>
   );
 };
@@ -80,7 +89,9 @@ function AdminLayout() {
           </Box>
         </Box>
       ) : (
-        <DesktopUI isOpen={isOpen} />
+        <>
+          <DesktopUI isOpen={isOpen} />
+        </>
       )}
     </Box>
   );

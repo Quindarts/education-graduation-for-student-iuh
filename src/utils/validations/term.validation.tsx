@@ -15,6 +15,11 @@ export const statusOfDate = (startDate: string, endDate: string) => {
   else currentStatus = ENUM_STATUS_OF_DATE_TERM.ACTIVE;
   return currentStatus;
 };
+export const checkExpiredDate = (date: string) => {
+  const dateNow = dayjs();
+  return dateNow > dayjs(date);
+};
+
 export const checkColorStatusPartTerm = (status?: string) => {
   let color = '';
   switch (status) {

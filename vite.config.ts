@@ -10,12 +10,12 @@ export default defineConfig({
     'process.env': {}
   },
   server: {
-    port: 5001,
+    port: 5173,
     host: true,
     hmr: {
       protocol: 'ws',
       host: 'localhost',
-      port: 5001,
+      port: 5173,
     },
   }
 })

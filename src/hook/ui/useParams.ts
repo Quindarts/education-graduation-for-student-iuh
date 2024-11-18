@@ -2,7 +2,7 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'lodash';
 
-type QueryType = "limit" | "page" | "searchField" | "keywords" | "sort" | "totalPage"
+type QueryType = "limit" | "page" | "searchField" | "keywords" | "sort" | "totalPage" | string
 enum QueryEnum {
     LIMIT = "limit",
     PAGE = "page",
