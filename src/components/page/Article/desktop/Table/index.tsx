@@ -7,7 +7,7 @@ import React, { useMemo } from 'react';
 
 function TableArticleManagement(props: any) {
   const { rows } = props;
-  
+
   const basicColumns: GridColDef[] = useMemo(
     () => [
       {
@@ -66,10 +66,11 @@ function TableArticleManagement(props: any) {
           rows={rows}
           sx={{
             bgcolor: 'white',
+            height: 500,
           }}
           rowHeight={100}
           columns={basicColumns}
-          totalItems={rows.length}
+          totalItems={rows?.length}
           disableColumnFilter
           minHeight={400}
           isPanigation={false}

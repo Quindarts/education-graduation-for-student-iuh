@@ -27,7 +27,7 @@ function TopicDesktop() {
     setLimit(10);
     setPage(currentPage);
   }, [currentPage]);
-
+  
   useEffect(() => {
     setLimit(10);
     setPage(1);

@@ -14,10 +14,6 @@ import ControlledOpenSpeedDial from '@/components/ui/SpeedDial';
 // import PageWrapper from '@/components/ui/PaperWrapper';
 
 const DesktopUI = ({ isOpen }) => {
-  const { HandleGetMyGroupStudent } = useGroupStudent();
-  const { HandleGetme } = useAuth();
-  HandleGetMyGroupStudent();
-  HandleGetme();
   return (
     <Box
       display='flex'

@@ -25,7 +25,6 @@ function useAuth() {
             onSuccess: (data: any) => {
                 if (!data.user.isActive) {
                     enqueueSnackbar('Tài khoản của bạn đã bị khóa', { variant: "error" });
-
                 } else {
                     enqueueSnackbar('Đăng nhập thành công', { variant: "success" });
                     setValueInLocalStorage('accessTokenStudent', data.accessToken);
@@ -40,6 +39,7 @@ function useAuth() {
                 if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
+                    alert('hi')
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
                 }
             },

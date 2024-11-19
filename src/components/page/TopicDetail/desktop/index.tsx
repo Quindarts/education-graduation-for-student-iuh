@@ -20,23 +20,23 @@ function TopicDetailDesktop() {
         <>
           {data && (
             <Box>
-              <Paper elevation={1} sx={{ py: 20, px: 10 }}>
+              <Paper elevation={0} sx={{ pt: 10, pb: 20, px: 20 }}>
                 <Typography
-                  variant='h3'
-                  color={'primary.dark'}
+                  variant='h4'
+                  color={'grey.700'}
                   fontWeight={'600'}
                   gutterBottom
                   mb={10}
                 >
-                  <Icon icon='ion:book-sharp' style={{ marginRight: '5px' }} />
-                  Tên Đề tài: {data?.topic?.name}
+                  <Icon icon='grommet-icons:book' style={{ marginRight: '5px' }} />
+                  {data?.topic?.name}
                 </Typography>
 
                 <Typography
                   textTransform='uppercase'
-                  color='primary.dark'
+                  color='grey.700'
                   mt={6}
-                  fontWeight='500'
+                  fontWeight='600'
                   variant='body1'
                   gutterBottom
                 >
@@ -49,9 +49,9 @@ function TopicDetailDesktop() {
                 />
                 <Typography
                   textTransform='uppercase'
-                  color='primary.dark'
+                  color='grey.700'
                   mt={6}
-                  fontWeight='500'
+                  fontWeight='600'
                   variant='body1'
                 >
                   Số lượng nhóm đề tài tối đa: {data.topic.quantityGroupMax}
@@ -60,9 +60,9 @@ function TopicDetailDesktop() {
                 <Box sx={{ marginTop: 2 }}>
                   <Typography
                     textTransform='uppercase'
-                    color='primary.dark'
+                    color='grey.700'
                     mt={6}
-                    fontWeight='500'
+                    fontWeight='600'
                     variant='body1'
                   >
                     Mục tiêu đề tài
@@ -76,9 +76,9 @@ function TopicDetailDesktop() {
                 <Box sx={{ marginTop: 2 }}>
                   <Typography
                     textTransform='uppercase'
-                    color='primary.dark'
+                    color='grey.700'
                     mt={6}
-                    fontWeight='500'
+                    fontWeight='600'
                     variant='body1'
                   >
                     Chuẩn đầu ra{' '}
@@ -92,9 +92,9 @@ function TopicDetailDesktop() {
                 <Box sx={{ marginTop: 2 }}>
                   <Typography
                     textTransform='uppercase'
-                    color='primary.dark'
+                    color='grey.700'
                     mt={6}
-                    fontWeight='500'
+                    fontWeight='600'
                     variant='body1'
                   >
                     Yêu cầu sinh viên:
@@ -108,9 +108,9 @@ function TopicDetailDesktop() {
                 <Box sx={{ marginTop: 6 }}>
                   <Typography
                     textTransform='uppercase'
-                    color='primary.dark'
+                    color='grey.700'
                     mt={6}
-                    fontWeight='500'
+                    fontWeight='600'
                     variant='body1'
                   >
                     Thông tin giảng viên hướng dẫn

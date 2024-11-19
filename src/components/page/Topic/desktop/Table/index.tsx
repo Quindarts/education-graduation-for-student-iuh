@@ -27,17 +27,17 @@ function TableManagamentTopic(props: any) {
       field: 'key',
       flex: 0.5,
       headerAlign: 'center',
+      align: 'center',
     },
     {
       headerName: 'Tên Đề tài',
       field: 'name',
       flex: 2,
-      headerAlign: 'center',
     },
     {
       headerName: 'Giảng viên HD',
       field: 'lecturername',
-      headerAlign: 'center',
+      headerAlign: 'left',
       align: 'left',
       flex: 0.8,
       renderCell: (params: any) => (
@@ -50,8 +50,8 @@ function TableManagamentTopic(props: any) {
       headerName: 'SL nhóm đã đăng ký',
       field: 'quantity_group_max',
       flex: 1,
-      headerAlign: 'center',
-      align: 'center',
+      headerAlign: 'right',
+      align: 'right',
       renderCell: (params: any) => (
         <Typography variant='body1' color='initial'>
           {params.row.quantityGroup} / {params.row.quantityGroupMax}
@@ -72,7 +72,7 @@ function TableManagamentTopic(props: any) {
               title='Xem thông tin đề tài'
             >
               <IconButton>
-                <Icon icon='bx:detail' width={30} style={{ color: '#2f69ac' }} />
+                <Icon icon='bx:detail' width={24} style={{ color: '#2f69ac' }} />
               </IconButton>
             </Tooltip>
           </Box>

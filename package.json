@@ -54,6 +54,10 @@
     "prettier": "^3.3.2",
     "simple-zustand-devtools": "^1.0.1",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-remove-console": "^2.2.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.27.3"
   }
 }

@@ -10,17 +10,15 @@ const useArticle = () => {
     const { enqueueSnackbar } = useSnackbar()
     const groupId = useGroupStudentStore(s => s.groupId)
     const articleService = new ArticleService()
-
     const HandleGetArticles = () => {
         const { data, isLoading, isSuccess, isFetching, ...rest } = useQuery({
-            queryKey: [QueryKeysArticle.ARTICLE],
+            queryKey: [QueryKeysArticle.ARTICLE, groupId],
             queryFn: () => articleService.getArticleByGroupStudentId(groupId),
             staleTime: 1000 * (60 * 4),
             refetchOnMount: true,
-            select(data) {
-                return data.article ? data.article : []
-            }
+            enabled: !!groupId
         })
+
         return {
             article: data,
             isLoading,

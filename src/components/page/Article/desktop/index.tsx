@@ -6,7 +6,6 @@ import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import TableArticleManagement from './Table';
 import SubmitModal from './Modal/SubmitModal';
-
 function ArticleDesktop() {
   const { HandleGetArticles } = useArticle();
   const { article, isLoading } = HandleGetArticles();
@@ -36,7 +35,7 @@ function ArticleDesktop() {
             Thêm bài báo
           </Button>
         </Box>
-        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={[article]} />}
+        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={article ? article : []} />}
       </Paper>
       <SubmitModal open={openSubmitModal} onClose={handleCloseSubmitModal} />
     </>
