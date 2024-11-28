@@ -15,10 +15,11 @@ const useArticle = () => {
             queryKey: [QueryKeysArticle.ARTICLE, groupId],
             queryFn: () => articleService.getArticleByGroupStudentId(groupId),
             staleTime: 1000 * (60 * 4),
-            refetchOnMount: true,
+            select(data) {
+                return data?.article
+            },
             enabled: !!groupId
         })
-
         return {
             article: data,
             isLoading,

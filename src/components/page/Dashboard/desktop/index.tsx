@@ -11,8 +11,7 @@ import EventManagement from './EventManagement';
 
 function DashBoardDesktop() {
   const me = useUserStore((s) => s.me);
-  const { HandleGetMyGroupStudent } = useGroupStudent();
-  const { data } = HandleGetMyGroupStudent();
+
 
   const myGroupStudent = useGroupStudentStore((s) => s.groupDetails);
   return (

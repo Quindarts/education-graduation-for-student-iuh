@@ -29,13 +29,13 @@ function ArticleDesktop() {
             variant='contained'
             size='small'
             color='error'
-            disabled={article !== null}
+            disabled={article && isLoading === false}
             startIcon={<Icon icon='mingcute:add-fill' />}
           >
             Thêm bài báo
           </Button>
         </Box>
-        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={article ? article : []} />}
+        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={article ? [article] : []} />}
       </Paper>
       <SubmitModal open={openSubmitModal} onClose={handleCloseSubmitModal} />
     </>

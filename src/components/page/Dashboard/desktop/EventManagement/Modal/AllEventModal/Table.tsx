@@ -94,7 +94,7 @@ function TableEventManagement(props: any) {
           <Button
             onClick={() =>
               navigate(
-                `/events/${params.row.id}?name=${params.row.name}&startDate=${params.row.startDate}&endDate=${params.row.endDate}&link=${params.row.link}&comment=${params.row.comment}`,
+                `/events/${params.row.id}`,
               )
             }
           >

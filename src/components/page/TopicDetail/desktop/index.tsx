@@ -5,6 +5,7 @@ import { Typography, Paper, Box, List, ListItem, ListItemText } from '@mui/mater
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+
 function TopicDetailDesktop() {
   const { pathname } = useLocation();
   const current = pathname.split('/');

@@ -62,7 +62,8 @@ function AdminLayout() {
 
   const { HandleGetme } = useAuth();
   const { HandleGetCurrentTerm } = useTerm();
-
+  const { HandleGetMyGroupStudent } = useGroupStudent();
+  const { data } = HandleGetMyGroupStudent();
   const { me } = HandleGetme();
   HandleGetCurrentTerm(`${me?.user?.majorId}`);
   const { isMobile } = useMobile();

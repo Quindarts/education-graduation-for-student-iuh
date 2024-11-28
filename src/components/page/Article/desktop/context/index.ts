@@ -9,10 +9,6 @@ import * as Yup from 'yup';
 
 const validateSchemaArticle = Yup.object().shape({
     name: Yup.string()
-        .matches(
-            /^[\w\sÀ-ỹ]+$/,
-            'Tên bài báo chỉ được chứa chữ cái, số và khoảng trắng.'
-        )
         .required('Tên bài báo không được để trống'),
     type: Yup.string()
         .required('Loại bài báo không được để trống'),

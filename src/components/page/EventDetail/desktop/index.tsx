@@ -39,7 +39,6 @@ function EventDetailDesktop() {
   useEffect(() => {
     events?.find((e) => e.id === event_id) && setEvent(events?.find((e) => e.id === event_id));
   }, [isLoading, event_id, isFetching, events]);
-
   const {
     importFileToForm,
     setCurrentFile,
@@ -95,7 +94,7 @@ function EventDetailDesktop() {
         <TableBody>
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Định dạng file đính kèm</TableCell>
-            <TableCell>Zip hoặc pdf</TableCell>
+            <TableCell>Zip hoặc pdf </TableCell>
           </TableRow>
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Ngày bắt đầu</TableCell>
@@ -212,7 +211,7 @@ function EventDetailDesktop() {
           onClick={() => submitEvent(currentFile, event_id)}
           startIcon={<Icon icon='fluent-mdl2:switch' />}
         >
-          {event?.link !== '' ? 'Cập nhật' : 'Nộp bài'}
+          {event?.link !== null ? 'Cập nhật' : 'Nộp bài'}
         </Button>
       </Box>
     </Paper>

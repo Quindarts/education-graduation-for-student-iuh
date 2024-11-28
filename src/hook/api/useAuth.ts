@@ -39,7 +39,6 @@ function useAuth() {
                 if (error.status < 500) {
                     enqueueSnackbar(error.message, { variant: "error" })
                 } else {
-                    alert('hi')
                     enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
                 }
             },

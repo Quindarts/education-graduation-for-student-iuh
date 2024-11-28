@@ -117,6 +117,18 @@ function ScorePageDesktop() {
                     {transcript?.reportScore === 0 ? 'Chưa có điểm ' : transcript?.reportScore}
                   </Typography>
                 </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Box sx={{ display: 'flex', gap: 4, alignItems: 'center'}}>
+                    <Icon icon='flat-color-icons:info' width='16' height='16' />
+                    <Typography variant='h5' fontWeight={'500'} lineHeight={2}>
+                      Điểm cộng 
+                    </Typography>
+                  </Box>
+                  <Typography variant='body1' fontWeight={500} lineHeight={2}>
+                    {transcript?.bonusScore === 0 ? 'Không ' : transcript?.bonusScore}
+                  </Typography>
+                </Box>
                 <Box
                   sx={{
                     display: 'flex',

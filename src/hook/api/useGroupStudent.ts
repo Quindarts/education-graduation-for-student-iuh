@@ -21,15 +21,14 @@ function useGroupStudent() {
     const setMyGroupDetail = useGroupStudentStore(s => s.setMyGroupDetail);
     const setMembersOfGroup = useGroupStudentStore(s => s.setMembersOfGroup)
     const setMyTopic = useTopicStore(s => s.setMyTopic);
-
     const HandleGroupStudentByTerm = () => {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getCurrentGroupStudentTerm, currentTermId],
             queryFn: () => groupStudentService.getListGroup(`${currentTermId}`),
             staleTime: 20 * (60 * 1000),
+
         })
     }
-
     const OnInviteGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.joinGroup(`${groupId}`),
@@ -83,8 +82,6 @@ function useGroupStudent() {
             },
         })
     }
-
-
     const OnLeaveGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.leaveGroup(`${groupId}`),
@@ -121,13 +118,13 @@ function useGroupStudent() {
             enabled: !!currentTermId
         })
     }
-
     const HandleGetGroupMembers = (groupId: string) => {
         return useQuery({
             queryKey: [QueryKeysGroupStudent.getGroupMembers, groupId],
             queryFn: () => groupStudentService.getGroupMembers(groupId),
         })
     }
+
     return {
         HandleGroupStudentByTerm, HandleGetGroupMembers, HandleGetMyGroupStudent,
         OnRemoveMemberByAdmin,

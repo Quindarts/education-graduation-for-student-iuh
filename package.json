@@ -24,6 +24,7 @@
     "@tanstack/react-query": "^5.50.1",
     "@tanstack/react-query-devtools": "^5.50.1",
     "axios": "^1.7.2",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
     "formik": "^2.4.6",
@@ -37,10 +38,12 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.24.1",
     "swiper": "^11.1.4",
+    "vite-bundle-visualizer": "^1.2.1",
     "yup": "^1.4.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -55,7 +58,10 @@
     "simple-zustand-devtools": "^1.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
-    "vite-plugin-remove-console": "^2.2.0"
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-remove-console": "^2.2.0",
+    "vite-plugin-sitemap": "^0.7.1",
+    "vite-plugin-transform": "^2.0.1"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.27.3"

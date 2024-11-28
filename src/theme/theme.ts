@@ -15,7 +15,7 @@ const theme = createTheme({
 
   palette,
   typography: {
-    fontFamily: ['Poppins', 'sans-serif'].join(','),
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
     fontSize: 12,
     h1: {
       fontSize: 24,

@@ -27,7 +27,7 @@ export const getStatusViewPoint = (status: number) => {
     return
 };
 export const checkString = (str: string) => {
-    var regex = /^[a-zA-Z0-9]*$/;
+    const regex = /^[a-zA-Z0-9]*$/;
     return regex.test(str);
 };
 

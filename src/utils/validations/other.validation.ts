@@ -1,7 +1,7 @@
 import theme from "@/theme/theme";
 
 export const checkString = (str: string) => {
-    var regex = /^[a-zA-Z0-9]*$/;
+    const regex = /^[a-zA-Z0-9]*$/;
     return regex.test(str);
 };
 
