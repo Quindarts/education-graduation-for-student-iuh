@@ -8,7 +8,7 @@ import TableArticleManagement from './Table';
 import SubmitModal from './Modal/SubmitModal';
 function ArticleDesktop() {
   const { HandleGetArticles } = useArticle();
-  const { article, isLoading } = HandleGetArticles();
+  const { articles, isLoading } = HandleGetArticles();
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
   const handleOpenSubmitModal = () => setOpenSubmitModal(true);
   const handleCloseSubmitModal = () => setOpenSubmitModal(false);
@@ -29,13 +29,12 @@ function ArticleDesktop() {
             variant='contained'
             size='small'
             color='error'
-            disabled={article && isLoading === false}
             startIcon={<Icon icon='mingcute:add-fill' />}
           >
             Thêm bài báo
           </Button>
         </Box>
-        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={article ? [article] : []} />}
+        {isLoading ? <SekeletonUI /> : <TableArticleManagement rows={articles ? articles : []} />}
       </Paper>
       <SubmitModal open={openSubmitModal} onClose={handleCloseSubmitModal} />
     </>

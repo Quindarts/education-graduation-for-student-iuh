@@ -3,25 +3,28 @@ import ArticleService from "@/services/ArticleService"
 import useGroupStudentStore from "@/store/groupStudentStore"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { useSnackbar } from "notistack"
+import useAuth from "./useAuth"
+import useUserStore from "@/store/userStore"
+import useTermStore from "@/store/termStore"
 export const QueryKeysArticle = {
-    ARTICLE: 'getArticleByGroupStudentId',
+    ARTICLE: 'getArticleBystudentId',
 }
 const useArticle = () => {
     const { enqueueSnackbar } = useSnackbar()
-    const groupId = useGroupStudentStore(s => s.groupId)
+    const term = useTermStore((s) => s.term)
     const articleService = new ArticleService()
     const HandleGetArticles = () => {
         const { data, isLoading, isSuccess, isFetching, ...rest } = useQuery({
-            queryKey: [QueryKeysArticle.ARTICLE, groupId],
-            queryFn: () => articleService.getArticleByGroupStudentId(groupId),
+            queryKey: [QueryKeysArticle.ARTICLE, term.id],
+            queryFn: () => articleService.getArticleByStudentId(term.id),
             staleTime: 1000 * (60 * 4),
             select(data) {
-                return data?.article
+                return data?.articles
             },
-            enabled: !!groupId
+            enabled: !!term.id
         })
         return {
-            article: data,
+            articles: data,
             isLoading,
             isFetching,
             isSuccess,
@@ -30,7 +33,7 @@ const useArticle = () => {
     }
     const OnSubmitArticle = () => {
         return useMutation({
-            mutationFn: (data: { name: string; type: string; author: string; authorNumber: number; publicDate: string; link: string }) => articleService.submitArticle({ ...data, groupStudentId: groupId }),
+            mutationFn: (data: { name: string; type: string; author: string; authorNumber: number; publicDate: string; link: string }) => articleService.submitArticle({ ...data }),
             onError: (error) => {
                 enqueueSnackbar('Thao tác thất bại, thử lại', { variant: "error" });
             },

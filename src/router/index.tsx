@@ -6,9 +6,9 @@ import MainLayout from '@/layouts/MainLayout';
 import HomeTemplate from '@/page/Home';
 import LoginPage from '@/page/Auth/Login';
 import NotficationDetailPage from '@/page/NotificationDetail';
-import NotFoundPage from '@/components/page/404';
 import ForgotPassword from '@/page/Auth/ForgotPassword';
 import PublicRouter from './PublicRouter';
+import NotFoundPage from '@/components/page/404';
 
 const DashboardTemplate = lazy(() => import('@/page/DashBoard'));
 const TopicTemplate = lazy(() => import('@/page/Topic'));
@@ -22,6 +22,7 @@ const EvaluationPage = lazy(() => import('@/page/Evaluation/Management'));
 const UpdatePassPage = lazy(() => import('@/page/Auth/UpdatePassword'));
 const EventDetailPage = lazy(() => import('@/page/EventDetail'));
 const ArticlePage = lazy(() => import('@/page/Article'));
+const FinalReportPage = lazy(() => import('@/page/FinalReport'));
 function Routing() {
   return (
     <Routes>
@@ -39,6 +40,7 @@ function Routing() {
         <Route path={APP_ROUTES.EVENT.DETAIL} element={<EventDetailPage />} />
         <Route path={APP_ROUTES.NOTIFICATION.DETAILS} element={<NotficationDetailPage />} />
         <Route path={APP_ROUTES.ARTICLE.MANAGEMENT} element={<ArticlePage />} />
+        <Route path={APP_ROUTES.FINAL_REPORT.MANAGEMENT} element={<FinalReportPage />} />
       </Route>
 
       <Route path={APP_ROUTES.HOME} element={<MainLayout />}>

@@ -9,11 +9,13 @@ import ResponseType from '@/types/axios.type';
 import { queryClient } from '@/providers/ReactQuery';
 import { QueryKeysEvent } from '../api/useEvent';
 import { QueryKeysArticle } from '../api/useArticle';
+import useTermStore from '@/store/termStore';
 const EXTENSIONS = ['zip', 'pdf'];
 
 
 const useUploadFile = () => {
     const groupStudentId = useGroupStudentStore(s => s.groupId)
+    const termId = useTermStore((s) => s.term).id
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [fileName, setFileName] = useState<string>('');
@@ -69,10 +71,11 @@ const useUploadFile = () => {
             });
         queryClient.resetQueries({ queryKey: [QueryKeysEvent.EVENT] })
     }
+
     const submitArticle = async (file: any, data: any) => {
         const body = {
-            groupStudentId: groupStudentId,
             file: file,
+            termId: termId,
             ...data
         }
         const submitter = await axiosFile.post(`${env.API_URL}/api/v1/articles`, body, {
@@ -95,14 +98,67 @@ const useUploadFile = () => {
             });
         }
     }
+
+    const submitFinalReport = async (file: any) => {
+        const body = {
+            file: file,
+            groupStudentId: groupStudentId,
+        }
+        const submitter = await axiosFile.post(`${env.API_URL}/api/v1/final-reports`, body, {
+            onUploadProgress: (axiosLoading: AxiosProgressEvent) => {
+                setValueLoading(axiosLoading.progress)
+            }
+        }) as ResponseType
+        if (submitter.success === true) {
+            enqueueSnackbar(submitter.message, { variant: 'success' })
+            queryClient.resetQueries({ queryKey: [QueryKeysArticle.ARTICLE] })
+        }
+        if (submitter.status < 500 && submitter.status >= 400) {
+            enqueueSnackbar(submitter.message, {
+                variant: 'error',
+            });
+        }
+        if (submitter.status >= 500) {
+            enqueueSnackbar('Đã có lỗi khi tải lên, vui lòng thử lại sau...', {
+                variant: 'error',
+            });
+        }
+    }
+    const updateFinalReport = async (file: any, reportId: string) => {
+        const body = {
+            file: file,
+            groupStudentId: groupStudentId,
+        }
+        const submitter = await axiosFile.post(`${env.API_URL}/api/v1/final-reports/${reportId}`, body, {
+            onUploadProgress: (axiosLoading: AxiosProgressEvent) => {
+                setValueLoading(axiosLoading.progress)
+            }
+        }) as ResponseType
+        if (submitter.success === true) {
+            enqueueSnackbar(submitter.message, { variant: 'success' })
+            queryClient.resetQueries({ queryKey: [QueryKeysArticle.ARTICLE] })
+        }
+        if (submitter.status < 500 && submitter.status >= 400) {
+            enqueueSnackbar(submitter.message, {
+                variant: 'error',
+            });
+        }
+        if (submitter.status >= 500) {
+            enqueueSnackbar('Đã có lỗi khi tải lên, vui lòng thử lại sau...', {
+                variant: 'error',
+            });
+        }
+    }
     return {
         importFileToForm,
+        updateFinalReport,
         setFileName,
         setTotalSize,
         setCurrentFile,
         setValueLoading,
         submitEvent,
         submitArticle,
+        submitFinalReport,
         currentFile,
         success,
         loading,

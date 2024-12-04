@@ -15,6 +15,8 @@ export default interface ResponseType {
     topic?: any,
     term: ITerm,
     lecturerTerm?: any,
+    finalReports?: any,
+    finalReport?: any,
     user?: IUser,
     major?: any,
     groupLecturer?: any,

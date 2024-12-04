@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Checkbox, FormControlLabel, Paper, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Paper,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Formik } from 'formik';
 import useGroupStudentStore from '@/store/groupStudentStore';
 import Calendar from '@/components/ui/Calendar';
@@ -75,7 +83,7 @@ function SubmitModal({ open, onClose }: any) {
     setCurrentFile(undefined);
   };
   return (
-    <Modal maxWidth='lg' open={open} onClose={onClose}>
+    <Modal maxWidth='md' open={open} onClose={onClose}>
       <Paper sx={{ px: 10, py: 12 }} elevation={0}>
         <Box mb={10}>
           <Typography
@@ -94,13 +102,14 @@ function SubmitModal({ open, onClose }: any) {
               type: '',
               publicDate: '',
               link: '',
+              authorNumber: 0,
             }}
             validationSchema={validateSchemaArticle}
             onSubmit={(values) => handleSubmit(values)}
           >
             {({ values, errors, touched, handleChange, handleSubmit, setFieldValue }) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', mx: 20 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                   <Box width={'100%'}>
                     <CustomTextField
                       label='Tên bài báo'
@@ -113,34 +122,23 @@ function SubmitModal({ open, onClose }: any) {
                       helperText={touched.name && errors.name}
                     />
                   </Box>
-                  <Box>
-                    <Typography variant='h6' fontWeight='bold' color='grey.700'>
-                      Tác giả:
-                    </Typography>
-                    <Box display='flex' gap={8}>
-                      {members.map((member) => (
-                        <Box key={member.student_id}>
-                          <FormControlLabel
-                            control={
-                              <Checkbox
-                                defaultChecked
-                                value={member.checked}
-                                onChange={() => hanldeSelectAuthor(member.student_id)}
-                              />
-                            }
-                            label={member.student.fullName}
-                          />
-                        </Box>
-                      ))}
-                    </Box>
-                    {errorMembers !== '' && (
-                      <Typography variant='body2' color='error'>
-                        {errorMembers}
-                      </Typography>
-                    )}
-                  </Box>
-
                   <Box display='flex' width='100%' gap={4}>
+                    <Box mt={1} flex={1}>
+                      <Typography variant='h6' fontWeight='bold' color='grey.700'>
+                        Số Tác giả:
+                      </Typography>
+                      <CustomTextField
+                        type='number'
+                        sx={{ mt: 2 }}
+                        placeholder='Số tác giả viết bài'
+                        name='authorNumber'
+                        value={values.authorNumber}
+                        onChange={handleChange}
+                        fullWidth
+                        error={touched.authorNumber && Boolean(errors.authorNumber)}
+                        helperText={touched.authorNumber && errors.authorNumber}
+                      />
+                    </Box>
                     <Box flex={1}>
                       <CustomTextField
                         label='Loại báo'
@@ -161,7 +159,7 @@ function SubmitModal({ open, onClose }: any) {
                       />
                     </Box>
                   </Box>
-                  <Box width={'100%'}>
+                  <Box my={2} width={'100%'}>
                     {!currentFile ? (
                       <Typography>
                         <Button
@@ -171,12 +169,14 @@ function SubmitModal({ open, onClose }: any) {
                             justifyContent: 'center',
                             position: 'relative',
                             py: 10,
+                            height: 100,
                             fontSize: 14,
+                            border: '0.5px solid #bdbdbd',
                           }}
                           startIcon={<Icon icon='ph:file-light' />}
                           component='label'
                         >
-                          Cập nhật file mới
+                          Tải file lên (.PDF) kích thước tối đa 10MB
                           <VisuallyHiddenInput type='file' onChange={(e) => importFileToForm(e)} />
                         </Button>
                       </Typography>
@@ -192,9 +192,8 @@ function SubmitModal({ open, onClose }: any) {
                         Xóa file ?
                       </Button>
                     )}
-                    <Typography variant='body1' color='warning.dark'>
-                      Lưu ý*: tên file đặt đúng định dạng VD:
-                      NHOM_120_NGUYEN_HUY_HOANG_LE_MINH_QUANG_BBKH
+                    <Typography variant='body1' mt={4} color=''>
+                      Tên file đúng định dạng VD: NHOM_120_NGUYEN_HUY_HOANG_LE_MINH_QUANG_BBKH
                     </Typography>
                   </Box>
                   <Box width={'100%'}>
@@ -218,6 +217,8 @@ function SubmitModal({ open, onClose }: any) {
               borderRadius: 2,
               padding: 3,
               mt: 10,
+              px: 10,
+              py: 6,
             }}
           >
             <Typography
@@ -231,28 +232,17 @@ function SubmitModal({ open, onClose }: any) {
             >
               Lưu ý*:
             </Typography>
+            <Typography variant='body2' color='error.dark' sx={{ mb: 1 }}>
+              - Sau khi nộp bài, bạn không thể chỉnh sửa hoặc xóa bài báo. Vui lòng kiểm tra kỹ
+              trước khi nộp.
+            </Typography>
             <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
               - Bài báo phải thuộc lĩnh vực khoa công nghệ thông tin. Nếu không, bài báo sẽ không
               được tính điểm.
             </Typography>
             <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-              - Mỗi nhóm chỉ được nộp tối đa <strong>1 bài báo</strong>.
-            </Typography>
-            <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
               - Điểm cộng sẽ chia đều cho hai thành viên. Mức điểm tối đa mà sinh viên được cộng
               thêm là <strong>1 điểm / sinh viên</strong>.
-            </Typography>
-            <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-              - Sau khi nộp bài, bạn không thể chỉnh sửa hoặc xóa bài báo. Vui lòng kiểm tra kỹ
-              trước khi nộp.
-            </Typography>
-            <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-              - Link bài báo có thể là <strong>Google Drive</strong>, hoặc các định dạng khác có thể
-              xem trực tuyến.
-            </Typography>
-            <Typography variant='body2' color='text.primary'>
-              - Link phải được bật ở chế độ{' '}
-              <strong>"Tất cả người sở hữu link có quyền xem hoặc chỉnh sửa"</strong>.
             </Typography>
           </Box>
         </Box>

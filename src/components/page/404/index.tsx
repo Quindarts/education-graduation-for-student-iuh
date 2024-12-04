@@ -49,8 +49,7 @@ const LinkStyled = styled(Button)`
     transition: width 0.5s ease-in-out;
   }
 `;
-
-const NotFoundPage: React.FC = () => {
+function NotFoundPage() {
   return (
     <Box bgcolor={'#08387f'} justifyContent={'center'} display={'flex'} height={'100vh'}>
       <TextStyled>
@@ -114,6 +113,6 @@ const NotFoundPage: React.FC = () => {
       </TextStyled>
     </Box>
   );
-};
+}
 
 export default NotFoundPage;

@@ -16,11 +16,6 @@ function TableArticleManagement(props: any) {
         flex: 1.4,
       },
       {
-        headerName: 'Tác giả',
-        field: 'author',
-        flex: 0.7,
-      },
-      {
         headerName: 'Ngày đăng bài',
         field: 'publicDate',
         flex: 0.4,
@@ -43,18 +38,18 @@ function TableArticleManagement(props: any) {
         headerAlign: 'center',
         renderCell: (params) => <Box>{getCardArticleStatus(params.row.status)}</Box>,
       },
-      {
-        headerName: 'Link',
-        field: 'link',
-        flex: 0.6,
-        align: 'center',
-        headerAlign: 'center',
-        renderCell: (params) => (
-          <Typography component={'a'} target='_blank' href={`${params.value}`} fontSize={12}>
-            Click đến liên kết{' '}
-          </Typography>
-        ),
-      },
+      // {
+      //   headerName: 'Link',
+      //   field: 'link',
+      //   flex: 0.6,
+      //   align: 'center',
+      //   headerAlign: 'center',
+      //   renderCell: (params) => (
+      //     <Typography component={'a'} target='_blank' href={`${params.value}`} fontSize={12}>
+      //       Click đến liên kết{' '}
+      //     </Typography>
+      //   ),
+      // },
     ],
     [],
   );

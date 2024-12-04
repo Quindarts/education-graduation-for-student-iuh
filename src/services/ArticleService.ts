@@ -6,10 +6,10 @@ class ArticleService {
     constructor(endpoint?: string) {
         this.endpoint = endpoint ? endpoint : '/articles';
     }
-    async getArticleByGroupStudentId(groupStudentId: string): Promise<ResponseType> {
-        return await axiosConfig.get(`${this.endpoint}/group-student/${groupStudentId}`);
+    async getArticleByStudentId(termId: string): Promise<ResponseType> {
+        return await axiosConfig.get(`${this.endpoint}/student?termId=${termId}`);
     }
-    async submitArticle(data: { name: string; type: string; author: string; authorNumber: number; publicDate: string; link: string; groupStudentId: string }) {
+    async submitArticle(data: { name: string; type: string; author: string; authorNumber: number; publicDate: string; link: string }) {
         return await axiosConfig({
             url: `${this.endpoint}`,
             method: 'post',

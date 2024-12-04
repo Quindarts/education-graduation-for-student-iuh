@@ -31,6 +31,10 @@ export const APP_ROUTES = {
     MANAGEMENT: '/articles',
     DETAIL: '/articles/:article_id',
   },
+  FINAL_REPORT: {
+    MANAGEMENT: '/final-reports',
+    DETAIL: '/final-reports/:report_id',
+  },
   EVALUATION: {
     MANAGEMENT: '/evaluations',
   },
@@ -71,6 +75,12 @@ export const APP_SIDEBAR = [
     icon: 'ph:article-ny-times',
     link: APP_ROUTES.ARTICLE.MANAGEMENT,
     key: APP_ROUTES.ARTICLE.MANAGEMENT,
+  },
+  {
+    text: 'Báo cáo cuối kì',
+    icon: 'file-icons:readthedocs',
+    link: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
+    key: APP_ROUTES.FINAL_REPORT.MANAGEMENT,
   },
   {
     icon: 'fa:group',
