@@ -38,18 +38,6 @@ function TableArticleManagement(props: any) {
         headerAlign: 'center',
         renderCell: (params) => <Box>{getCardArticleStatus(params.row.status)}</Box>,
       },
-      // {
-      //   headerName: 'Link',
-      //   field: 'link',
-      //   flex: 0.6,
-      //   align: 'center',
-      //   headerAlign: 'center',
-      //   renderCell: (params) => (
-      //     <Typography component={'a'} target='_blank' href={`${params.value}`} fontSize={12}>
-      //       Click đến liên kết{' '}
-      //     </Typography>
-      //   ),
-      // },
     ],
     [],
   );
@@ -61,7 +49,6 @@ function TableArticleManagement(props: any) {
           rows={rows}
           sx={{
             bgcolor: 'white',
-            height: 500,
           }}
           rowHeight={100}
           columns={basicColumns}

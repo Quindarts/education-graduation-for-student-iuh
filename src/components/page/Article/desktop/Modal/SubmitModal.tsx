@@ -32,12 +32,7 @@ const VisuallyHiddenInput = styled('input')({
   whiteSpace: 'nowrap',
   width: '100%',
 });
-const convertMembers = (members: any[]) => members.map((member) => ({ ...member, checked: true }));
 function SubmitModal({ open, onClose }: any) {
-  const members = useGroupStudentStore((s) => s.members);
-  const initMembers = convertMembers(members);
-  const [membersState, setMembersState] = useState(initMembers);
-  const [errorMembers, setErrorMembers] = useState('');
   const {
     submitArticle,
     currentFile,
@@ -49,35 +44,15 @@ function SubmitModal({ open, onClose }: any) {
     importFileToForm,
   } = useUploadFile();
   const handleSubmit = async (values: any) => {
-    const mems: any[] = membersState
-      .filter((member) => member.checked === true)
-      .map((member) => member.student.fullName);
-    if (mems.length === 0) {
-      enqueueSnackbar('Vui lòng chọn ít nhất 1 tác giả', { variant: 'error' });
-    }
-
     const data = {
       name: values.name,
       type: values.type,
       publicDate: dayjs(values.publicDate).format('YYYY-MM-DD'),
-      author: mems.join(', '),
-      authorNumber: mems?.length,
+      author: values.author,
+      authorNumber: values.authorNumber,
     };
     await submitArticle(currentFile, data);
   };
-
-  // select author
-  const hanldeSelectAuthor = (id: string) => {
-    const newMembers = membersState.map((member) =>
-      member.student_id === id ? { ...member, checked: !member.checked } : member,
-    );
-    setMembersState(newMembers);
-  };
-  useEffect(() => {
-    if (membersState.filter((member) => member.checked === true).length < 1) {
-      setErrorMembers('Vui lòng chọn ít nhất 1 tác giả');
-    } else setErrorMembers('');
-  }, [membersState]);
 
   const onClearFormFile = () => {
     setCurrentFile(undefined);
@@ -102,6 +77,7 @@ function SubmitModal({ open, onClose }: any) {
               type: '',
               publicDate: '',
               link: '',
+              author: '',
               authorNumber: 0,
             }}
             validationSchema={validateSchemaArticle}
@@ -120,6 +96,16 @@ function SubmitModal({ open, onClose }: any) {
                       fullWidth
                       error={touched.name && Boolean(errors.name)}
                       helperText={touched.name && errors.name}
+                    />
+                    <CustomTextField
+                      label='Tên tác giả chính'
+                      placeholder='Vd: Lê Minh Quang, Nguyễn Huy Hoàng'
+                      name='author'
+                      value={values.author}
+                      onChange={handleChange}
+                      fullWidth
+                      error={touched.author && Boolean(errors.author)}
+                      helperText={touched.author && errors.author}
                     />
                   </Box>
                   <Box display='flex' width='100%' gap={4}>
@@ -239,10 +225,6 @@ function SubmitModal({ open, onClose }: any) {
             <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
               - Bài báo phải thuộc lĩnh vực khoa công nghệ thông tin. Nếu không, bài báo sẽ không
               được tính điểm.
-            </Typography>
-            <Typography variant='body2' color='text.primary' sx={{ mb: 1 }}>
-              - Điểm cộng sẽ chia đều cho hai thành viên. Mức điểm tối đa mà sinh viên được cộng
-              thêm là <strong>1 điểm / sinh viên</strong>.
             </Typography>
           </Box>
         </Box>
