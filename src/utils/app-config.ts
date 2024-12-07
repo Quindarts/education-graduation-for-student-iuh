@@ -17,6 +17,7 @@ export const APP_ROUTES = {
   GROUP_STUDENT: {
     MANAGEMENT: "/group-students",
     DETAIL: '/group-students/detail',
+    DETAIL_GROUP_LECTURER: '/group-students/detail-group-lecturer',
   },
   TOPIC: {
     MANAGEMENT: "/topics",
@@ -97,7 +98,11 @@ export const APP_SIDEBAR = [
         link: APP_ROUTES.GROUP_STUDENT.DETAIL,
         key: APP_ROUTES.GROUP_STUDENT.DETAIL,
       },
-
+      {
+        text: 'Nhóm giảng viên chấm điểm',
+        link: APP_ROUTES.GROUP_STUDENT.DETAIL_GROUP_LECTURER,
+        key: APP_ROUTES.GROUP_STUDENT.DETAIL_GROUP_LECTURER,
+      },
     ],
   },
   {

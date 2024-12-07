@@ -1,34 +1,20 @@
 import TitleManager from '@/components/ui/Title';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import StudentCard from './StudentCard';
 import useGroupStudent from '@/hook/api/useGroupStudent';
 import SekeletonUI from '@/components/ui/Sekeleton';
 import { Icon } from '@iconify/react';
-import ExitGroupModal from '@/components/page/GroupStudent/Modal/ExitGroupModal';
 import { useNavigate } from 'react-router-dom';
-import useUserStore from '@/store/userStore';
-import useTermStore from '@/store/termStore';
-import { ENUM_STATUS_OF_DATE_TERM } from '@/utils/validations/term.validation';
 import CustomTextField from '@/components/ui/CustomTextField';
-import { group } from 'console';
+import CardGroupLecturer from '@/components/ui/CardGroupLecturer';
 
-function MyGroupStudentDesktop() {
+function MyGroupLecturerDesktop() {
   const { HandleGetMyGroupStudent, OnSubmitReviewDocument } = useGroupStudent();
   const { data, isLoading, refetch } = HandleGetMyGroupStudent();
   const { mutate: submitLink } = OnSubmitReviewDocument();
   const [openLeaveModal, setOpenEditLeaveModal] = useState({ groupId: '', isOpen: false });
   const [link, setLink] = useState('');
-  const handleCloseLeaveModal = () => {
-    setOpenEditLeaveModal({ ...openLeaveModal, isOpen: false });
-  };
-  const handleOpenLeaveModal = (groupId: string) => {
-    setOpenEditLeaveModal({ groupId, isOpen: true });
-  };
-  const { me } = useUserStore();
   const navigate = useNavigate();
-  const { partOfTerm } = useTermStore();
-
   useEffect(() => {
     refetch();
   }, []);
@@ -42,10 +28,16 @@ function MyGroupStudentDesktop() {
     submitLink({ groupId, link });
   };
   return (
-    <Paper sx={{ px: 10, py: 4, borderRadius: 2 }} elevation={0}>
-      <TitleManager fontWeight={'bold'} variant='h6' textTransform={'uppercase'} icon='mingcute:group-3-fill'>
-        Nhóm sinh viên {data?.group?.info.name}
+    <Paper sx={{ my: 2, px: 10, py: 6, borderRadius: 2 }} elevation={0}>
+      <TitleManager
+        textTransform={'uppercase'}
+        fontWeight={'bold'}
+        variant='h6'
+        icon='material-symbols:groups-2'
+      >
+        Danh sách Nhóm giảng viên chấm điểm đề tài của tôi
       </TitleManager>
+
       <Box width={'100%'} minHeight={500}>
         {' '}
         {isLoading ? (
@@ -85,52 +77,51 @@ function MyGroupStudentDesktop() {
               <>
                 <Box minHeight={400} flex={1} px={4} py={2}>
                   <Box mt={4} display={'flex'} flexDirection={'column'}>
-                    <Box width={'full'}>
-                      {data?.group?.members.map((mem: any, index: number) => (
-                        <StudentCard
-                          key={index}
-                          groupId={data.group.info.id}
-                          name={mem.student.fullName}
-                          mssv={mem.student.username}
-                          email={mem.student.email}
-                          phone={mem.student.phone}
-                          gender={mem.student.gender}
-                          studentId={mem.student_id}
-                          isAdmin={mem.isAdmin}
-                          isMe={mem.student_id === me?.id}
-                          index={index + 1}
-                        />
+                    <Box sx={{ display: 'flex', gap: 10, py: 10, flexWrap: 'wrap' }}>
+                      {data?.group?.groupLecturers?.map((group) => (
+                        <CardGroupLecturer group={group} />
                       ))}
                     </Box>
                     <Box
-                      mt={10}
                       mr={2}
                       alignSelf={'flex-end'}
                       display={'flex'}
                       width={'100%'}
-                      justifyContent={'end'}
+                      justifyContent={'space-between'}
                     >
-                      <Button
-                        onClick={() => handleOpenLeaveModal(data?.group?.info.id)}
-                        variant='contained'
-                        color='primary'
-                        sx={{ width: 140, height: 50 }}
-                        size='large'
-                        disabled={
-                          partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE
-                        }
-                      >
-                        <Icon icon='fluent-mdl2:leave-user' />
-                        Rời nhóm
-                      </Button>
+                      <Box sx={{ display: 'flex', gap: 6, width: '100%' }}>
+                        <Box sx={{ flex: 1 }}>
+                          <CustomTextField
+                            size='medium'
+                            label='Nộp link báo cáo '
+                            value={link}
+                            defaultValue={data.group?.info?.link}
+                            onChange={(e) => setLink(e.target.value)}
+                            placeholder='Nhập link báo cáo '
+                          />
+                          <Typography variant='body1' color='error.dark'>
+                            Lưu ý*: Link google drive phải được bật chế độ{' '}
+                            <span style={{ color: 'red', fontWeight: 'bold' }}>
+                              "chia sẻ công khai"
+                            </span>{' '}
+                            Mỗi nhóm nộp 1 link báo cáo, thời gian nộp được thông báo khi giảng viên
+                            quản lý khóa luận thông báo. Nội dung file của link google được giảng
+                            viên chấm điểm có thể xem trực tiếp.
+                          </Typography>
+                        </Box>
+                        <Button
+                          onClick={() => handleSubmitLink(data.group.info.id)}
+                          size='large'
+                          sx={{ width: 120, height: 48, mt: 15 }}
+                          color='success'
+                          variant='contained'
+                        >
+                          Nộp bài
+                        </Button>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
-                <ExitGroupModal
-                  open={openLeaveModal.isOpen}
-                  groupId={openLeaveModal.groupId}
-                  onClose={handleCloseLeaveModal}
-                />
               </>
             )}
           </>
@@ -140,4 +131,4 @@ function MyGroupStudentDesktop() {
   );
 }
 
-export default MyGroupStudentDesktop;
+export default MyGroupLecturerDesktop;

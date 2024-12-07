@@ -23,6 +23,7 @@ const UpdatePassPage = lazy(() => import('@/page/Auth/UpdatePassword'));
 const EventDetailPage = lazy(() => import('@/page/EventDetail'));
 const ArticlePage = lazy(() => import('@/page/Article'));
 const FinalReportPage = lazy(() => import('@/page/FinalReport'));
+const MyGroupLecturerPage = lazy(() => import('@/page/MyGroupLecturer'));
 function Routing() {
   return (
     <Routes>
@@ -33,6 +34,10 @@ function Routing() {
         <Route path={APP_ROUTES.TOPIC.DETAIL} element={<TopicDetailPage />} />
         <Route path={APP_ROUTES.GROUP_STUDENT.MANAGEMENT} element={<GroupStudentTemplate />} />
         <Route path={APP_ROUTES.GROUP_STUDENT.DETAIL} element={<MyGroupStudentPage />} />
+        <Route
+          path={APP_ROUTES.GROUP_STUDENT.DETAIL_GROUP_LECTURER}
+          element={<MyGroupLecturerPage />}
+        />
         <Route path={APP_ROUTES.USER.PROFILE} element={<ProfilePage />} />
         <Route path={APP_ROUTES.USER.UPDATE_PASS} element={<UpdatePassPage />} />
         <Route path={APP_ROUTES.EVALUATION.MANAGEMENT} element={<EvaluationPage />} />

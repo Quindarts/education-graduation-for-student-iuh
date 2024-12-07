@@ -22,7 +22,7 @@ export const convertEvalutationTable = (evalutation: any[]) => {
         ...Evalutation,
       });
     });
-    return newEvalutations;
+    return newEvalutations.sort((a, b) => a.key.localeCompare(b.key));
   }
 };
 function EvaluationManagementPage() {
@@ -30,9 +30,9 @@ function EvaluationManagementPage() {
   const { HandleGetAllEvaluationByType } = useEvaluation();
   const { evaluations, isFetching, isLoading } = HandleGetAllEvaluationByType(currentTypeReview);
   return (
-    <Paper sx={{ pt:4, pb: 10, px: 20, mx: 20, my: 10 }} elevation={1}>
+    <Paper sx={{ pt: 4, pb: 10, px: 10, my: 10 }} elevation={1}>
       <Box my={4} display={'flex'} justifyContent={'space-between'} gap={2}>
-        <TitleManager  variant='h6' textTransform={'uppercase'} icon='pajamas:review-checkmark'>
+        <TitleManager variant='h6' textTransform={'uppercase'} icon='pajamas:review-checkmark'>
           Tiêu chí Đánh giá
         </TitleManager>
 

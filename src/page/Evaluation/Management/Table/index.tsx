@@ -8,30 +8,30 @@ function TableEvaluation(props: any) {
 
   const basicColumns: GridColDef[] = [
     {
-      headerName: 'STT',
-      field: 'stt',
+      headerName: 'CLO',
+      field: 'key',
       flex: 0.5,
       align: 'center',
-      headerAlign: 'center', 
+      headerAlign: 'center',
     },
     {
       headerName: 'Tên tiêu chí',
       field: 'name',
-      flex: 6,
+      flex: 2,
     },
-    // {
-    //   headerName: 'Mô tả',
-    //   field: 'description',
-    //   flex: 3,
-    //   headerAlign: 'center',
-    //   align: 'center',
-    // },
     {
       headerName: 'Điểm tối đa',
       field: 'scoreMax',
-      flex: 1,
-      headerAlign: 'right',
-      align: 'right',
+      flex: 0.8,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      headerName: 'Mô tả',
+      field: 'description',
+      flex: 5,
+      headerAlign: 'center',
+      align: 'center',
     },
   ];
   return (
@@ -40,13 +40,12 @@ function TableEvaluation(props: any) {
         rows={rows}
         sx={{
           bgcolor: 'white',
-          height: 500,
         }}
         columns={basicColumns}
+        rowHeight={200}
         totalItems={rows.length}
-        totalPages={1}
-        page={1}
         handleChangePage={() => {}}
+        isPanigation={false}
         disableColumnMenu
         disableColumnFilter
         disableColumnSelector

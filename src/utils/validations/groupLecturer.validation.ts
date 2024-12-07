@@ -1,11 +1,11 @@
-export const typeConvertGroupLecturer = (type: string) => {
+export const checktTypeGroupLecturer = (type: string) => {
     switch (type) {
         case 'reviewer':
-            return 'Nhóm chấm Phản biện';
+            return 'Chấm Phản biện';
         case 'report_poster':
-            return 'Nhóm chấm Poster';
+            return 'Chấm Poster';
         case 'report_council':
-            return 'Nhóm chấm Hội đồng';
+            return 'Chấm Hội đồng';
     }
     return;
 };
@@ -26,15 +26,15 @@ export const ENUM_GROUP_LECTURER_REPORT = [
 ];
 export const ENUM_GROUP_LECTURER = [
     {
-        name: 'Nhóm chấm Phản biện',
+        name: 'Chấm Phản biện',
         _id: 'reviewer',
     },
     {
-        name: 'Nhóm chấm Poster',
+        name: 'Chấm Poster',
         _id: 'report_poster',
     },
     {
-        name: 'Nhóm chấm Hội đồng',
+        name: 'Chấm Hội đồng',
         _id: 'report_council',
     },
 ];

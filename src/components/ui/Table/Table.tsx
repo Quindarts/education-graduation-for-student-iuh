@@ -110,7 +110,7 @@ export default function Table(props: Props) {
           loadingOverlay: () => <LinearProgress />,
         }}
         sx={{
-          fontSize: 14,
+          fontSize: 13,
           color: 'grey.900',
           cursor: 'pointer',
           '&.MuiDataGrid-root .MuiDataGrid-cell:focus-within': {

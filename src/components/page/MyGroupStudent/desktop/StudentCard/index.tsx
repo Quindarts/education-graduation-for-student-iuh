@@ -42,11 +42,13 @@ function StudentCard({
           width: '100%',
           backgroundColor: '#fff',
           marginTop: 4,
-          px: 20,
-          py:10,
+          px: 10,
+          py: 4,
           transition: 'transform 0.3s, box-shadow 0.3s',
-          borderRadius:3,
+          borderRadius: 3,
+          border: '1px solid #cfcece',
         }}
+        elevation={0}
       >
         <CardContent sx={{ px: 10, display: 'flex', gap: 10 }}>
           <img
@@ -55,7 +57,7 @@ function StudentCard({
             style={{
               filter: 'drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))',
             }}
-            src='/images/man.png'
+            src='/images/graduate.png'
           />
 
           <Box>
@@ -99,7 +101,7 @@ function StudentCard({
                 disabled={partOfTerm.ChooseGroup?.status !== ENUM_STATUS_OF_DATE_TERM.ACTIVE}
                 onClick={handleOpenAssignAdmin}
                 variant='contained'
-                color='success' 
+                color='success'
               >
                 <Icon icon='clarity:assign-user-solid' />
                 Chọn làm trưởng nhóm

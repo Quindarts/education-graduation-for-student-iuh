@@ -29,6 +29,23 @@ function useGroupStudent() {
 
         })
     }
+
+    const OnSubmitReviewDocument = () => {
+        return useMutation({
+            mutationFn: (data: { groupId: string, link: string }) => groupStudentService.submitReviewDocument(data.groupId, data.link),
+            onSuccess: () => {
+                enqueueSnackbar('Nộp bài thành công', { variant: "success" })
+                queryClient.resetQueries({ queryKey: [QueryKeysGroupStudent.getMyGroupStudent, currentTermId] })
+            },
+            onError: (error: any) => {
+                if (error.status < 500) {
+                    enqueueSnackbar(error.message, { variant: "error" })
+                } else {
+                    enqueueSnackbar("Thao tác thất bại vui lòng refresh lại trang", { variant: "warning" })
+                }
+            }
+        })
+    }
     const OnInviteGroupStudent = (groupId: string) => {
         return useMutation({
             mutationFn: (groupId) => groupStudentService.joinGroup(`${groupId}`),
@@ -126,9 +143,14 @@ function useGroupStudent() {
     }
 
     return {
-        HandleGroupStudentByTerm, HandleGetGroupMembers, HandleGetMyGroupStudent,
+        HandleGroupStudentByTerm,
+        HandleGetGroupMembers,
+        HandleGetMyGroupStudent,
         OnRemoveMemberByAdmin,
-        OnInviteGroupStudent, OnLeaveGroupStudent, OnAssignAdminGroupStudent
+        OnSubmitReviewDocument,
+        OnInviteGroupStudent,
+        OnLeaveGroupStudent,
+        OnAssignAdminGroupStudent
     }
 }
 

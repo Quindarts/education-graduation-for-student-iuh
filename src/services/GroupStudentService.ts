@@ -12,6 +12,12 @@ class GroupStudentService {
             `${this.endpoint}/me?termId=${termId}`
         );
     }
+    async submitReviewDocument(groupId: string, link: string) {
+        return await axiosConfig.put<AxiosResponse, any>(
+            `${this.endpoint}/${groupId}/submit`,
+            { link: link }
+        );
+    }
     async getListGroup(termId: string) {
         return await axiosConfig.get<AxiosResponse, any>(
             `${this.endpoint}/term?termId=${termId}`,
