@@ -52,7 +52,7 @@ function CardGroupLecturer(props: any) {
           </Typography>
           <Box mx={4}>
             <Typography mb={0} color=''>
-              {group.location}
+              Địa điểm {group.location}
             </Typography>
             <Typography mb={2} color=''>
               Bắt đầu {dayjs(group?.startDate).format('DD/MM/YYYY hh:mm:ss A')}
