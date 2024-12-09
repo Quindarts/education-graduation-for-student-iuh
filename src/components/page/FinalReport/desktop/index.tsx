@@ -64,10 +64,7 @@ function FinalReportDesktop() {
       }}
     >
       <Box mb={20}>
-        <Typography variant='h5' fontWeight='700' 
-        textTransform={'uppercase'}
-        
-        color='primary.main'>
+        <Typography variant='h5' fontWeight='700' textTransform={'uppercase'} color='primary.main'>
           <Box
             px={6}
             mr={2}
@@ -79,7 +76,7 @@ function FinalReportDesktop() {
           >
             <Icon icon='noto:books' width={24} />
           </Box>{' '}
-          Nộp báo cáo cuối kỳ
+          Nộp báo cáo kết thúc khóa luậ tốt nghiệp
         </Typography>
       </Box>
 
@@ -96,18 +93,9 @@ function FinalReportDesktop() {
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Định dạng file đính kèm</TableCell>
             <TableCell component={'i'} sx={{ color: 'error.main' }}>
-              PDF (Kích thước tối đa 10MB){' '}
+              PDF (Kích thước tối đa 10MB){'. Đây là file báo cáo cuối cùng và không thể chỉnh sửa và được lưu trữ lâu dài.'} 
             </TableCell>
           </TableRow>
-          {/* <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Ngày bắt đầu</TableCell>
-            <TableCell>{dayjs(finalReport?.startDate).format('DD/MM/YYYY HH:mm A')}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Ngày kết thúc</TableCell>
-            <TableCell>{dayjs(finalReport?.endDate).format('DD/MM/YYYY HH:mm A')}</TableCell>
-          </TableRow> */}
-
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Phản hồi từ giảng viên</TableCell>
             <TableCell>
@@ -128,7 +116,7 @@ function FinalReportDesktop() {
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Trạng thái</TableCell>
             <TableCell>
-              {finalReport?.link !== null ? (
+              {finalReport && finalReport?.link !== null && finalReport?.link !== '' ? (
                 <Tooltip title='Xem chi tiết'>
                   <Button
                     sx={{

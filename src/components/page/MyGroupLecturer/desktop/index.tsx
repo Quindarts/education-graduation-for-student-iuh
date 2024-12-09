@@ -12,7 +12,6 @@ function MyGroupLecturerDesktop() {
   const { HandleGetMyGroupStudent, OnSubmitReviewDocument } = useGroupStudent();
   const { data, isLoading, refetch } = HandleGetMyGroupStudent();
   const { mutate: submitLink } = OnSubmitReviewDocument();
-  const [openLeaveModal, setOpenEditLeaveModal] = useState({ groupId: '', isOpen: false });
   const [link, setLink] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
@@ -93,20 +92,28 @@ function MyGroupLecturerDesktop() {
                         <Box sx={{ flex: 1 }}>
                           <CustomTextField
                             size='medium'
-                            label='Nộp link báo cáo '
+                            label='Nộp link báo cáo phản biện'
                             value={link}
                             defaultValue={data.group?.info?.link}
                             onChange={(e) => setLink(e.target.value)}
-                            placeholder='Nhập link báo cáo '
+                            placeholder='Nhập link báo cáo phản biện'
                           />
                           <Typography variant='body1' color='error.dark'>
                             Lưu ý*: Link google drive phải được bật chế độ{' '}
                             <span style={{ color: 'red', fontWeight: 'bold' }}>
                               "chia sẻ công khai"
                             </span>{' '}
-                            Mỗi nhóm nộp 1 link báo cáo, thời gian nộp được thông báo khi giảng viên
-                            quản lý khóa luận thông báo. Nội dung file của link google được giảng
-                            viên chấm điểm có thể xem trực tiếp.
+                            Mỗi nhóm nộp link google drive báo cáo phản biện. Nội dung file bao gồm:
+                            <i>
+                              file txt chứa source code, video clip giới thiệu hệ thống (5 -10
+                              phút), file báo cáo word, powerpoint giới thiệu hệ thống, thời gian
+                              nộp được thông báo khi giảng viên quản lý khóa luận thông báo.
+                            </i>
+                            <span style={{ color: 'red', fontWeight: 'bold' }}>
+                              {' '}
+                              Hội đồng phản biện sử dụng các nội dung trong link này để đánh giá và
+                              chấm điểm.
+                            </span>
                           </Typography>
                         </Box>
                         <Button

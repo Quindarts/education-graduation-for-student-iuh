@@ -51,13 +51,18 @@ function CardGroupLecturer(props: any) {
             Thông tin chi tiết
           </Typography>
           <Box mx={4}>
-            <Typography mb={0} color=''>
+            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
               Địa điểm {group.location}
             </Typography>
-            <Typography mb={2} color=''>
+            <Typography mb={2} display={'block'} fontWeight={'500'} color='primary.main'>
               Bắt đầu {dayjs(group?.startDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
-            <Typography>
+            <Typography
+              mb={2}
+              display={'block'}
+              fontWeight={'500'}
+              color='primary.main'
+            >
               Kết thúc {dayjs(group?.endDate).format('DD/MM/YYYY hh:mm:ss A')}
             </Typography>
           </Box>
