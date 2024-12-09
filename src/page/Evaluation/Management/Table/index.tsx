@@ -1,5 +1,6 @@
 import Table from '@/components/ui/Table/Table';
-import { Box } from '@mui/material';
+import { stripHtmlTags } from '@/utils/convertHtmlText';
+import { Box, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import React from 'react';
 
@@ -32,6 +33,13 @@ function TableEvaluation(props: any) {
       flex: 5,
       headerAlign: 'center',
       align: 'center',
+      renderCell(params) {
+        return (
+          <Typography variant='body1' color='initial'>
+            {stripHtmlTags(params?.value)}
+          </Typography>
+        );
+      },
     },
   ];
   return (
